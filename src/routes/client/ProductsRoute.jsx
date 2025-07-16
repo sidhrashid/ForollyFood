@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Layout from "../../components/Layout";
 import Product from "../../pages/client/products/index";
-// import ProductDetail from "../../pages/client/products/ProductsDetailPage";
+import ProductDetail from "../../pages/client/products/ProductsDetailPage";
 
 const ServiceRoutes = () => {
   return (
@@ -10,7 +10,7 @@ const ServiceRoutes = () => {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/products" element={<Product />} />
-          {/* <Route path="/product/:2" element={<ProductDetail />} /> */}
+          <Route path="/products/:id" element={<ProductDetail />} />
         </Route>
       </Routes>
     </div>

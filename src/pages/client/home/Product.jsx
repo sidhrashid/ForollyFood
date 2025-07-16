@@ -1,22 +1,27 @@
 import React, { useEffect, useState } from "react";
 import Container from "../../../components/Container";
 import { slide } from "../../../data/slide";
+import { NavLink } from "react-router-dom";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const filtered = slide
-      .filter((item) => item.slider === 1)
-      .map((item) => ({
-        id: item.prod_id,
-        title: item.title,
-        img: `/assets/images/${item.image}`, // ✅ Use public path
-        url: item.url || "/products",
-        bg: item.bg || "bg-white",
-      }));
+      .filter((item) => item.status === 1)
+      .map((item) => {
+        // Find the main image
+        const mainImage = item.images?.find((img) => img.type === "main");
 
-    setProducts(filtered);
+        return {
+          id: item.prod_id,
+          title: item.title,
+          image: mainImage ? `src/assets/images/${mainImage.url}` : "", // ✅ corrected path
+        };
+      });
+    const shuffled = [...filtered].sort(() => 0.5 - Math.random());
+    const selected = shuffled.slice(0, 5);
+    setProducts(selected);
   }, []);
 
   return (
@@ -36,19 +41,16 @@ const Products = () => {
               key={product.id || idx}
               className="min-w-[165px] max-w-[220px] bg-white rounded-xl overflow-hidden transition hover:shadow-md group"
             >
-              {/* Image */}
               <div className="h-36 flex items-center justify-center p-2">
                 <img
-                  src={product.img}
+                  src={product.image}
                   alt={product.title}
                   className="max-h-full max-w-[160px] object-contain"
                 />
               </div>
 
-              {/* Divider */}
               <div className="border-t border-gray-200 group-hover:border-gray-300 transition-colors" />
 
-              {/* Title */}
               <h3 className="sm:text-base text-sm font-semibold text-gray-800 p-2 text-center">
                 {product.title}
               </h3>
@@ -58,12 +60,14 @@ const Products = () => {
 
         {/* View All Button */}
         <div className="text-center mt-12 relative z-10">
-          <button className="group relative px-10 py-3 text-base font-semibold text-white bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 overflow-hidden">
-            <span className="relative z-10 flex items-center justify-center gap-2">
-              View All Products
-              <div className="w-2 h-2 bg-white rounded-full group-hover:translate-x-1 transition-transform duration-300"></div>
-            </span>
-          </button>
+          <NavLink to="products">
+            <button className="group relative px-10 py-3 text-base font-semibold text-white bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 overflow-hidden">
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                View All Products
+                <div className="w-2 h-2 bg-white rounded-full group-hover:translate-x-1 transition-transform duration-300"></div>
+              </span>
+            </button>
+          </NavLink>
         </div>
       </Container>
     </section>

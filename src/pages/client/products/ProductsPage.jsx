@@ -1,37 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../../../components/Container";
 import ProductCard from "../../../components/ProductCard";
-
-const products = [
-  {
-    title: "Dark Chocolate",
-    image: "/src/assets/images/shahi-thandai.png",
-  },
-  {
-    title: "Milk Chocolate",
-    image: "/src/assets/images/choco-coconut.png",
-  },
-  {
-    title: "Hazelnut Delight",
-    image: "/src/assets/images/shahi-thandai.png",
-  },
-  {
-    title: "Choco Bites",
-    image: "/src/assets/images/shahi-thandai.png",
-  },
-  {
-    title: "Berry Crunch",
-    image: "/src/assets/images/shahi-thandai.png",
-  },
-  {
-    title: "Almond Joy bbbbbbb",
-    image: "/src/assets/images/shahi-thandai.png",
-  },
-];
+import { slide } from "../../../data/slide";
 
 const ProductsPage = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const filtered = slide
+      .filter((item) => item.status === 1)
+      .map((item) => {
+        // Find the main image
+        const mainImage = item.images?.find((img) => img.type === "main");
+
+        return {
+          id: item.prod_id,
+          title: item.title,
+          image: mainImage ? `src/assets/images/${mainImage.url}` : "", // ✅ corrected path
+        };
+      });
+
+    setProducts(filtered);
+  }, []);
+
   return (
-    <section className=" py-24 bg-gradient-to-br from-orange-50 via-amber-50 to-red-50 text-gray-800">
+    <section className="py-24 bg-gradient-to-br from-orange-50 via-amber-50 to-red-50 text-gray-800">
       <Container>
         {/* Heading */}
         <div className="text-center mb-16">
@@ -45,8 +38,13 @@ const ProductsPage = () => {
 
         {/* Product Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-          {products.map((product, idx) => (
-            <ProductCard key={idx} title={product.title} image={product.image} />
+          {products.map((product) => (
+            <ProductCard
+              key={product.id}
+              id={product.id}
+              title={product.title}
+              image={product.image}
+            />
           ))}
         </div>
       </Container>

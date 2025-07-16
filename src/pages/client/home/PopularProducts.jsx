@@ -1,6 +1,7 @@
 import React from "react";
 import Container from "../../../components/Container";
-import ProductCard from "../../../components/ProductCard";
+ import ProductCard from "../../../components/ProductCard"
+import { NavLink } from "react-router-dom";
 
 const popularProducts = [
   {
@@ -60,12 +61,15 @@ const PopularProducts = () => {
 
         {/* Button */}
         <div className="text-center mt-12">
-          <button className="group relative px-10 py-3 text-base font-semibold text-white bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 overflow-hidden">
+         <NavLink to="/products">
+
+           <button className="group relative px-10 py-3 text-base font-semibold text-white bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 overflow-hidden">
             <span className="relative z-10 flex items-center justify-center gap-2">
               View Full Menu
               <div className="w-2 h-2 bg-white rounded-full group-hover:translate-x-1 transition-transform duration-300"></div>
             </span>
           </button>
+         </NavLink>
         </div>
       </Container>
     </section>

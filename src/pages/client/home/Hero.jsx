@@ -7,19 +7,25 @@ const Slider = () => {
   const [current, setCurrent] = useState(0);
   const [slidesData, setSlidesData] = useState([]);
 
-  useEffect(() => {
-    const filtered = slide
-      .filter((item) => item.slider === 1)
-      .map((item) => ({
-        id: item.id,
+useEffect(() => {
+  const filtered = slide
+    .filter((item) => item.slider === 1)
+    .map((item) => {
+      const mainImage = item.images?.find(
+        (img) => img.type === "main" && img.order === 1
+      );
+
+      return {
+        id: item.prod_id,
         title: item.title,
-        img: `src/assets/images/${item.image}`,
+        img: mainImage ? `src/assets/images/${mainImage.url}` : "", // ✅ image path
         url: item.url || "/products",
         bg: item.bg || "bg-white",
-      }));
+      };
+    });
 
-    setSlidesData(filtered);
-  }, []);
+  setSlidesData(filtered);
+}, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -31,7 +37,7 @@ const Slider = () => {
   if (!slidesData.length) return null;
 
   return (
-    <section className="py-16 md:py-20 bg-[#f9f9f9] relative overflow-hidden">
+    <section className="pt-16 bg-[#f9f9f9] relative overflow-hidden">
       <div
         className="w-max h-full flex transition-all ease-in-out duration-1000"
         style={{ transform: `translateX(-${current * 100}vw)` }}
@@ -61,8 +67,8 @@ const Slider = () => {
                   </p>
 
                   <NavLink to={slide.url}>
-                    <button className="px-6 py-3 bg-[var(--primary)] text-white rounded-md hover:bg-[#a11a23] transition">
-                      SHOP NOW
+                    <button className=" cursor-pointer px-6 py-3 bg-[var(--primary)] text-white rounded-md hover:bg-[#a11a23] transition">
+                  Explore More
                     </button>
                   </NavLink>
                 </div>
@@ -86,7 +92,7 @@ const Slider = () => {
       </div>
 
       {/* Dots */}
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-6 flex gap-3 z-10">
+      {/* <div className="absolute left-1/2 -translate-x-1/2 bottom-6 flex gap-3 z-10">
         {slidesData.map((_, index) => (
           <div
             key={index}
@@ -98,7 +104,7 @@ const Slider = () => {
             }`}
           />
         ))}
-      </div>
+      </div> */}
     </section>
   );
 };

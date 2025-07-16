@@ -6,8 +6,8 @@ import QuerySection from "./QuerySection"
 const index = () => {
     return (
         <div>
-            <ContactSection />
             <QuerySection  />
+            <ContactSection />
             {/* <Direction /> */}
             {/* <KeyFeatures /> */}
         </div>
