@@ -1,0 +1,5 @@
+<section className="bg-[#your-color] py-XX">
+  <Container>
+    {/* 👇 Yaha aapka actual content */}
+  </Container>
+</section>
