@@ -282,7 +282,7 @@ export const slide = [
       },
       {
         id: 5,
-        url: "Choc-Paan-5.png",
+        url: "Choco-Paan-5.png",
         alt: "Ingredients View",
         type: "info",
         order: 5,
