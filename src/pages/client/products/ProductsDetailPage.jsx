@@ -1,340 +1,251 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { slide } from "../../../data/slide";
 import { useEffect, useState } from "react";
+import {
+  Heart,
+  Sparkles,
+  Package,
+  ArrowRight,
+  ImageIcon,
+  Star,
+} from "lucide-react";
+import Container from "../../../components/Container";
+
+const imagesGlob = import.meta.glob(
+  "../../../assets/images/*.{jpg,jpeg,png,webp}",
+  {
+    eager: true,
+    import: "default",
+  }
+);
 
 const ProductDetail = () => {
   const { id } = useParams();
   const [loadedImages, setLoadedImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
-  const [quantity, setQuantity] = useState(1);
 
-  // Find product by matching title slug instead of ID
   const product = slide.find((item) => {
-    const titleSlug = item.title
+    const slug = item.title
       .toLowerCase()
       .replace(/\s+/g, "-")
       .replace(/[^a-z0-9-]/g, "");
-    return titleSlug === id;
+    return slug === id;
   });
 
   useEffect(() => {
     if (product && product.images) {
-      const loadImages = async () => {
-        const imagePromises = product.images.map(async (imageObj) => {
-          try {
-            const module = await import(
-              `../../../assets/images/${imageObj.url}`
-            );
-            return {
-              ...imageObj,
-              src: module.default,
-            };
-          } catch (err) {
-            console.error(`Image not found: ${imageObj.url}`, err);
-            return {
-              ...imageObj,
-              src: null,
-            };
-          }
-        });
+      const imageList = product.images.map((imageObj) => {
+        const fullPath = `../../../assets/images/${imageObj.url}`;
+        return {
+          ...imageObj,
+          src: imagesGlob[fullPath] || null,
+        };
+      });
 
-        const images = await Promise.all(imagePromises);
-        const validImages = images.filter((img) => img.src !== null);
-        setLoadedImages(validImages);
+      const validImages = imageList.filter((img) => img.src !== null);
+      setLoadedImages(validImages);
 
-        // Set main image as selected by default
-        const mainImage = validImages.find((img) => img.type === "main");
-        setSelectedImage(mainImage || validImages[0]);
-      };
-
-      loadImages();
+      const mainImage = validImages.find((img) => img.type === "main");
+      setSelectedImage(mainImage || validImages[0]);
     }
   }, [product]);
 
-  if (!product) {
-    return <div>Product not found</div>;
-  }
-
-  // Parse product information
-  const parseProductInfo = (description) => {
-    const netWeightMatch = description.match(/Net Weight:([^<]*)/);
-    const piecesMatch = description.match(/No\.Of Pieces:([^<]*)/);
-    const priceMatch = description.match(/M\.R\.P\.:([^<]*)/);
-
-    return {
-      netWeight: netWeightMatch ? netWeightMatch[1].trim() : "",
-      pieces: piecesMatch ? piecesMatch[1].trim() : "",
-      price: priceMatch ? priceMatch[1].trim() : "",
-    };
+  const handleImageSelect = (image) => {
+    setSelectedImage(image);
   };
 
-  const productInfo = parseProductInfo(product.des);
+  if (!product) {
+    return (
+      <div className="bg-[var(--secondary)] flex items-center justify-center min-h-[400px] px-4">
+        <div className="text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold text-[var(--primary)] mb-2">
+            Sweet Not Found!
+          </h2>
+          <p className="text-[var(--dark)]/70">
+            This delicious treat seems to have been eaten already!
+          </p>
+        </div>
+      </div>
+    );
+  }
 
-  // Parse ingredients
   const parseIngredients = (description) => {
-    const ingredientsMatch = description.match(/Ingredients:([^<]*)/);
-    if (ingredientsMatch) {
-      return ingredientsMatch[1].split(",").map((item) => item.trim());
-    }
-    return [];
+    const match = description.match(/Ingredients:([^<]*)/);
+    return match ? match[1].split(",").map((i) => i.trim()) : [];
   };
 
   const ingredients = parseIngredients(product.des);
+  const relatedProducts = slide.filter((p) => p !== product).slice(0, 8);
 
-  const increaseQuantity = () => setQuantity((prev) => prev + 1);
-  const decreaseQuantity = () =>
-    setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+  const productDescription =
+    "A delightful confectionery masterpiece crafted with premium ingredients and traditional techniques. Each bite delivers an explosion of rich, authentic flavors that will transport you to sweet paradise.";
 
   return (
-    <div className=" bg-white py-20">
-      <div className="max-w-7xl mx-auto px-4">
+    <div className="bg-[var(--secondary)] py-22 ">
+      <Container>
         {/* Main Product Section */}
-        <div className="grid lg:grid-cols-2 gap-12 mb-16">
-          {/* Left Side - Product Images */}
-          <div className="space-y-4">
-            {/* Main Image */}
-            <div className="bg-gray-50 rounded-2xl p-8 aspect-square flex items-center justify-center">
-              {selectedImage && selectedImage.src && (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-12 lg:mb-16">
+          {/* LEFT SIDE - Images & Plain Text */}
+          <div className="space-y-4 sm:space-y-6">
+            {/* Main Image Display */}
+            <div className="bg-white/60 backdrop-blur-sm p-4 sm:p-6 w-full max-w-sm sm:max-w-sm mx-auto rounded-2xl shadow-xl border-2 border-white/30 flex justify-center items-center aspect-square">
+              {selectedImage?.src ? (
                 <img
                   src={selectedImage.src}
                   alt={selectedImage.alt}
-                  className="max-w-full max-h-full object-contain"
+                  className="w-full h-full max-w-full max-h-full object-contain"
                 />
+              ) : (
+                <div className="flex flex-col items-center justify-center text-[var(--primary)]/40">
+                  <ImageIcon className="w-12 h-12 sm:w-16 sm:h-16 mb-2" />
+                  <span className="text-xs sm:text-sm">No Image Available</span>
+                </div>
               )}
             </div>
 
-            {/* Thumbnail Images */}
-            <div className="flex flex-wrap gap-3 overflow-x-auto ">
-              {loadedImages.map((image) => (
-                <div
-                  key={image.id}
-                  className={`w-20 h-20 p-1 bg-gray-100 rounded-lg flex items-center flex-wrap  max-w-[60px] max-h-[60px] justify-center cursor-pointer border-2 transition-all duration-200 flex-shrink-0 ${
-                    selectedImage?.id === image.id
-                      ? "border-blue-500 ring-2 ring-blue-200"
-                      : "border-gray-200 hover:border-gray-300"
-                  }`}
-                  onClick={() => setSelectedImage(image)}
-                >
-                  {image.src && (
+            {/* Thumbnails */}
+            {loadedImages.length > 1 && (
+              <div className="flex gap-2 sm:gap-3 overflow-x-hidden pb-2 px-2 sm:px-4">
+                {loadedImages.map((img) => (
+                  <div
+                    key={img.id}
+                    className={`w-12 h-12 sm:w-20 sm:h-20 border-2 rounded-lg sm:rounded-xl cursor-pointer p-1 sm:p-2 flex items-center justify-center flex-shrink-0 transition-all duration-200 ${
+                      selectedImage?.id === img.id
+                        ? "border-[var(--primary)] shadow-lg bg-white/80"
+                        : "border-white/40 bg-white/60"
+                    }`}
+                    onClick={() => handleImageSelect(img)}
+                  >
                     <img
-                      src={image.src}
-                      alt={image.alt}
-                      className="max-w-full max-h-full object-contain"
+                      src={img.src}
+                      alt={img.alt}
+                      className="w-full h-full max-w-full max-h-full object-contain"
                     />
-                  )}
-                </div>
-              ))}
-            </div>
-
-            {/* Image Type Indicator */}
-            {/* {selectedImage && (
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                <span className="capitalize">{selectedImage.type} View</span>
+                  </div>
+                ))}
               </div>
-            )} */}
+            )}
           </div>
 
-          {/* Right Side - Product Details */}
-          <div className="space-y-6">
-            {/* Product Title */}
-            <h1 className="text-3xl font-normal text-gray-900 leading-tight">
-              {product.title}
-            </h1>
+          {/* RIGHT SIDE - Product Info */}
+          <div className="space-y-4 sm:space-y-6">
+            <div>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[var(--primary)] leading-tight mb-3 sm:mb-4">
+                {product.title}
+              </h1>
+            </div>
 
-            {/* Expert Reviews */}
-            <div className="space-y-3">
-              <h3 className="text-lg font-medium text-gray-900">
-                Read Expert Reviews
+            {/* Description */}
+            <div className="space-y-3 sm:space-y-4">
+              <h3 className="text-lg sm:text-xl font-bold text-[var(--primary)]">
+                Description
               </h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                Let's read what the experts have to say about this product so
-                you can make the right recommendation.
+              <p className="text-sm sm:text-base text-[var(--dark)]/80 leading-relaxed">
+                {productDescription}
               </p>
-              <button className="flex items-center gap-2 text-sm font-medium text-gray-900 border border-gray-300 rounded-full px-4 py-2 hover:bg-gray-50 transition-colors">
-                Read More
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </button>
             </div>
 
-            {/* Price */}
-            <div className="space-y-2">
-              <div className="text-3xl font-normal text-gray-900">
-                ₹{productInfo.price.replace(" Rs.", "")}
-              </div>
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                <span>In stock</span>
-              </div>
-            </div>
-
-            {/* Size Options */}
-            <div className="space-y-3">
-              <h3 className="text-base font-medium text-gray-900">Size</h3>
-              <div className="flex gap-3">
-                <button className="px-4 py-2 bg-gray-900 text-white rounded-full text-sm font-medium">
-                  {productInfo.netWeight}
-                </button>
-                <button className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors">
-                  {productInfo.pieces}
-                </button>
-              </div>
-            </div>
-
-            {/* Quantity */}
-            <div className="space-y-3">
-              <h3 className="text-base font-medium text-gray-900">Quantity</h3>
-              <div className="flex items-center gap-4">
-                <div className="flex items-center border border-gray-300 rounded-full">
-                  <button
-                    onClick={decreaseQuantity}
-                    className="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-l-full transition-colors"
-                  >
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
+            {/* Ingredients */}
+            {ingredients.length > 0 && (
+              <div className="bg-white/50 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/30">
+                <h3 className="font-bold text-[var(--dark)] flex items-center gap-2 mb-3 sm:mb-4">
+                  <Package className="w-4 h-4 sm:w-5 sm:h-5 text-[var(--primary)]" />
+                  <span className="text-sm sm:text-base">Ingredients</span>
+                </h3>
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                  {ingredients.map((ing, i) => (
+                    <span
+                      key={i}
+                      className="px-2 sm:px-3 py-1 bg-[var(--primary)]/10 text-[var(--dark)]/80 rounded-full text-xs sm:text-sm border border-[var(--primary)]/20"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M20 12H4"
-                      />
-                    </svg>
-                  </button>
-                  <span className="w-12 text-center text-sm font-medium">
-                    {quantity}
-                  </span>
-                  <button
-                    onClick={increaseQuantity}
-                    className="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-r-full transition-colors"
-                  >
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                      />
-                    </svg>
-                  </button>
+                      {ing}
+                    </span>
+                  ))}
                 </div>
               </div>
-            </div>
+            )}
 
-            {/* Buy Now Button */}
-            <button className="w-full bg-blue-500 text-white py-4 rounded-lg font-medium text-lg hover:bg-blue-600 transition-colors">
-              BUY NOW
-            </button>
+            {/* CTA Button */}
+            <Link
+              to="/contact"
+              className="block w-full bg-gradient-to-r from-[var(--primary)] via-[var(--primary)]/90 to-[var(--primary)] text-white py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg text-center hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3"
+            >
+              <Heart className="w-5 h-5 sm:w-6 sm:h-6" />
+              <span className="text-sm sm:text-base lg:text-lg">
+                Inquire Now & Get Sweet Deals
+              </span>
+              <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6" />
+            </Link>
           </div>
         </div>
 
-        {/* Product Information Sections */}
-        <div className="space-y-8">
-          {/* Ingredients Section */}
-          <div className="bg-gray-50 rounded-2xl p-8">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-medium text-gray-900">Ingredients</h2>
-              <svg
-                className="w-5 h-5 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </div>
-            <div className="space-y-3">
-              {ingredients.map((ingredient, index) => (
-                <div
-                  key={index}
-                  className="flex items-center gap-3 text-gray-700"
-                >
-                  <div className="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
-                  <span className="text-sm">{ingredient}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Description Section */}
-          <div className="space-y-6">
-            <h2 className="text-xl font-medium text-gray-900">Description</h2>
-            <div className="text-gray-700 text-sm leading-relaxed space-y-4">
-              <p>
-                A premium chocolate product crafted with the finest ingredients.
-                This delicious treat combines traditional flavors with modern
-                manufacturing techniques to deliver an exceptional taste
-                experience.
-              </p>
-              <p>
-                Perfect for special occasions, gifting, or simply indulging
-                yourself. Each piece is carefully crafted to ensure consistent
-                quality and taste that will delight chocolate lovers of all
-                ages.
-              </p>
-            </div>
-          </div>
-
-          {/* How to Use Section */}
-          <div className="space-y-6">
-            <h2 className="text-xl font-medium text-gray-900">How To Use</h2>
-            <div className="text-gray-700 text-sm leading-relaxed">
-              <p>
-                Enjoy as a sweet treat any time of day. Store in a cool, dry
-                place away from direct sunlight. Best consumed within the
-                expiration date for optimal freshness and taste.
-              </p>
-            </div>
-          </div>
-
-          {/* Important Points Section */}
-          <div className="space-y-6">
-            <h2 className="text-xl font-medium text-gray-900">
-              Important Points
+        {/* Related Products Section */}
+        <div className="border-t border-[var(--primary)]/20 pt-8 sm:pt-12">
+          <div className="text-center mb-6 sm:mb-8">
+            <h2 className="text-xl sm:text-2xl font-bold text-[var(--primary)] mb-2 sm:mb-3">
+              More Sweet Delights
             </h2>
-            <div className="bg-red-50 rounded-lg p-4">
-              <div className="flex items-start gap-3">
-                <div className="w-5 h-5 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <span className="text-white text-xs font-bold">!</span>
-                </div>
-                <div className="text-sm text-red-700">
-                  <p className="font-medium mb-1">Allergen Information</p>
-                  <p>
-                    Contains Milk And Soya. Contains Permitted Synthetic Food
-                    Colours and Added Flavours (Nature-Identical) Flavouring
-                    Substances.
-                  </p>
-                </div>
-              </div>
+          </div>
+
+          {/* Horizontal Scroll Container */}
+          <div className="overflow-x-auto scrollbar-hide pb-4">
+            <div className="flex gap-4 sm:gap-6 min-w-max px-2">
+              {relatedProducts.map((item, idx) => {
+                const slug = item.title
+                  .toLowerCase()
+                  .replace(/\s+/g, "-")
+                  .replace(/[^a-z0-9-]/g, "");
+
+                return (
+                  <Link
+                    to={`/products/${slug}`}
+                    key={idx}
+                    className="group bg-white/50 backdrop-blur-sm p-3 sm:p-4 rounded-lg sm:rounded-xl border border-white/30 hover:scale-105 transition-all duration-300 flex-shrink-0 w-48 sm:w-56"
+                  >
+                    <div className="aspect-square bg-white/60 rounded-lg mb-2 sm:mb-3 flex items-center justify-center p-2 sm:p-3 overflow-hidden">
+                      {item.images &&
+                      item.images[0] &&
+                      imagesGlob[
+                        `../../../assets/images/${item.images[0].url}`
+                      ] ? (
+                        <img
+                          src={
+                            imagesGlob[
+                              `../../../assets/images/${item.images[0].url}`
+                            ]
+                          }
+                          alt={item.title}
+                          className="w-full h-full max-w-full max-h-full object-contain"
+                        />
+                      ) : (
+                        <div className="text-2xl sm:text-4xl opacity-50">
+                          🍫
+                        </div>
+                      )}
+                    </div>
+
+                    <h3 className="text-[var(--dark)] font-semibold mb-1 sm:mb-2 line-clamp-2 group-hover:text-[var(--primary)] transition-colors duration-300 text-sm sm:text-base truncate">
+                      {item.title}
+                    </h3>
+
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-0.5 sm:gap-1">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <Star
+                            key={star}
+                            className="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-yellow-400 text-yellow-400"
+                          />
+                        ))}
+                      </div>
+                      <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-[var(--primary)]" />
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </div>
   );
 };

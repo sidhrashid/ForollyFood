@@ -1,64 +1,160 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Container from "../../../components/Container";
-import { CheckCircle, Leaf, Heart, Truck } from "lucide-react";
+import { Star, Leaf, Heart, Award, Shield } from "lucide-react";
 
 const features = [
   {
-    icon: <CheckCircle className="w-8 h-8 text-amber-600" />,
-    title: "Premium Ingredients",
-    desc: "We use only the finest cocoa and natural flavors in every bite.",
+    icon: (
+      <Star className="w-6 h-6 text-yellow-500 group-hover:text-white transition-colors duration-500" />
+    ),
+    title: "Premium Quality",
+    desc: "We use only the finest ingredients sourced from trusted suppliers for authentic taste.",
   },
   {
-    icon: <Leaf className="w-8 h-8 text-green-600" />,
+    icon: (
+      <Leaf className="w-6 h-6 text-green-500 group-hover:text-white transition-colors duration-500" />
+    ),
     title: "100% Natural",
-    desc: "No preservatives or artificial flavors — just pure goodness.",
+    desc: "No artificial colors or preservatives just pure, natural confectionery goodness.",
   },
   {
-    icon: <Heart className="w-8 h-8 text-pink-500" />,
-    title: "Handcrafted with Love",
-    desc: "Every chocolate is handmade by passionate chocolatiers.",
+    icon: (
+      <Shield className="w-6 h-6 text-purple-500 group-hover:text-white transition-colors duration-500" />
+    ),
+    title: "Quality Assured",
+    desc: "Strict quality control and hygiene standards in every step of production.",
   },
   {
-    icon: <Truck className="w-8 h-8 text-orange-500" />,
-    title: "Fast Delivery",
-    desc: "We ensure quick and safe delivery to your doorstep.",
+    icon: (
+      <Award className="w-6 h-6 text-blue-500 group-hover:text-white transition-colors duration-500" />
+    ),
+    title: "Trusted Excellence",
+    desc: "Since 2020, we've been serving millions of happy customers with our commitment to quality.",
   },
 ];
 
 const WhyChooseUs = () => {
+  const scrollRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const scrollToIndex = (index) => {
+    if (scrollRef.current) {
+      const cardWidth = 280;
+      scrollRef.current.scrollTo({
+        left: index * cardWidth,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (scrollRef.current) {
+        const scrollLeft = scrollRef.current.scrollLeft;
+        const cardWidth = 280;
+        const newIndex = Math.round(scrollLeft / cardWidth);
+        setActiveIndex(Math.min(newIndex, features.length - 1));
+      }
+    };
+
+    const scrollElement = scrollRef.current;
+    if (scrollElement) {
+      scrollElement.addEventListener("scroll", handleScroll);
+      return () => scrollElement.removeEventListener("scroll", handleScroll);
+    }
+  }, []);
+
   return (
-    <section className="relative py-24 bg-gradient-to-br from-orange-50 via-amber-50 to-rose-50 text-gray-800 overflow-hidden">
-      {/* Decorative Blurs */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-32 -left-32 w-80 h-80 bg-orange-100/30 rounded-full blur-3xl" />
-        <div className="absolute -bottom-32 -right-32 w-80 h-80 bg-amber-200/30 rounded-full blur-3xl" />
+    <section className="relative py-10  bg-[var(--secondary)] text-gray-800 overflow-hidden flex items-center">
+      {/* Background Blur Effects */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-10 left-10 w-32 sm:w-64 h-32 sm:h-64 bg-[var(--primary)]/8 rounded-full blur-3xl" />
+        <div className="absolute bottom-16 right-16 w-40 sm:w-80 h-40 sm:h-80 bg-[var(--primary)]/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 sm:w-96 h-48 sm:h-96 bg-[var(--primary)]/5 rounded-full blur-3xl" />
       </div>
 
       <Container>
-        <div className="text-center mb-14 relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-orange-600 via-amber-600 to-rose-500 bg-clip-text text-transparent mb-4">
-            Why Choose Us
-          </h2>
-          <p className="text-lg text-gray-600 max-w-xl mx-auto">
-            Discover what makes our chocolate brand stand out from the rest.
-          </p>
-        </div>
+        <div className="flex flex-col h-full justify-center">
+          {/* Header */}
+          <div className="text-center mb-6 sm:mb-8 md:mb-12 relative z-10">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--dark)] mb-4">
+              Why Choose Forolly
+            </h2>
+            <div className="w-14 h-1 bg-[var(--primary)] rounded-full mx-auto mb-4" />
+            <p className="text-gray-600 max-w-md mx-auto text-sm sm:text-base px-4">
+              Discover what makes Forolly India's most trusted confectionery
+              brand
+            </p>
+          </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
-          {features.map((item, idx) => (
-            <div
-              key={idx}
-              className="group bg-white/80 backdrop-blur-md p-6 rounded-3xl shadow-md hover:shadow-xl transition-all hover:scale-105 duration-300"
-            >
-              <div className="flex items-center justify-center mb-4">
-                {item.icon}
+          {/* Desktop and Tablet layout */}
+          <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto relative z-10">
+            {features.map((feature, idx) => (
+              <div
+                key={idx}
+                className="group bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-md border border-white/60 hover:shadow-xl hover:border-[var(--primary)]/30 transition-all duration-300 relative overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-[var(--primary)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl z-0" />
+                <div className="relative z-10 flex flex-col h-full text-center">
+                  <div className="mb-4 group-hover:scale-105 transition-transform duration-300">
+                    <div className="w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center mx-auto group-hover:bg-white/20 transition-all duration-300">
+                      {feature.icon}
+                    </div>
+                  </div>
+                  <h3 className="text-base font-bold text-[var(--dark)] mb-2 group-hover:text-white transition-all duration-300">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 group-hover:text-white/95 transition-all duration-300 leading-relaxed">
+                    {feature.desc}
+                  </p>
+                </div>
               </div>
-              <h3 className="text-lg font-semibold text-center text-gray-800 mb-2">
-                {item.title}
-              </h3>
-              <p className="text-sm text-center text-gray-600">{item.desc}</p>
+            ))}
+          </div>
+
+          {/* Mobile layout */}
+          <div className="block md:hidden relative z-10 w-full">
+            {/* Mobile Horizontal Scrollable Cards */}
+            <div className="overflow-x-auto scrollbar-hide px-4 pb-2">
+              <div
+                ref={scrollRef}
+                className="flex gap-4 snap-x snap-mandatory scroll-smooth w-max"
+              >
+                {features.map((feature, idx) => (
+                  <div
+                    key={idx}
+                    className="group snap-start flex-shrink-0 w-[260px] bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-md border border-white/60 hover:shadow-lg transition-all duration-300 cursor-pointer relative"
+                  >
+                    <div className="absolute inset-0 bg-[var(--primary)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl z-0" />
+                    <div className="relative z-10 flex flex-col h-full text-center">
+                      <div className="mb-2 group-hover:scale-105 transition-transform duration-300">
+                        <div className="w-8 h-8 bg-gray-50 rounded-lg flex items-center justify-center mx-auto group-hover:bg-white/20 transition-all duration-300">
+                          {feature.icon}
+                        </div>
+                      </div>
+                      <h3 className="text-sm font-bold text-[var(--dark)] mb-2 group-hover:text-white transition-all duration-300">
+                        {feature.title}
+                      </h3>
+                      <p className="text-xs text-gray-600 leading-relaxed group-hover:text-white/95 transition-all duration-300 flex-grow line-clamp-3">
+                        {feature.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-          ))}
+
+            {/* Hide scrollbar style */}
+            <style jsx>{`
+              .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+              }
+              .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+              }
+            `}</style>
+          </div>
         </div>
       </Container>
     </section>

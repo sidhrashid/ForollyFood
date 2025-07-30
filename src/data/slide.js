@@ -396,7 +396,7 @@ export const slide = [
     title: "MILKY CHOCO SURPRISE BOX",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.130 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:20 Pieces\u003Cbr /\u003E\r\nM.R.P.:50 Rs.",
     long_desc: "",
-images: [
+    images: [
       {
         id: 1,
         url: "MilkyChoco t.png",
@@ -432,19 +432,20 @@ images: [
         type: "info",
         order: 5,
       },
-    ],    status: 1,
+    ],
+    status: 1,
     slider: 1,
     popular: 0,
   },
 
- // =====================================10===================================
+  // =====================================10===================================
   {
     prod_id: 10,
 
-    title: "MILK ROSE SURPRISE BOX",
+    title: "MILKY ROSE SURPRISE BOX",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.130 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:20 Pieces\u003Cbr /\u003E\r\nM.R.P.:50 Rs.",
     long_desc: "",
-   images: [
+    images: [
       {
         id: 1,
         url: "MilkyRose t.png",
@@ -493,7 +494,7 @@ images: [
     title: "SHAHI THANDAI SURPRISE BOX",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.130 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:20 Pieces\u003Cbr /\u003E\r\nM.R.P.:50 Rs.",
     long_desc: "",
-images: [
+    images: [
       {
         id: 1,
         url: "ShahiThandai t.png",
@@ -529,7 +530,8 @@ images: [
         type: "info",
         order: 5,
       },
-    ],    status: 1,
+    ],
+    status: 1,
     slider: 1,
     popular: 0,
   },

@@ -11,7 +11,7 @@ const QuerySection = () => {
       }}
     >
       <Container>
-        <div className="text-center max-w-3xl mx-auto sm:px-4 px-1 py-4">
+        <div className="text-center flex items-center flex-col justify-center max-w-3xl mx-auto sm:px-4 px-1 py-4">
           <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
             Have any <span className="text-[var(--primary)]">Queries?</span> <br className="hidden md:block" />
             <span className="text-amber-700">Let us know.</span>
@@ -21,7 +21,7 @@ const QuerySection = () => {
             <div className="w-24 h-1 bg-gradient-to-r from-amber-500 to-red-500 rounded-full" />
           </div>
 
-          <p className="text-lg text-gray-700 leading-relaxed font-medium ">
+          <p className="text-lg text-gray-700 leading-relaxed font-medium max-w-[350px] sm:max-w-[550px]  ">
             We will clear it for you at the best. We value your feedback and are
             always ready to answer your inquiry. Please reach out via the given
             contact details or submit your message to us directly.
