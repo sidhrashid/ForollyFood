@@ -2,6 +2,7 @@ import React from "react";
 import Container from "../../../components/Container";
 import { CalendarDays, History, Star } from "lucide-react";
 import { NavLink } from "react-router-dom";
+import about_us from "../../../assets/images/aboutus.png";
 
 const AboutUsSection = () => {
   return (
@@ -23,7 +24,7 @@ const AboutUsSection = () => {
             {/* Clean Glass Container */}
             <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-6 border border-orange-200/50 shadow-xl hover:shadow-orange-300/40 transition-all duration-300">
               <img
-                src="/src/assets/images/aboutus.png"
+                src={about_us}
                 alt="About Forolly - Premium Confectionery"
                 className="w-full h-auto max-h-[500px] object-cover rounded-2xl shadow-lg"
               />
