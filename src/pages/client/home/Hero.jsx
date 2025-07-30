@@ -20,7 +20,7 @@ const Slider = () => {
         return {
           id: item.prod_id,
           title: item.title,
-          img: mainImage ? `src/assets/images/${mainImage.url}` : "",
+          img: mainImage ? `${mainImage.url}` : "",
           url: item.url || "/products",
           bg:
             item.bg ||
