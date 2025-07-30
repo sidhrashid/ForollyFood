@@ -3,21 +3,12 @@ import { slide } from "../../../data/slide";
 import { useEffect, useState } from "react";
 import {
   Heart,
-  Sparkles,
   Package,
   ArrowRight,
   ImageIcon,
   Star,
 } from "lucide-react";
 import Container from "../../../components/Container";
-
-const imagesGlob = import.meta.glob(
-  "../../../assets/images/*.{jpg,jpeg,png,webp}",
-  {
-    eager: true,
-    import: "default",
-  }
-);
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -35,18 +26,16 @@ const ProductDetail = () => {
   useEffect(() => {
     if (product && product.images) {
       const imageList = product.images.map((imageObj) => {
-        const fullPath = `../../../assets/images/${imageObj.url}`;
         return {
           ...imageObj,
-          src: imagesGlob[fullPath] || null,
+          src: `/images/${imageObj.url}`, // 👈 public/images path
         };
       });
 
-      const validImages = imageList.filter((img) => img.src !== null);
-      setLoadedImages(validImages);
+      setLoadedImages(imageList);
 
-      const mainImage = validImages.find((img) => img.type === "main");
-      setSelectedImage(mainImage || validImages[0]);
+      const mainImage = imageList.find((img) => img.type === "main");
+      setSelectedImage(mainImage || imageList[0]);
     }
   }, [product]);
 
@@ -85,9 +74,8 @@ const ProductDetail = () => {
       <Container>
         {/* Main Product Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-12 lg:mb-16">
-          {/* LEFT SIDE - Images & Plain Text */}
+          {/* LEFT SIDE */}
           <div className="space-y-4 sm:space-y-6">
-            {/* Main Image Display */}
             <div className="bg-white/60 backdrop-blur-sm p-4 sm:p-6 w-full max-w-sm sm:max-w-sm mx-auto rounded-2xl shadow-xl border-2 border-white/30 flex justify-center items-center aspect-square">
               {selectedImage?.src ? (
                 <img
@@ -127,7 +115,7 @@ const ProductDetail = () => {
             )}
           </div>
 
-          {/* RIGHT SIDE - Product Info */}
+          {/* RIGHT SIDE */}
           <div className="space-y-4 sm:space-y-6">
             <div>
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[var(--primary)] leading-tight mb-3 sm:mb-4">
@@ -179,7 +167,7 @@ const ProductDetail = () => {
           </div>
         </div>
 
-        {/* Related Products Section */}
+        {/* Related Products */}
         <div className="border-t border-[var(--primary)]/20 pt-8 sm:pt-12">
           <div className="text-center mb-6 sm:mb-8">
             <h2 className="text-xl sm:text-2xl font-bold text-[var(--primary)] mb-2 sm:mb-3">
@@ -187,7 +175,6 @@ const ProductDetail = () => {
             </h2>
           </div>
 
-          {/* Horizontal Scroll Container */}
           <div className="overflow-x-auto scrollbar-hide pb-4">
             <div className="flex gap-4 sm:gap-6 min-w-max px-2">
               {relatedProducts.map((item, idx) => {
@@ -195,7 +182,6 @@ const ProductDetail = () => {
                   .toLowerCase()
                   .replace(/\s+/g, "-")
                   .replace(/[^a-z0-9-]/g, "");
-
                 return (
                   <Link
                     to={`/products/${slug}`}
@@ -203,17 +189,9 @@ const ProductDetail = () => {
                     className="group bg-white/50 backdrop-blur-sm p-3 sm:p-4 rounded-lg sm:rounded-xl border border-white/30 hover:scale-105 transition-all duration-300 flex-shrink-0 w-48 sm:w-56"
                   >
                     <div className="aspect-square bg-white/60 rounded-lg mb-2 sm:mb-3 flex items-center justify-center p-2 sm:p-3 overflow-hidden">
-                      {item.images &&
-                      item.images[0] &&
-                      imagesGlob[
-                        `../../../assets/images/${item.images[0].url}`
-                      ] ? (
+                      {item.images && item.images[0] ? (
                         <img
-                          src={
-                            imagesGlob[
-                              `../../../assets/images/${item.images[0].url}`
-                            ]
-                          }
+                          src={`/images/${item.images[0].url}`} // ✅ here too
                           alt={item.title}
                           className="w-full h-full max-w-full max-h-full object-contain"
                         />

@@ -15,7 +15,7 @@ const Products = () => {
         return {
           id: item.prod_id,
           title: item.title,
-          image: mainImage ? `src/assets/images/${mainImage.url}` : "",
+          image: mainImage ? `/images/${mainImage.url}` : "",
         };
       });
 
