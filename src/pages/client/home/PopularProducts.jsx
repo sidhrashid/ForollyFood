@@ -5,27 +5,27 @@ import { NavLink } from "react-router-dom";
 const popularProducts = [
   {
     title: "Fruityza Chewy Toffee",
-    image: "/src/assets/images/FRUITYZA CHEWY TOFFEE t.png",
+    image: "/src/assets/images/FRUITYZA-CHEWY-TOFFEE t.png",
   },
   {
     title: "Fruityza Fun Toffee",
-    image: "/src/assets/images/FRUITYZA FUN t.png",
+    image: "/src/assets/images/FRUITYZA-FUN-t.png",
   },
   {
     title: "Melon Masti",
-    image: "/src/assets/images/MELON MASTI t.png",
+    image: "/src/assets/images/MELON-MASTI-t.png",
   },
   {
     title: "Yogurt 20 ",
-    image: "/src/assets/images/YOGURT 20 t.png",
+    image: "/src/assets/images/YOGURT-20-t.png",
   },
   {
     title: "Indian Coconut",
-    image: "/src/assets/images/COCONUT t.png",
+    image: "/src/assets/images/COCONUT-t.png",
   },
   {
     title: "Forever Fruta",
-    image: "/src/assets/images/FOREVER FRUTA t.png",
+    image: "/src/assets/images/FOREVER-FRUTA-t.png",
   },
 ];
 
