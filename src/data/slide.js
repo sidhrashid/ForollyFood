@@ -330,7 +330,7 @@ export const slide = [
       },
       {
         id: 5,
-        url: "LoveAngle-5.png",
+        url: "Love-Angle-5.png",
         alt: "Ingredients View",
         type: "info",
         order: 5,
