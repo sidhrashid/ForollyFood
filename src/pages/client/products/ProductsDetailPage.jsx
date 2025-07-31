@@ -81,6 +81,9 @@ const ProductDetail = () => {
                 <img
                   src={selectedImage.src}
                   alt={selectedImage.alt}
+                  loading="lazy"
+                  width={400}
+                  height={400}
                   className="w-full h-full max-w-full max-h-full object-contain"
                 />
               ) : (
@@ -107,6 +110,9 @@ const ProductDetail = () => {
                     <img
                       src={img.src}
                       alt={img.alt}
+                      loading="lazy"
+                      width={400}
+                      height={400}
                       className="w-full h-full max-w-full max-h-full object-contain"
                     />
                   </div>

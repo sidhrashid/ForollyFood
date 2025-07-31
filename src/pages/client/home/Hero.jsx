@@ -41,18 +41,6 @@ const Slider = () => {
     return () => clearInterval(interval);
   }, [slidesData]);
 
-  const goToSlide = (index) => {
-    setCurrent(index);
-  };
-
-  const nextSlide = () => {
-    setCurrent((prev) => (prev === slidesData.length - 1 ? 0 : prev + 1));
-  };
-
-  const prevSlide = () => {
-    setCurrent((prev) => (prev === 0 ? slidesData.length - 1 : prev - 1));
-  };
-
   if (isLoading) {
     return (
       <div className="pt-16 h-[80vh] flex items-center justify-center bg-[var(--secondary)]">
@@ -112,6 +100,9 @@ const Slider = () => {
                         <img
                           src={slide.img}
                           alt={slide.title}
+                          loading="lazy"
+                          width="400"
+                          height="400"
                           className="w-full max-w-[200px] sm:max-w-[250px] md:max-w-[300px] lg:max-w-[400px] h-auto object-contain relative z-10 drop-shadow-2xl group-hover:drop-shadow-3xl transition-all duration-500 group-hover:scale-105"
                         />
 

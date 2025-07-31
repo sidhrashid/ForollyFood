@@ -6,13 +6,8 @@ import about_us from "../../../assets/images/aboutus.png";
 
 const AboutUsSection = () => {
   return (
-    <section className="py-20 relative overflow-hidden bg-gradient-to-br from-orange-50 via-yellow-50 to-red-50">
-      {/* Simple Background Pattern */}
-      {/* <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-10 right-10 w-40 h-40 bg-red-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 left-20 w-32 h-32 bg-orange-400/15 rounded-full blur-2xl"></div>
-        <div className="absolute top-1/2 right-1/3 w-24 h-24 bg-yellow-500/10 rounded-full blur-xl"></div>
-      </div> */}
+    <section className="py-10 relative overflow-hidden bg-gradient-to-br from-orange-50 via-yellow-50 to-red-50">
+     
 
       <Container>
         <div className="grid lg:grid-cols-2 gap-16 items-center relative z-10">
@@ -25,6 +20,9 @@ const AboutUsSection = () => {
             <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-6 border border-orange-200/50 shadow-xl hover:shadow-orange-300/40 transition-all duration-300">
               <img
                 src={about_us}
+                loading="lazy"
+                width="500"
+                height="500"
                 alt="About Forolly - Premium Confectionery"
                 className="w-full h-auto max-h-[500px] object-cover rounded-2xl shadow-lg"
               />
@@ -48,12 +46,7 @@ const AboutUsSection = () => {
 
           {/* Simple Content Section */}
           <div className="space-y-8 text-center lg:text-left">
-            {/* Simple Brand Badge */}
-            {/* <div className="inline-flex items-center gap-3 px-6 py-3 bg-red-500 text-white text-sm font-semibold rounded-full shadow-lg">
-              <div className="w-3 h-3 bg-white rounded-full"></div>
-              Our Story & Legacy
-            </div> */}
-
+           
             {/* Simple Title */}
             <div className="relative">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 leading-tight">
@@ -61,12 +54,7 @@ const AboutUsSection = () => {
                   About Forolly
                 </span>
               </h2>
-              {/* Simple Underline */}
-              {/* <div className="absolute -bottom-4 left-0 lg:left-0 flex gap-2 justify-center lg:justify-start w-full lg:w-auto">
-                <div className="w-8 h-2 bg-red-400 rounded-full"></div>
-                <div className="w-6 h-2 bg-orange-400 rounded-full"></div>
-                <div className="w-4 h-2 bg-yellow-400 rounded-full"></div>
-              </div> */}
+             
             </div>
 
             {/* Simple Description */}

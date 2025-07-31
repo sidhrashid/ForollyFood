@@ -12,7 +12,7 @@ const popularProducts = [
   { src: FruityzaChewyToffee, title: "Fruityza Chewy Toffee" },
   { src: FruityzaFunToffee, title: "Fruityza Fun Toffee" },
   { src: MelonMasti, title: "Melon Masti" },
-  { src: Yogurt20, title: "Yogurt 20%" },
+  { src: Yogurt20, title: "Yogurt 20" },
   { src: IndianCoconut, title: "Indian Coconut" },
   { src: ForeverFruta, title: "Forever Fruta" },
 ];

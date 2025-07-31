@@ -97,6 +97,9 @@ const Products = () => {
                     <img
                       src={product.image}
                       alt={product.title}
+                      loading="lazy"
+                      width={200}
+                      height={200}
                       className="product-image max-h-full max-w-full object-contain transition-all duration-500 z-10 relative p-4 "
                     />
                   </NavLink>
