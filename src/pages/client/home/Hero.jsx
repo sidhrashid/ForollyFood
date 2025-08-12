@@ -24,6 +24,108 @@ const Slider = () => {
     return styles[index] || styles[0];
   };
 
+  // Skeleton Loader Component
+  const SkeletonLoader = () => {
+    return (
+      <div className="relative overflow-hidden">
+        <section className="pt-16 w-screen relative overflow-hidden bg-gradient-to-br from-gray-300 via-gray-200 to-gray-100" 
+                 style={{ 
+                   height: 'calc(100vh - 4rem)',
+                   minHeight: '600px',
+                   maxHeight: '900px'
+                 }}>
+          
+          {/* Skeleton Background Pattern */}
+          <div className="absolute inset-0 pointer-events-none">
+            <svg className="absolute inset-0 w-full h-full opacity-30" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern id="skeleton-pattern" patternUnits="userSpaceOnUse" width="40" height="40">
+                  <circle cx="20" cy="20" r="1" fill="rgba(156,163,175,0.3)" className="animate-pulse"/>
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#skeleton-pattern)"/>
+            </svg>
+            
+            {/* Floating skeleton elements */}
+            <div className="absolute top-1/4 left-1/4 w-16 h-16 bg-gray-300 rounded-full animate-pulse blur-sm"></div>
+            <div className="absolute bottom-1/3 right-1/4 w-12 h-12 bg-gray-400 rotate-45 animate-pulse"></div>
+          </div>
+
+          {/* Main Content Skeleton */}
+          <div className="relative z-10 h-full flex items-center py-8 sm:py-12 lg:py-16">
+            <Container>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
+                
+                {/* Left Content Skeleton */}
+                <div className="lg:col-span-7 order-2 lg:order-1 space-y-4 sm:space-y-8 text-center lg:text-left">
+                  
+                  {/* Badge Skeleton */}
+                  <div className="inline-flex items-center gap-3 px-6 py-3 bg-gray-300 rounded-full animate-pulse">
+                    <div className="w-5 h-5 bg-gray-400 rounded-full"></div>
+                    <div className="w-32 h-4 bg-gray-400 rounded"></div>
+                  </div>
+
+                  {/* Title Skeleton */}
+                  <div className="space-y-4">
+                    <div className="space-y-3">
+                      <div className="h-8 sm:h-12 bg-gray-300 rounded animate-pulse w-3/4 mx-auto lg:mx-0"></div>
+                      <div className="h-6 sm:h-8 bg-gray-300 rounded animate-pulse w-1/2 mx-auto lg:mx-0"></div>
+                    </div>
+                    <div className="h-6 bg-gray-300 rounded animate-pulse w-2/3 mx-auto lg:mx-0"></div>
+                    
+                    {/* Underline skeleton */}
+                    <div className="w-24 h-1 bg-gray-300 rounded-full mx-auto lg:mx-0 animate-pulse"></div>
+                  </div>
+
+                  {/* Stats Skeleton */}
+                  <div className="grid grid-cols-3 gap-3 sm:gap-4 lg:gap-6 max-w-sm mx-auto lg:mx-0">
+                    {[1, 2, 3].map((_, idx) => (
+                      <div key={idx} className="text-center p-3 bg-gray-200 rounded-lg animate-pulse">
+                        <div className="h-6 bg-gray-300 rounded mb-2"></div>
+                        <div className="h-4 bg-gray-300 rounded w-2/3 mx-auto"></div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Button Skeleton */}
+                  <div className="pt-2">
+                    <div className="inline-flex items-center gap-3 px-10 py-4 bg-gray-300 rounded-full animate-pulse">
+                      <div className="w-5 h-5 bg-gray-400 rounded-full"></div>
+                      <div className="w-24 h-4 bg-gray-400 rounded"></div>
+                      <div className="w-5 h-5 bg-gray-400 rounded-full"></div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Image Skeleton */}
+                <div className="lg:col-span-5 order-1 lg:order-2 flex justify-center items-center">
+                  <div className="relative">
+                    {/* Image placeholder */}
+                    <div className="w-[280px] sm:w-[320px] lg:w-[380px] xl:w-[420px] h-[280px] sm:h-[320px] lg:h-[380px] xl:h-[420px] bg-gray-300 rounded-2xl animate-pulse flex items-center justify-center">
+                      {/* Simple product icon */}
+                      <div className="w-20 h-20 bg-gray-400 rounded-full flex items-center justify-center">
+                        <div className="w-10 h-10 bg-gray-500 rounded"></div>
+                      </div>
+                    </div>
+
+                    {/* Floating badges skeleton */}
+                    <div className="absolute -top-4 -right-4 bg-gray-300 px-4 py-2 rounded-full animate-pulse">
+                      <div className="w-16 h-4 bg-gray-400 rounded"></div>
+                    </div>
+                    
+                    <div className="absolute -bottom-4 -left-4 bg-gray-300 px-4 py-2 rounded-full animate-pulse">
+                      <div className="w-12 h-4 bg-gray-400 rounded"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Container>
+          </div>
+        </section>
+      </div>
+    );
+  };
+
   // Advanced SVG Pattern Generator
   const renderAdvancedPattern = (patternType, accent) => {
     const svgPatterns = {
@@ -229,12 +331,9 @@ const Slider = () => {
     return () => clearInterval(interval);
   }, [slidesData]);
 
+  // Show skeleton loader while loading
   if (isLoading) {
-    return (
-      <div className="pt-16 h-[70vh] flex items-center justify-center bg-gradient-to-br from-purple-700 via-purple-600 to-indigo-700">
-        <div className="animate-spin rounded-full h-12 w-12 border-4 border-white border-t-transparent"></div>
-      </div>
-    );
+    return <SkeletonLoader />;
   }
 
   if (!slidesData.length) return null;
@@ -265,8 +364,7 @@ const Slider = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
                   
                   {/* Left Content Section */}
-{/* Left Content Section */}
-<div className="lg:col-span-7 order-2 lg:order-1 space-y-4 sm:space-y-8 text-center lg:text-left">
+                  <div className="lg:col-span-7 order-2 lg:order-1 space-y-4 sm:space-y-8 text-center lg:text-left">
                     
                     {/* Enhanced Badge with SVG Border */}
                     <div className="relative inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3">
@@ -313,8 +411,6 @@ const Slider = () => {
                         <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/80 to-transparent animate-pulse" style={{animationDelay: '0.5s'}}></div>
                       </div>
                     </div>
-
-                    
 
                     {/* Enhanced Stats with SVG frames */}
                     <div className="grid grid-cols-3 gap-3 sm:gap-4 lg:gap-6 max-w-sm mx-auto lg:mx-0">
@@ -377,8 +473,7 @@ const Slider = () => {
                   </div>
 
                   {/* Right Image Section with Advanced Frame */}
-{/* Right Image Section */}
-<div className="lg:col-span-5 order-1 lg:order-2 flex justify-center items-center">
+                  <div className="lg:col-span-5 order-1 lg:order-2 flex justify-center items-center">
                     <div className="relative group">
                       
                       {/* Advanced SVG Frame */}
@@ -406,7 +501,7 @@ const Slider = () => {
                       />
 
                       {/* Enhanced Floating Badges with SVG */}
-                        <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 bg-white/20 backdrop-blur-sm text-white px-3 py-2 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-bold shadow-xl border border-white/30 ">
+                      <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 bg-white/20 backdrop-blur-sm text-white px-3 py-2 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-bold shadow-xl border border-white/30 ">
                         <Star className="w-3 h-3 sm:w-4 sm:h-4 inline mr-1" />
                         Premium
                       </div>

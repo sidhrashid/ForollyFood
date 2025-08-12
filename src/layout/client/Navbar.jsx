@@ -101,7 +101,7 @@ const Navbar = () => {
           {/* Enhanced Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden relative p-2 text-[var(--primary)] hover:bg-[var(--primary)]/10 rounded-lg transition-all duration-300 group z-[60]"
+            className="md:hidden relative p-2 text-[var(--secondary)] hover:bg-[var(--primary)]/10 rounded-lg transition-all duration-300 group z-[60]"
           >
             <div className="relative w-6 h-6">
               <Menu
