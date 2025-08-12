@@ -2,51 +2,48 @@ import React from "react";
 import Container from "../../../components/Container";
 import { CalendarDays, History, Star } from "lucide-react";
 import { NavLink } from "react-router-dom";
-import about_us from "../../../assets/images/aboutus.png";
+import about_us from "../../../assets/images/forolly-about.png";
 
 const AboutUsSection = () => {
   return (
-    <section className="py-10 relative overflow-hidden bg-gradient-to-br from-orange-50 via-yellow-50 to-red-50">
-     
-
+    <section className="py-10 relative overflow-hidden bg-[var(--secondary)]">
       <Container>
         <div className="grid lg:grid-cols-2 gap-16 items-center relative z-10">
           {/* Simple Image Section */}
           <div className="relative w-full">
             {/* Simple Glow Effect */}
-            <div className="absolute -inset-4 bg-gradient-to-r from-red-400/20 to-orange-400/20 blur-2xl rounded-3xl"></div>
+            <div className="absolute -inset-4 blur-2xl rounded-3xl"></div>
 
             {/* Clean Glass Container */}
-            <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-6 border border-orange-200/50 shadow-xl hover:shadow-orange-300/40 transition-all duration-300">
+            <div className="relative rounded-3xl p-6 border border-orange-200/50 shadow-xl hover:shadow-orange-300/40 transition-all duration-300">
               <img
                 src={about_us}
                 loading="lazy"
                 width="500"
                 height="500"
                 alt="About Forolly - Premium Confectionery"
-                className="w-full h-auto max-h-[500px] object-cover rounded-2xl shadow-lg"
+                className="w-full h-auto max-h-[500px] object-contain rounded-2xl "
               />
 
               {/* Simple Badges */}
-              <div className="flex items-center justify-center absolute top-4 right-4 bg-[var(--primary)]  text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+              {/* <div className="flex items-center justify-center absolute top-4 right-4 bg-[var(--primary)]  text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
                 <CalendarDays className="w-3 h-3 inline mr-2" />
                 Since 2020
-              </div>
+              </div> */}
 
               <div
-                className=" flex items-center justify-center absolute bottom-4 left-4 bg-white 
-              text-[var(--primary)]
-                px-4 py-2 rounded-full text-sm font-bold shadow-lg border border-[var(--primary)]"
+                className=" flex items-center justify-center absolute bottom-4 left-4 bg-[var(--primary)]
+              text-white
+                px-4 py-2 rounded-full text-sm font-bold shadow-lg "
               >
-                <Star className="w-4 h-4 inline mr-1" />
-                Trusted Brand
+                <CalendarDays className="w-3 h-3 inline mr-2" />
+                Since 2020
               </div>
             </div>
           </div>
 
           {/* Simple Content Section */}
           <div className="space-y-8 text-center lg:text-left">
-           
             {/* Simple Title */}
             <div className="relative">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 leading-tight">
@@ -54,7 +51,6 @@ const AboutUsSection = () => {
                   About Forolly
                 </span>
               </h2>
-             
             </div>
 
             {/* Simple Description */}
@@ -101,25 +97,25 @@ const AboutUsSection = () => {
 
             {/* Simple CTA Button */}
             <div className="flex justify-center lg:justify-start">
-              <NavLink to="/about"> 
+              <NavLink to="/about">
                 <button className="px-8 py-4 bg-[var(--primary)]  text-white font-bold rounded-full shadow-lg hover:shadow-xl hover:from-red-600 hover:to-orange-600 transition-all duration-300">
-                <span className="flex items-center gap-2">
-                  Discover Our Journey
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </span>
-              </button>
+                  <span className="flex items-center gap-2">
+                    Discover Our Journey
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </span>
+                </button>
               </NavLink>
             </div>
           </div>

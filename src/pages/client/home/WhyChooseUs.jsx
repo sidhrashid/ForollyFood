@@ -67,11 +67,11 @@ const WhyChooseUs = () => {
   return (
     <section className="relative py-10  bg-[var(--secondary)] text-gray-800 overflow-hidden flex items-center">
       {/* Background Blur Effects */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {/* <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-10 left-10 w-32 sm:w-64 h-32 sm:h-64 bg-[var(--primary)]/8 rounded-full blur-3xl" />
         <div className="absolute bottom-16 right-16 w-40 sm:w-80 h-40 sm:h-80 bg-[var(--primary)]/10 rounded-full blur-3xl" />
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 sm:w-96 h-48 sm:h-96 bg-[var(--primary)]/5 rounded-full blur-3xl" />
-      </div>
+      </div> */}
 
       <Container>
         <div className="flex flex-col h-full justify-center">

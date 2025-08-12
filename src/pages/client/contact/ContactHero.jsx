@@ -92,9 +92,9 @@ ${formData.message}
 
   return (
     <div className="bg-[var(--secondary)] relative overflow-hidden py-4 px-4">
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden ">
         <div
-          className="absolute inset-0 opacity-20"
+          className="absolute inset-0 opacity-20 "
           style={{
             backgroundImage: `
             radial-gradient(circle at 20% 20%, var(--primary) 1px, transparent 1px),
@@ -118,20 +118,13 @@ ${formData.message}
       </div>
 
       <Container>
-        <div className="text-center mb-4">
+        <div className="text-center mb-8">
           <h1
             className="text-2xl sm:text-3xl font-bold text-[var(--primary)] mb-1 flex items-center justify-center gap-2"
             style={{ fontFamily: "var(--font-heading)" }}
           >
-            <Sparkles className="w-6 h-6 animate-pulse" />
             Contact Forolly
-            <Sparkles className="w-6 h-6 animate-pulse" />
           </h1>
-          <div className="flex justify-center items-center gap-2">
-            <div className="w-8 h-0.5 bg-[var(--primary)] rounded-full"></div>
-            <Gift className="w-3 h-3 text-[var(--primary)] animate-bounce" />
-            <div className="w-8 h-0.5 bg-[var(--primary)] rounded-full"></div>
-          </div>
         </div>
 
         {/* ✅ Modified grid layout below */}
@@ -150,7 +143,6 @@ ${formData.message}
               <div className="text-center mb-4">
                 <div className="flex justify-center mb-2">
                   <div className="p-2 bg-gradient-to-br from-[var(--primary)]/15 to-[var(--primary)]/8 rounded-full border border-[var(--primary)]/20 group-hover:scale-110 transition-transform duration-300">
-                    <Heart className="w-5 h-5 text-[var(--primary)] animate-pulse" />
                   </div>
                 </div>
                 <h2
@@ -285,7 +277,6 @@ ${formData.message}
                     <>
                       <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                       Send Sweet Message
-                      <Heart className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
                     </>
                   )}
                 </button>
@@ -300,7 +291,6 @@ ${formData.message}
                 className="text-2xl font-bold text-[var(--primary)] mb-5 flex items-center gap-2"
                 style={{ fontFamily: "var(--font-heading)" }}
               >
-                <Heart className="w-6 h-6 animate-pulse" />
                 Get in Touch
               </h2>
               <p className="text-[var(--dark)] leading-relaxed mb-3 text-sm sm:max-w-[30rem]">

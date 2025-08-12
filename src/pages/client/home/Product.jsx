@@ -20,39 +20,12 @@ const Products = () => {
       });
 
     const shuffled = [...filtered].sort(() => 0.5 - Math.random());
-    const selected = shuffled.slice(0, 5);
+    const selected = shuffled.slice(0, 8);
     setProducts(selected);
   }, []);
 
-  // Handle Hover
-  const handleMouseEnter = (e) => {
-    const image = e.currentTarget.querySelector(".product-image");
-    const shadow = e.currentTarget.querySelector(".product-shadow");
-
-    if (image) {
-      image.classList.add("translate-y-[-19px]");
-    }
-    if (shadow) {
-      shadow.classList.remove("opacity-0", "translate-y-0");
-      shadow.classList.add("opacity-100", "translate-y-[10px]");
-    }
-  };
-
-  const handleMouseLeave = (e) => {
-    const image = e.currentTarget.querySelector(".product-image");
-    const shadow = e.currentTarget.querySelector(".product-shadow");
-
-    if (image) {
-      image.classList.remove("translate-y-[-19px]");
-    }
-    if (shadow) {
-      shadow.classList.add("opacity-0", "translate-y-0");
-      shadow.classList.remove("opacity-100", "translate-y-[10px]");
-    }
-  };
-
   return (
-    <section className="relative py-10 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 text-gray-900 overflow-hidden">
+    <section className="relative py-10 bg-white text-gray-900 overflow-hidden">
       {/* Background Decorations */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-16 left-16 w-32 h-32 bg-blue-400/10 rounded-full blur-2xl"></div>
@@ -66,58 +39,65 @@ const Products = () => {
           <h2 className="text-4xl md:text-5xl font-bold bg-[var(--primary)] bg-clip-text text-transparent mb-4">
             Our Products
           </h2>
-          <p className="text-gray-600 mx-auto max-w-[350px] sm:max-w-[370px] lg:max-w-[450px]">
+          {/* <p className="text-gray-600 mx-auto max-w-[350px] sm:max-w-[370px] lg:max-w-[450px]">
             Discover our handpicked selection of premium confectionery treats,
             crafted with love and the finest ingredients.
-          </p>
+          </p> */}
         </div>
 
         {/* Horizontal Scroll Container */}
         <div className="relative z-10">
-          {/* Product Cards with Horizontal Scroll */}
-          <div className="flex items-center sm:justify-center gap-8 overflow-x-auto scrollbar-hide  px-4 -mx-4">
-            {products.map((product, idx) => (
-              <div
-                key={product.id || idx}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-                className="relative w-[200px] h-[280px] rounded-2xl overflow-hidden cursor-pointer flex-shrink-0"
-              >
-                {/* Image Container */}
-                <div className="h-[180px] flex items-center justify-center p-4 relative">
-                  {/* Pencil-style shadow */}
+          {/* Product Cards with Responsive Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 px-4 -mx-4">
+            {products.map((product, idx) => {
+              const slug = product.title
+                .toLowerCase()
+                .replace(/\s+/g, "-")
+                .replace(/[^a-z0-9-]/g, "");
+              return (
+                <NavLink to={`/products/${slug}`} key={product.id || idx} className="block">
                   <div
-                    className="product-shadow absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-0 w-[50%] h-[12px] opacity-0 transition-all duration-500 rounded-full z-0"
-                    style={{
-                      background:
-                        "radial-gradient(ellipse, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.015) 70%, transparent 100%)",
-                    }}
-                  ></div>
-                  <NavLink to="/products">
-                    <img
-                      src={product.image}
-                      alt={product.title}
-                      loading="lazy"
-                      width={200}
-                      height={200}
-                      className="product-image max-h-full max-w-full object-contain transition-all duration-500 z-10 relative p-4 "
-                    />
-                  </NavLink>
+                    className="group h-[300px] w-[160px] sm:w-[290px] bg-white border border-gray-100 cursor-pointer relative overflow-hidden "
+                  >
+                    {/* Full Box Background - Bottom to Top Effect */}
+                    <div
+                      className="absolute bottom-0 left-0 w-full h-[60%] bg-[var(--primary)] opacity-0 group-hover:opacity-100 z-[1] transform translate-y-full group-hover:translate-y-0 transition-all duration-500 ease-out"
+                      style={{
+                        borderRadius: "50% 50% 0 0 / 30px 30px 0 0",
+                      }}
+                    ></div>
 
-                  {/* Product Image */}
-                </div>
+                    {/* Image Container */}
+                    <div className="h-[250px] flex items-center justify-center p-4 relative z-10 overflow-visible">
+                      {/* Product Image */}
+                      <img
+                        src={product.image}
+                        alt={product.title}
+                        loading="lazy"
+                        width={200}
+                        height={200}
+                        className="max-h-full max-w-full object-contain relative z-10 transition-all duration-400 group-hover:scale-110 group-hover:rotate-6"
+                      />
+                    </div>
 
-                {/* Product Title */}
-                <div className="text-sm font-semibold text-gray-700 px-6 py-3 text-center items-center justify-center truncate">
-                  {product.title}
-                </div>
-              </div>
-            ))}
+                    {/* Title Section */}
+                    <div className="flex items-center justify-center p-4 border-t border-gray-100 group-hover:border-white/30 transition-colors duration-500 relative z-10">
+                      <h3
+                        className="text-sm font-semibold text-gray-800 group-hover:text-white text-center leading-tight overflow-hidden text-ellipsis line-clamp-2 transition-colors duration-500 truncate"
+                        title={product.title}
+                      >
+                        {product.title}
+                      </h3>
+                    </div>
+                  </div>
+                </NavLink>
+              );
+            })}
           </div>
         </div>
 
         {/* View All Button */}
-        <div className="text-center  relative z-10">
+        <div className="text-center  pt-10 relative z-10">
           <NavLink to="/products">
             <button className="group relative px-10 py-4 text-base font-semibold text-white bg-[var(--primary)] rounded-full shadow-lg hover:shadow-xl hover transform hover:scale-105 transition-all duration-300 overflow-hidden border border-[var(--primary)] hover:bg-transparent hover:text-[var(--primary)]">
               <span className="relative z-10 flex items-center justify-center gap-3">

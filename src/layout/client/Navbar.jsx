@@ -8,11 +8,22 @@ const navItems = [
   { name: "About", href: "/about" },
   { name: "Products", href: "/products" },
   { name: "Contact", href: "/contact" },
-
 ];
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Close mobile menu on resize
   useEffect(() => {
@@ -22,33 +33,39 @@ const Navbar = () => {
       }
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
     <>
       {/* Original Desktop Navbar */}
-      <header className="fixed top-0 left-0 w-full bg-white z-50 ">
+      <header
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+          isScrolled ? "bg-white shadow-lg" : "bg-transparent"
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           {/* Logo */}
           <NavLink to="/">
-            <img src={logo} alt="Logo" className="h-10 w-auto object-contain" />
+            <img src={logo} alt="Logo" className="h-15 w-auto object-contain" />
           </NavLink>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8 text-sm font-medium">
+          <nav className="hidden md:flex space-x-8 text-md font-bold ">
             {navItems.map((item) => (
               <NavLink
                 key={item.name}
                 to={item.href}
-                className={({ isActive }) =>
-                  `transition-colors ${
-                    isActive
-                      ? "text-[var(--primary)]"
-                      : "text-gray-800 hover:text-[var(--primary)]"
-                  }`
-                }
+                className={({ isActive }) => {
+                  if (isActive) {
+                    return "text-[var(--brand)] transition-colors ";
+                  }
+                  if (isScrolled) {
+                    return "text-gray-800 hover:text-[var(--brand)] transition-colors";
+                  }
+                  return "text-white hover:text-[var(--brand)] transition-colors ";
+                }}
               >
                 {item.name}
               </NavLink>
@@ -57,22 +74,27 @@ const Navbar = () => {
 
           {/* Right Side */}
           <div className="hidden h-full md:flex items-center gap-4">
-            <div className="flex flex-col text-right leading-tight">
-              <span className="text-xs text-gray-500">Need Help?</span>
-              <a
-                href="tel:919510270600"
-                className="text-[var(--primary)] font-semibold text-[15px]"
-              >
-                91 95102 70600
-              </a>
-            </div>
-
             {/* Contact Button */}
             <NavLink
               to="/contact"
-              className="px-4 py-2 rounded-full bg-[var(--primary)] text-white border border-[var(--primary)] hover:bg-transparent hover:text-[var(--primary)] transition duration-200 text-sm font-medium"
+              className={({ isActive }) => {
+                const baseClass =
+                  "relative overflow-hidden transition-all duration-300 px-4 py-2 rounded-full border-2 text-md font-bold group";
+
+                if (isActive) {
+                  return `${baseClass} text-[var(--brand)] border-[var(--brand)]`;
+                }
+                if (isScrolled) {
+                  return `${baseClass} text-gray-800 border-gray-800 hover:text-white hover:border-[var(--brand)]`;
+                }
+                return `${baseClass} text-white border-white hover:text-white hover:border-[var(--brand)]`;
+              }}
             >
-              Contact Us
+              {/* Text */}
+              <span className="relative z-10">Contact Us</span>
+
+              {/* Background fill layer */}
+              <span className="absolute left-0 top-0 h-full w-0 bg-[var(--brand)] transition-all duration-300 group-hover:w-full z-0"></span>
             </NavLink>
           </div>
 
@@ -82,15 +104,15 @@ const Navbar = () => {
             className="md:hidden relative p-2 text-[var(--primary)] hover:bg-[var(--primary)]/10 rounded-lg transition-all duration-300 group z-[60]"
           >
             <div className="relative w-6 h-6">
-              <Menu 
+              <Menu
                 className={`absolute inset-0 w-6 h-6 transition-all duration-300 ${
-                  isMenuOpen ? 'rotate-180 opacity-0' : 'rotate-0 opacity-100'
-                }`} 
+                  isMenuOpen ? "rotate-180 opacity-0" : "rotate-0 opacity-100"
+                }`}
               />
-              <X 
+              <X
                 className={`absolute inset-0 w-6 h-6 transition-all duration-300 ${
-                  isMenuOpen ? 'rotate-0 opacity-100' : 'rotate-180 opacity-0'
-                }`} 
+                  isMenuOpen ? "rotate-0 opacity-100" : "rotate-180 opacity-0"
+                }`}
               />
             </div>
           </button>
@@ -98,38 +120,40 @@ const Navbar = () => {
       </header>
 
       {/* Enhanced Mobile Menu Overlay with Background Blur */}
-      <div 
+      <div
         className={`md:hidden fixed inset-0 z-[55] transition-all duration-500 ${
-          isMenuOpen 
-            ? 'opacity-100 pointer-events-auto' 
-            : 'opacity-0 pointer-events-none'
+          isMenuOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
         }`}
       >
         {/* Enhanced Backdrop with Blur Effect */}
-        <div 
+        <div
           className={`absolute inset-0 bg-black/60 backdrop-blur-md transition-all duration-500 ${
-            isMenuOpen ? 'backdrop-blur-md' : 'backdrop-blur-none'
+            isMenuOpen ? "backdrop-blur-md" : "backdrop-blur-none"
           }`}
           onClick={() => setIsMenuOpen(false)}
         ></div>
-        
+
         {/* Menu Panel with Higher Z-Index */}
-        <div 
+        <div
           className={`absolute top-0 right-0 w-80 max-w-[90vw] h-full bg-white shadow-2xl transform transition-all duration-500 ease-out z-[60] ${
-            isMenuOpen ? 'translate-x-0 scale-100' : 'translate-x-full scale-95'
+            isMenuOpen ? "translate-x-0 scale-100" : "translate-x-full scale-95"
           }`}
         >
           {/* Mobile Menu Header */}
           <div className="p-6 border-b border-gray-100 bg-[var(--primary)]/5">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <img 
-                  src={logo} 
-                  alt="Forolly Logo" 
+                <img
+                  src={logo}
+                  alt="Forolly Logo"
                   className="h-8 w-auto object-contain"
                 />
                 <div>
-                  <span className="text-lg font-bold text-[var(--primary)]">Forolly</span>
+                  <span className="text-lg font-bold text-[var(--primary)]">
+                    Forolly
+                  </span>
                   <div className="text-xs text-gray-500">Confectionery</div>
                 </div>
               </div>
@@ -160,12 +184,12 @@ const Navbar = () => {
                 {({ isActive }) => (
                   <>
                     <span className="text-lg font-medium">{item.name}</span>
-                    <ArrowRight 
+                    <ArrowRight
                       className={`w-5 h-5 transition-all duration-300 ${
-                        isActive 
-                          ? 'text-white translate-x-1' 
-                          : 'text-gray-400 group-hover:text-[var(--primary)] group-hover:translate-x-1'
-                      }`} 
+                        isActive
+                          ? "text-white translate-x-1"
+                          : "text-gray-400 group-hover:text-[var(--primary)] group-hover:translate-x-1"
+                      }`}
                     />
                   </>
                 )}
@@ -186,7 +210,7 @@ const Navbar = () => {
                   <span className="text-lg">+91 95102 70600</span>
                 </a>
               </div>
-              
+
               <NavLink
                 to="/contact"
                 onClick={() => setIsMenuOpen(false)}

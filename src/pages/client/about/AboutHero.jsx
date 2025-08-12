@@ -1,5 +1,14 @@
 import React from "react";
-import { Star, Award, Users, Globe, Smile, PackageOpen, Calendar, ThumbsUp } from "lucide-react";
+import {
+  Star,
+  Award,
+  Users,
+  Globe,
+  Smile,
+  PackageOpen,
+  Calendar,
+  ThumbsUp,
+} from "lucide-react";
 
 const AboutUs = () => {
   return (
@@ -12,18 +21,19 @@ const AboutUs = () => {
       </div>
 
       {/* Header Section */}
-      <div className="relative z-10 pt-24 pb-16">
+      <div
+        className="relative z-10 pt-24 pb-16 bg-gradient-to-b from-[#ff99b3]/70 to-white/70
+"
+      >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-3 px-6 py-3 bg-[var(--primary)] text-white text-sm font-semibold rounded-full shadow-lg mb-8">
-            <div className="w-2 h-2 bg-white rounded-full"></div>
-            About Us
-          </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[var(--dark)] mb-6 leading-tight">
             About Forolly
           </h1>
           <div className="w-24 h-1 bg-[var(--primary)] rounded-full mx-auto mb-8"></div>
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Welcome to Forolly — your ultimate destination for pure, handcrafted chocolates and toffees. At Forolly, we believe in spreading joy through every bite.
+            Welcome to Forolly, your ultimate destination for pure, handcrafted
+            chocolates and toffees. At Forolly, we believe in spreading joy
+            through every bite.
           </p>
         </div>
       </div>
@@ -39,16 +49,25 @@ const AboutUs = () => {
               </h2>
               <div className="prose prose-lg max-w-none">
                 <p className="text-gray-700 leading-relaxed mb-6">
-                  Our team blends traditional recipes with modern techniques, ensuring every product is a masterpiece of flavor and quality. We maintain strict hygiene standards, source the finest ingredients, and continuously innovate to surprise your taste buds.
+                  Our team blends traditional recipes with modern techniques,
+                  ensuring every product is a masterpiece of flavor and quality.
+                  We maintain strict hygiene standards, source the finest
+                  ingredients, and continuously innovate to surprise your taste
+                  buds.
                 </p>
                 <p className="text-gray-600 leading-relaxed mb-8">
-                  Whether you're gifting, celebrating, or simply indulging — Forolly is the perfect companion for sweet moments. Since 2020, we've been dedicated to bringing happiness to families across India.
+                  Whether you're gifting, celebrating, or simply indulging —
+                  Forolly is the perfect companion for sweet moments. Since
+                  2020, we've been dedicated to bringing happiness to families
+                  across India.
                 </p>
               </div>
               {/* Mission Quote */}
               <div className="bg-white/80 border-l-4 border-[var(--primary)] p-6 rounded-r-lg shadow-lg">
                 <blockquote className="text-[var(--primary)] italic text-lg leading-relaxed">
-                  "Forolly's mission is to bring joyful candy memories to youth while celebrating life's sweet moments. We aim to delight every customer so they share their experience with others."
+                  "Forolly's mission is to bring joyful candy memories to youth
+                  while celebrating life's sweet moments. We aim to delight
+                  every customer so they share their experience with others."
                 </blockquote>
               </div>
             </div>
@@ -65,25 +84,28 @@ const AboutUs = () => {
                   {
                     icon: <Star className="w-6 h-6 text-yellow-500" />,
                     title: "Premium Quality",
-                    desc: "Excellence in every creation"
+                    desc: "Excellence in every creation",
                   },
                   {
                     icon: <Globe className="w-6 h-6 text-green-500" />,
                     title: "Natural Ingredients",
-                    desc: "Purity in every ingredient"
+                    desc: "Purity in every ingredient",
                   },
                   {
                     icon: <Smile className="w-6 h-6 text-blue-500" />,
                     title: "Customer First",
-                    desc: "Your satisfaction is our priority"
+                    desc: "Your satisfaction is our priority",
                   },
                   {
                     icon: <Award className="w-6 h-6 text-purple-500" />,
                     title: "Trusted Excellence",
-                    desc: "Honoring time-tested traditions"
-                  }
+                    desc: "Honoring time-tested traditions",
+                  },
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-4 p-4 hover:bg-[var(--primary)]/5 rounded-lg transition-colors duration-300">
+                  <div
+                    key={idx}
+                    className="flex items-start gap-4 p-4 hover:bg-[var(--primary)]/5 rounded-lg transition-colors duration-300"
+                  >
                     <div className="flex-shrink-0 p-2 bg-gray-50 rounded-lg">
                       {item.icon}
                     </div>
@@ -91,9 +113,7 @@ const AboutUs = () => {
                       <h4 className="font-semibold text-[var(--dark)] mb-1">
                         {item.title}
                       </h4>
-                      <p className="text-gray-600 text-sm">
-                        {item.desc}
-                      </p>
+                      <p className="text-gray-600 text-sm">{item.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -111,7 +131,8 @@ const AboutUs = () => {
               Our Achievements
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Numbers that reflect our commitment to quality and customer satisfaction
+              Numbers that reflect our commitment to quality and customer
+              satisfaction
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -119,25 +140,36 @@ const AboutUs = () => {
               {
                 number: "1M+",
                 label: "Happy Customers",
-                icon: <Users className="w-7 h-7 text-[var(--primary)] mx-auto mb-2" />
+                icon: (
+                  <Users className="w-7 h-7 text-[var(--primary)] mx-auto mb-2" />
+                ),
               },
               {
                 number: "50+",
                 label: "Product Varieties",
-                icon: <PackageOpen className="w-7 h-7 text-[var(--primary)] mx-auto mb-2" />
+                icon: (
+                  <PackageOpen className="w-7 h-7 text-[var(--primary)] mx-auto mb-2" />
+                ),
               },
               {
                 number: "100%",
                 label: "Natural Ingredients",
-                icon: <Globe className="w-7 h-7 text-[var(--primary)] mx-auto mb-2" />
+                icon: (
+                  <Globe className="w-7 h-7 text-[var(--primary)] mx-auto mb-2" />
+                ),
               },
               {
                 number: "5+",
                 label: "Years of Excellence",
-                icon: <Calendar className="w-7 h-7 text-[var(--primary)] mx-auto mb-2" />
-              }
+                icon: (
+                  <Calendar className="w-7 h-7 text-[var(--primary)] mx-auto mb-2" />
+                ),
+              },
             ].map((stat, idx) => (
-              <div key={idx} className="text-center group hover:scale-105 transition-transform duration-300">
+              <div
+                key={idx}
+                className="text-center group hover:scale-105 transition-transform duration-300"
+              >
                 <div className="bg-white rounded-xl p-6 shadow-lg border border-white/60 hover:shadow-xl transition-shadow duration-300 flex flex-col items-center">
                   {stat.icon}
                   <div className="text-3xl md:text-4xl font-bold text-[var(--primary)] mb-2">
@@ -161,7 +193,9 @@ const AboutUs = () => {
               Ready to Experience the Magic?
             </h2>
             <p className="text-gray-700 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
-              Join millions of happy customers who have made Forolly their go-to choice for premium confectionery. Taste the difference that quality and love can make.
+              Join millions of happy customers who have made Forolly their go-to
+              choice for premium confectionery. Taste the difference that
+              quality and love can make.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
