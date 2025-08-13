@@ -162,7 +162,7 @@ const Footer = () => {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`relative p-3 bg-gradient-to-r ${social.color}/10 border border-white/80 rounded-xl text-white hover:scale-110 hover:${social.color}/20 hover:border-white/40 transition-all duration-300 group overflow-hidden`}
+                      className={`relative p-3 bg-white/20   rounded-xl text-white hover:scale-110 hover:${social.color}/50 hover:border-white/40 transition-all duration-300 group overflow-hidden`}
                     >
                       <div
                         className={`absolute inset-0 bg-gradient-to-r ${social.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}

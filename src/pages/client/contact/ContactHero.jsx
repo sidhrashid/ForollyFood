@@ -7,10 +7,7 @@ import {
   AlertCircle,
   Send,
   Loader2,
-  Sparkles,
-  Gift,
-  Heart,
-  Coffee,
+ 
 } from "lucide-react";
 import Container from "../../../components/Container";
 
@@ -78,7 +75,7 @@ ${formData.message}
           message: "",
         });
 
-        setTimeout(() => setIsSubmitted(false), 5000);
+        setTimeout(() => setIsSubmitted(false), 3000);
       } else {
         throw new Error(result.message || "Something went wrong");
       }
@@ -156,7 +153,7 @@ ${formData.message}
               </div>
 
               {isSubmitted && (
-                <div className="mb-3 p-2.5 bg-gradient-to-r from-green-100/90 to-green-50/90 border border-green-300 rounded-lg backdrop-blur-sm animate-bounce">
+                <div className="mb-3 p-2.5 bg-gradient-to-r from-green-100/90 to-green-50/90 border border-green-300 rounded-lg backdrop-blur-sm ">
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-green-600 animate-pulse" />
                     <div>

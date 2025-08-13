@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { slide } from "../../../data/slide";
 import Container from "../../../components/Container";
 import { Star, Zap, ArrowRight, Sparkles } from "lucide-react";
+import { tr } from "framer-motion/client";
 
 const Slider = () => {
   const [current, setCurrent] = useState(0);
@@ -525,5 +526,6 @@ const Slider = () => {
     </div>
   );
 };
+
 
 export default Slider;
