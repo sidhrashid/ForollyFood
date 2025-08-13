@@ -158,7 +158,7 @@ const Footer = () => {
                     },
                   ].map((social, idx) => (
                     <a
-                      key={idx}
+                      key={idx}l
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"

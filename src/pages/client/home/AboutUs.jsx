@@ -96,25 +96,16 @@ const AboutUsSection = () => {
             </div>
 
             {/* Simple CTA Button */}
-            <div className="flex justify-center lg:justify-start">
+            <div className="flex justify-center lg:justify-start py-7">
               <NavLink to="/about">
-                <button className="px-8 py-4 bg-[var(--primary)]  text-white font-bold rounded-full shadow-lg hover:shadow-xl hover:from-red-600 hover:to-orange-600 transition-all duration-300">
-                  <span className="flex items-center gap-2">
+                <button className="relative px-8 py-3 sm:px-10 sm:py-4 font-black text-base sm:text-lg rounded-2xl group overflow-hidden bg-white text-gray-800 shadow-xl hover:shadow-2xl transition-all duration-300 z-10 border border-gray-200">
+                  {/* Text */}
+                  <span className="relative z-10 group-hover:text-white transition-colors duration-300">
                     Discover Our Journey
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                      />
-                    </svg>
                   </span>
+
+                  {/* Background Animation */}
+                  <div className="absolute inset-0 w-0 bg-[var(--primary)] rounded-2xl group-hover:w-full transition-all duration-300 shadow-xl -z-10"></div>
                 </button>
               </NavLink>
             </div>

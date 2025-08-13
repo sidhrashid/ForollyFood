@@ -76,7 +76,7 @@ const Products = () => {
                         loading="lazy"
                         width={200}
                         height={200}
-                        className="max-h-full max-w-full object-contain relative z-10 transition-all duration-400 group-hover:scale-110 group-hover:rotate-6"
+                        className="max-h-full max-w-full object-contain relative z-10 transition-all duration-400 group-hover:scale-115 group-hover:rotate-0"
                       />
                     </div>
 

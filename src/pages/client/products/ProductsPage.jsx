@@ -80,17 +80,22 @@ const ProductsPage = () => {
                   to={`/products/${urlTitle}`}
                   className="block"
                 >
-                  <div className="group w-[160px] sm:w-[190px] h-[230px] bg-white rounded-2xl border border-gray-100 shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer relative overflow-hidden hover:-translate-y-1">
+                  <div className="group w-[160px] sm:w-[250px] h-[250px] bg-white rounded-2xl border border-gray-100 shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer relative overflow-hidden hover:-translate-y-1">
                     {/* Full Box Background - Bottom to Top Effect */}
-                    <div className="absolute inset-0 bg-[var(--primary)] opacity-0 group-hover:opacity-100 z-[1] transform translate-y-full group-hover:translate-y-0 transition-transform duration-600 ease-out rounded-2xl"></div>
+                    <div
+                      className="absolute bottom-0 left-0 w-full h-[60%] bg-[var(--primary)] opacity-0 group-hover:opacity-100 z-[1] transform translate-y-full group-hover:translate-y-0 transition-all duration-500 ease-out"
+                      style={{
+                        borderRadius: "50% 50% 0 0 / 30px 30px 0 0",
+                      }}
+                    ></div>
 
                     {/* Image Container */}
-                    <div className="h-[180px] flex items-center justify-center p-4 relative z-10 overflow-visible">
+                    <div className="h-[200px] flex items-center justify-center p-4 relative z-10 overflow-visible">
                       {/* Product Image */}
                       <img
                         src={product.image}
                         alt={product.title}
-                        className="max-h-full max-w-full object-contain relative z-10 transition-all duration-400 group-hover:scale-110 group-hover:rotate-6"
+                        className="max-h-full max-w-full object-contain relative z-10 transition-all duration-400 group-hover:scale-110 group-hover:rotate-0"
                       />
                     </div>
 

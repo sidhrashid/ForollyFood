@@ -59,7 +59,7 @@ const PopularProducts = () => {
                     <img
                       src={product.image}
                       alt={product.title}
-                      className="max-h-full max-w-full object-contain relative z-10 transition-all duration-400 group-hover:scale-110 group-hover:rotate-6"
+                      className="max-h-full max-w-full object-contain relative z-10 transition-all duration-400 group-hover:scale-110 group-hover:rotate-0"
                     />
                   </div>
 
