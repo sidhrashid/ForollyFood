@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import one from "../../../assets/images/arbaj_png.png";
 import two from "../../../assets/images/nandoliya.png";
 import google from "../../../assets/images/google.png";
+import Container from "../../../components/Container";
 
 const testimonials = [
   {
@@ -20,7 +21,7 @@ const testimonials = [
     image: two,
     rating: 5,
     review:
-      "Amazing visit experience. All products are hygienically produced. Unit is clean — employees wear gloves, caps, and aprons.",
+      "Amazing visit experience. All products are hygienically produced. Unit is clean  employees wear gloves, caps, and aprons.",
   },
   {
     name: "Ahmad Padarwala",
@@ -34,7 +35,8 @@ const testimonials = [
 const Testimonials = () => {
   return (
     <section className="w-full bg-[var(--secondary)] px-4 text-gray-800 relative overflow-hidden flex items-center">
-      {/* Background Pattern */}
+     <Container>
+       {/* Background Pattern */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-16 left-16 w-32 h-32 bg-[var(--primary)]/8 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 right-20 w-40 h-40 bg-[var(--primary)]/10 rounded-full blur-3xl"></div>
@@ -220,6 +222,7 @@ const Testimonials = () => {
           display: none;
         }
       `}</style>
+     </Container>
     </section>
   );
 };

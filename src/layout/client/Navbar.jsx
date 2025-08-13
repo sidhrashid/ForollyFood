@@ -48,14 +48,17 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           {/* Logo */}
           <NavLink to="/">
-            <img 
-            onClick={() => {
-              window.scrollTo({
-                top: 0,
-                behavior: "smooth",
-              });
-            }}
-            src={logo} alt="Logo" className="h-15 w-auto object-contain" />
+            <img
+              onClick={() => {
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                });
+              }}
+              src={logo}
+              alt="Logo"
+              className="h-15 w-auto object-contain"
+            />
           </NavLink>
 
           {/* Desktop Navigation */}
@@ -89,7 +92,7 @@ const Navbar = () => {
                   "relative overflow-hidden transition-all duration-300 px-4 py-2 rounded-full border-2 text-md font-bold group";
 
                 if (isActive) {
-                  return `${baseClass} text-[var(--brand)] border-[var(--brand)]`;
+                  return `${baseClass} text-white border-[var(--brand)] bg-[var(--brand)]`;
                 }
                 if (isScrolled) {
                   return `${baseClass} text-gray-800 border-gray-800 hover:text-white hover:border-[var(--brand)]`;
@@ -221,7 +224,9 @@ const Navbar = () => {
                   className="flex items-center space-x-3 p-3  font-semibold"
                 >
                   <Mail className="w-5 h-5 text-[var(--primary)]" />
-                  <span className="text-lg text-[var(--primary)]">support@forollyfood.com</span>
+                  <span className="text-lg text-[var(--primary)]">
+                    support@forollyfood.com
+                  </span>
                 </a>
               </div>
 

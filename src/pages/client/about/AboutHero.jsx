@@ -56,7 +56,7 @@ const AboutUs = () => {
                   buds.
                 </p>
                 <p className="text-gray-600 leading-relaxed mb-8">
-                  Whether you're gifting, celebrating, or simply indulging —
+                  Whether you're gifting, celebrating, or simply indulging in the
                   Forolly is the perfect companion for sweet moments. Since
                   2020, we've been dedicated to bringing happiness to families
                   across India.
@@ -193,7 +193,7 @@ const AboutUs = () => {
               Ready to Experience the Magic?
             </h2>
             <p className="text-gray-700 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
-              Join millions of happy customers who have made Forolly their go-to
+              Join millions of happy customers who have made Forolly their go to
               choice for premium confectionery. Taste the difference that
               quality and love can make.
             </p>
