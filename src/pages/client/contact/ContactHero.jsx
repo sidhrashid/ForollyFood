@@ -317,10 +317,10 @@ ${formData.message}
                   <MailCheck className="w-5 h-5 text-[var(--primary)]" />
                   <span className="font-medium">Email us:</span>
                   <a
-                    href="mailto:info@forolly.com"
+                    href="mailto:support@forollyfood.com"
                     className="text-[var(--primary)] hover:underline font-semibold"
                   >
-                    info@forolly.com
+                    support@forollyfood.com
                   </a>
                 </p>
               </div>

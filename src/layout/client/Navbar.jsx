@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X, Phone, ArrowRight } from "lucide-react";
+import { Menu, X, Phone, ArrowRight, Mail } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/images/logo.webp";
 
@@ -48,7 +48,14 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           {/* Logo */}
           <NavLink to="/">
-            <img src={logo} alt="Logo" className="h-15 w-auto object-contain" />
+            <img 
+            onClick={() => {
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
+            }}
+            src={logo} alt="Logo" className="h-15 w-auto object-contain" />
           </NavLink>
 
           {/* Desktop Navigation */}
@@ -107,7 +114,7 @@ const Navbar = () => {
               <Menu
                 className={`absolute inset-0 w-6 h-6 transition-all duration-300 ${
                   isMenuOpen ? "rotate-180 opacity-0" : "rotate-0 opacity-100"
-                }`}
+                } ${isScrolled ? "text-[var(--primary)]" : "text-white"}`}
               />
               <X
                 className={`absolute inset-0 w-6 h-6 transition-all duration-300 ${
@@ -208,6 +215,13 @@ const Navbar = () => {
                 >
                   <Phone className="w-5 h-5" />
                   <span className="text-lg">+91 95102 70600</span>
+                </a>
+                <a
+                  href="mailto:support@forollyfood.com"
+                  className="flex items-center space-x-3 p-3  font-semibold"
+                >
+                  <Mail className="w-5 h-5 text-[var(--primary)]" />
+                  <span className="text-lg text-[var(--primary)]">support@forollyfood.com</span>
                 </a>
               </div>
 

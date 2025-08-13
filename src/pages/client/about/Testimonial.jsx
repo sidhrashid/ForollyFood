@@ -105,7 +105,7 @@ const Testimonials = () => {
                 </div>
 
                 <div className="pt-3 border-t border-gray-100 mt-auto">
-                  <span className="text-xs text-red-400 uppercase tracking-wider font-medium">
+                  <span className="text-xs text-[var(--primary)] uppercase tracking-wider font-medium">
                     Google Review
                   </span>
                 </div>
@@ -163,7 +163,7 @@ const Testimonials = () => {
               </div>
 
               <div className="pt-3 border-t border-gray-100 mt-auto">
-                <span className="text-xs text-red-400 uppercase tracking-wider font-medium">
+                <span className="text-xs text-[var(--primary)] uppercase tracking-wider font-medium">
                   Google Review
                 </span>
               </div>

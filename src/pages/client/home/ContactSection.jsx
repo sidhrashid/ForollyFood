@@ -57,7 +57,7 @@ const ContactSection = () => {
                 Drop us a line anytime
               </p>
               <a
-                href="mailto:info@forolly.com"
+                href="mailto:support@forollyfood.com"
                 className="text-[var(--primary)] hover:underline font-semibold text-sm flex items-center justify-center gap-1 group-hover:gap-2 transition-all duration-300"
               >
                 Email Us{" "}

@@ -3,156 +3,193 @@ import {
   Instagram,
   Facebook,
   Mail,
-  Heart,
-  MapPin,
   Phone,
+  MapPin,
   ArrowRight,
+  ExternalLink,
+  Star,
+  Sparkles,
 } from "lucide-react";
+import logo from "../../assets/images/logo.webp";
+import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-[var(--primary)] text-[var(--footertext)] pt-20 pb-8 relative overflow-hidden">
-      {/* Simple Background Pattern */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
-        <div className="absolute top-20 left-20 w-40 h-40 bg-[var(--primary)]/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-32 right-32 w-48 h-48 bg-[var(--primary)]/10 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/3 w-32 h-32 bg-[var(--primary)]/8 rounded-full blur-2xl"></div>
+    <footer className="relative overflow-hidden bg-gradient-to-br from-[#d72121] via-[#d72121]/70 to-[#d72121]/60">
+      {/* Background Effects */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-r from-[var(--primary)]/20 via-transparent to-[var(--primary)]/20"></div>
+        <div className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-r from-[var(--primary)]/10 to-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div
+          className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-l from-blue-500/8 to-[var(--primary)]/8 rounded-full blur-3xl animate-pulse"
+          style={{ animationDelay: "2s" }}
+        ></div>
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-tr from-purple-500/5 to-pink-500/5 rounded-full blur-3xl animate-pulse"
+          style={{ animationDelay: "1s" }}
+        ></div>
+        <div
+          className="absolute inset-0 opacity-[0.02]"
+          style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
+            backgroundSize: "40px 40px",
+          }}
+        ></div>
       </div>
 
-      {/* Top Border */}
-      <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[var(--primary)] via-[var(--primary)]/80 to-[var(--primary)]"></div>
+      <div className="relative z-10">
+        <div className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Main Footer Content - 4 Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {/* 1. Office Address */}
-          <div className="space-y-4">
-            <h4 className="text-xl font-bold text-white mb-4">
-              Office Address
-            </h4>
-            <address className="not-italic text-[var(--footertext)] text-sm leading-relaxed space-y-1">
-              <p>Survey No. 646, Plot No. 3, 4, 5,</p>
-              <p>Ahmedabad Palanpur Highway,</p>
-              <p>Village-Majadar, Ta-vadgam,</p>
-              <p>Dist-Banaskantha, Gujarat-385210, India</p>
-            </address>
-          </div>
-          {/* 3. Contact Info */}
-          <div className="space-y-4">
-            <h4 className="text-xl font-bold text-white mb-4">Contact Info</h4>
-            <div className="space-y-3">
-              <a
-                href="tel:+919510270600"
-                className="flex items-center gap-3 text-[var(--footertext)] hover:text-white transition-colors duration-300 text-sm"
-              >
-                <Phone className="w-4 h-4" />
-                <span>+91 95102 70600</span>
-              </a>
-
-              <a
-                href="mailto:info@forolly.com"
-                className="flex items-center gap-3 text-[var(--footertext)] hover:text-white transition-colors duration-300 text-sm"
-              >
-                <Mail className="w-4 h-4" />
-                <span>info@forolly.com</span>
-              </a>
-              {/* Map Link */}
-              <a
-                href="https://www.google.com/maps/place/Forolly+Food+Products/@24.0528541,72.3919888,740m/data=!3m2!1e3!4b1!4m6!3m5!1s0x395cf3a590d21f47:0x9840fbef2ef6f97c!8m2!3d24.0528492!4d72.3945637!16s%2Fg%2F11lrgz913h?entry=ttu&g_ep=EgoyMDI1MDgwNi4wIKXMDSoASAFQAw%3D%3D"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 text-[var(--footertext)] hover:text-white transition-colors duration-300 text-sm"
-              >
-                <MapPin className="w-4 h-4" />
-                <span className="text-sm">View on Map</span>
-                <ArrowRight className="w-4 h-4" />
-              </a>
-            </div>
-          </div>
-          {/* 2. Quick Links */}
-          <div className="space-y-4">
-            <h4 className="text-xl font-bold text-white mb-4">Quick Links</h4>
-            <ul className="space-y-3">
-              {[
-                { name: "Home", href: "/" },
-                { name: "About Us", href: "/about" },
-                { name: "Products", href: "/products" },
-                { name: "Contact Us", href: "/contact" },
-              ].map((link, idx) => (
-                <li key={idx}>
-                  <a
-                    href={link.href}
-                    className="text-[var(--footertext)] hover:text-white transition-colors duration-300 text-sm flex items-center gap-2 group"
-                  >
-                    <span className="group-hover:translate-x-1 transition-transform duration-300">
-                      {link.name}
-                    </span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* 4. Social Media & Rating */}
-          <div className="space-y-4">
-            <h4 className="text-xl font-bold text-white mb-4">Follow Us</h4>
-
-            {/* Social Icons */}
-            {/* Social Icons */}
-            <div className="flex gap-3 mb-4">
-              {[
-                {
-                  icon: Instagram,
-                  href: "https://www.instagram.com/forollyfoodproducts?igsh=aW42bGZpd3lqZ2Ez",
-                  target: "_blank",
-                  color: "hover:text-pink-500",
-                },
-                {
-                  icon: Facebook,
-                  href: "https://www.facebook.com/profile.php?id=61562556606227&mibextid=ZbWKwL",
-                  target: "_blank",
-                  color: "hover:text-blue-600",
-                },
-              ].map((social, idx) => (
-                <a
-                  key={idx}
-                  href={social.href}
-                  target={social.target} // ✅ Yeh add karo
-                  rel="noopener noreferrer" // ✅ Security ke liye
-                  className={`p-2 bg-white/10 rounded-lg text-white ${social.color} transition-all duration-300 hover:scale-110 hover:bg-white/20`}
-                >
-                  <social.icon className="w-5 h-5" />
-                </a>
-              ))}
+        {/* Main Content */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
+            {/* Brand */}
+            <div className="space-y-">
+              <NavLink to="/" className="inline-flex items-center gap-4 group">
+                <div className="relative">
+                  <div className="absolute -inset-2 rounded-xl blur group-hover:blur-md transition-all duration-300"></div>
+                  <img
+                    src={logo}
+                    alt="Forolly Logo"
+                    width={48}
+                    height={48}
+                    className="relative w-16 h-16 object-contain group-hover:scale-110 transition-transform duration-300 cursor-pointer"
+                    onClick={() =>
+                      window.scrollTo({ top: 0, behavior: "smooth" })
+                    }
+                  />
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold text-white ">Forolly</h2>
+                  <p className="text-xs text-white/60 ">
+                    Premium Confectionery
+                  </p>
+                </div>
+              </NavLink>
+              <p className="text-white/70 text-sm leading-relaxed">
+                India's premium confectionery brand, crafting handmade
+                chocolates and toffees with love since 2020.
+                <span className="text-[var(--primary)]/80 font-medium">
+                  {" "}
+                  Bringing sweetness to every moment.
+                </span>
+              </p>
             </div>
 
-            {/* Rating Stars */}
-            <div className="flex items-center gap-2">
-              <div className="flex gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-4 h-4 text-yellow-400 fill-current">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
+            {/* Location */}
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold text-white">Our Location</h3>
+              <address className="not-italic text-white/70 text-sm leading-relaxed space-y-1">
+                <p className="font-semibold text-white text-base pt-3 ">
+                  Forolly Food Products
+                </p>
+                <p>Survey No. 646, Plot No. 3, 4, 5</p>
+                <p>Ahmedabad Palanpur Highway</p>
+                <p>Village-Majadar, Ta-vadgam</p>
+                <p>Dist-Banaskantha, Gujarat-385210</p>
+              </address>
+            </div>
+
+            {/* Quick Links */}
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold text-white">Quick Links</h3>
+              <ul className="space-y-2">
+                {[
+                  { name: "Home", href: "/" },
+                  { name: "About Us", href: "/about" },
+                  { name: "Products", href: "/products" },
+                  { name: "Contact Us", href: "/contact" },
+                ].map((link, idx) => (
+                  <li key={idx}>
+                    <a
+                      href={link.href}
+                      className="flex items-center gap-3 p-3 rounded-lg text-white/70 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 transition-all duration-300 group"
+                    >
+                      <span className="flex-1 group-hover:translate-x-2 transition-transform duration-300">
+                        {link.name}
+                      </span>
+                      <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
+                    </a>
+                  </li>
                 ))}
+              </ul>
+            </div>
+
+            {/* Contact & Social */}
+            <div className="space-y-6">
+              <h3 className="text-xl font-bold text-white">Get in Touch</h3>
+              <div className="space-y-4">
+                <a
+                  href="tel:+919510270600"
+                  className="flex items-center gap-4 text-white transition-all duration-300 group"
+                >
+                  <Phone className="w-5 h-5" />
+                  <div>
+                    <p className="text-xs text-white/60">Call us</p>
+                    <p className="font-medium">+91 95102 70600</p>
+                  </div>
+                </a>
+                <a
+                  href="mailto:support@forollyfood.com"
+                  className="flex items-center gap-4 text-white transition-all duration-300 group"
+                >
+                  <Mail className="w-5 h-5" />
+                  <div>
+                    <p className="text-xs text-white/60">Email us</p>
+                    <p className="font-medium">support@forollyfood.com</p>
+                  </div>
+                </a>
               </div>
-              <span className="text-xs text-[var(--footertext)]">5+ Years</span>
+              <div>
+                <p className="text-sm text-white/70 font-medium mb-2">
+                  Follow our journey:
+                </p>
+                <div className="flex gap-4">
+                  {[
+                    {
+                      icon: Instagram,
+                      href: "https://www.instagram.com/forollyfoodproducts?igsh=aW42bGZpd3lqZ2Ez",
+                      color: "from-pink-500 to-purple-500",
+                    },
+                    {
+                      icon: Facebook,
+                      href: "https://www.facebook.com/profile.php?id=61562556606227&mibextid=ZbWKwL",
+                      color: "from-blue-700 to-blue-600",
+                    },
+                  ].map((social, idx) => (
+                    <a
+                      key={idx}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`relative p-3 bg-gradient-to-r ${social.color}/10 border border-white/80 rounded-xl text-white hover:scale-110 hover:${social.color}/20 hover:border-white/40 transition-all duration-300 group overflow-hidden`}
+                    >
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-r ${social.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
+                      ></div>
+                      <social.icon className="relative z-10 w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
+                    </a>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Footer Bottom */}
-        <div className="border-t border-white/20 pt-6">
-          <div className="flex flex-col md:flex-row justify-center items-center gap-4">
-            {/* Copyright */}
-            <p className="text-[var(--footertext)] text-sm ">
-              © {new Date().getFullYear()} Forolly Food | All rights reserved.
+        {/* Bottom Bar */}
+        <div className="border-t border-white/10 bg-black/20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row justify-center items-center gap-4">
+            <p className="text-white/60 text-sm text-center md:text-left">
+              © {new Date().getFullYear()} Forolly Food Products. All rights
+              reserved.
             </p>
-
-            {/* <div className="flex items-center gap-2">
-              <span className="text-xs text-[var(--footertext)]">Made with</span>
-              <Heart className="w-4 h-4 text-red-500" />
-              <span className="text-xs text-[var(--footertext)]">in React</span>
-            </div> */}
+            <div className="flex items-center gap-6 text-sm">
+              {/* <div className="flex items-center gap-1 text-white/40">
+            <span>Made with</span>
+            <span className="text-red-400 animate-pulse">❤️</span>
+            <span>in India</span>
+          </div> */}
+            </div>
           </div>
         </div>
       </div>
