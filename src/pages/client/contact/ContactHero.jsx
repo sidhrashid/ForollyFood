@@ -49,7 +49,7 @@ const ContactForm = () => {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: "YOUR_WEB3FORMS_ACCESS_KEY",
+          access_key: "f8375ad6-815b-4263-8e0c-621a66b84bde",
           name: formData.name,
           email: formData.email,
           phone: formData.mobile,
@@ -142,8 +142,7 @@ ${formData.message}
             <div className="relative z-10">
               <div className="text-center mb-4">
                 <div className="flex justify-center mb-2">
-                  <div className="p-2 bg-gradient-to-br from-[var(--primary)]/15 to-[var(--primary)]/8 rounded-full border border-[var(--primary)]/20 group-hover:scale-110 transition-transform duration-300">
-                  </div>
+                  <div className="p-2 bg-gradient-to-br from-[var(--primary)]/15 to-[var(--primary)]/8 rounded-full border border-[var(--primary)]/20 group-hover:scale-110 transition-transform duration-300"></div>
                 </div>
                 <h2
                   className="text-xl font-bold text-[var(--primary)] mb-1 flex items-center justify-center gap-1"
