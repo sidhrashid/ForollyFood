@@ -6,9 +6,16 @@ import { slide } from "../../../data/slide";
 const PopularProducts = () => {
   const [popularProducts, setPopularProducts] = useState([]);
 
-  // Filter & get first 6 products
   useEffect(() => {
-    const filtered = slide.filter((item) => item.status === 1).slice(0, 8); // Get first 6 products
+    // Check local cache
+    const cached = localStorage.getItem("popularProducts");
+    if (cached) {
+      setPopularProducts(JSON.parse(cached));
+      return;
+    }
+
+    // Filter & map only once
+    const filtered = slide.filter((item) => item.status === 1).slice(0, 8);
 
     const products = filtered.map((item) => {
       const mainImage = item.images?.find((img) => img.type === "main");
@@ -19,14 +26,22 @@ const PopularProducts = () => {
       };
     });
 
+    // Save to local cache
+    localStorage.setItem("popularProducts", JSON.stringify(products));
+
+    // Preload images
+    products.forEach((prod) => {
+      if (prod.image) {
+        const img = new Image();
+        img.src = prod.image;
+      }
+    });
+
     setPopularProducts(products);
   }, []);
 
   return (
     <section className="py-10 bg-[var(--secondary)] text-gray-800 relative overflow-hidden">
-      {/* <div className="absolute -top-20 -left-20 w-96 h-96 bg-gradient-to-br from-amber-200/30 to-orange-300/30 rounded-full blur-3xl"></div>
-      <div className="absolute -bottom-24 -right-24 w-80 h-80 bg-gradient-to-tr from-pink-200/30 to-red-300/30 rounded-full blur-3xl"></div> */}
-
       <Container>
         <div className="text-center mb-14">
           <h2 className="text-4xl md:text-5xl font-bold bg-[var(--primary)] bg-clip-text text-transparent mb-4">
@@ -37,19 +52,15 @@ const PopularProducts = () => {
           </p>
         </div>
 
-        <div className="  grid grid-cols-2 sm:grid-cols-4 gap-2">
-          {popularProducts.map((product) => {
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          {popularProducts.map((product, idx) => {
             const slug = product.title
               .toLowerCase()
               .replace(/\s+/g, "-")
               .replace(/[^a-z0-9-]/g, "");
             return (
               <NavLink to={`/products/${slug}`} key={product.id}>
-                <div
-                  key={product.id}
-                  className="group h-[300px] w-[160px] sm:w-[290px] bg-white border border-gray-100 cursor-pointer relative overflow-hidden"
-                >
-                  {/* Bottom overlay like Product cards */}
+                <div className="group h-[300px] w-[160px] sm:w-[290px] bg-white border border-gray-100 cursor-pointer relative overflow-hidden">
                   <div
                     className="absolute bottom-0 left-0 w-full h-[60%] bg-[var(--primary)] opacity-0 group-hover:opacity-100 z-[1] transform translate-y-full group-hover:translate-y-0 transition-all duration-500 ease-out"
                     style={{ borderRadius: "50% 50% 0 0 / 30px 30px 0 0" }}
@@ -59,6 +70,8 @@ const PopularProducts = () => {
                     <img
                       src={product.image}
                       alt={product.title}
+                      loading="lazy"
+                      fetchpriority={idx < 2 ? "high" : "auto"} // First 2 images high priority
                       className="max-h-full max-w-full object-contain relative z-10 transition-all duration-400 group-hover:scale-110 group-hover:rotate-0"
                     />
                   </div>

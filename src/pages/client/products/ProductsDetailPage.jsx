@@ -1,7 +1,15 @@
 import { useParams, Link } from "react-router-dom";
 import { slide } from "../../../data/slide";
 import { useEffect, useState } from "react";
-import { Heart, Package, ArrowRight, ImageIcon, Star, Home, ChevronRight } from "lucide-react";
+import {
+  Heart,
+  Package,
+  ArrowRight,
+  ImageIcon,
+  Star,
+  Home,
+  ChevronRight,
+} from "lucide-react";
 import Container from "../../../components/Container";
 
 const ProductDetail = () => {
@@ -20,11 +28,15 @@ const ProductDetail = () => {
 
   useEffect(() => {
     if (product && product.images) {
-      const imageList = product.images.map((imageObj) => {
-        return {
-          ...imageObj,
-          src: `/images/${imageObj.url}`,
-        };
+      const imageList = product.images.map((imageObj) => ({
+        ...imageObj,
+        src: `/images/${imageObj.url}`,
+      }));
+
+      // Preload all images
+      imageList.forEach((img) => {
+        const preload = new Image();
+        preload.src = img.src;
       });
 
       setLoadedImages(imageList);
@@ -77,7 +89,6 @@ const ProductDetail = () => {
 
       {/* Header Section - Same Structure as About */}
       <div className="relative z-10 pt-14 pb-16 bg-gradient-to-b from-[#ff99b3]/70 to-white/70">
-        
         {/* Breadcrumb Navigation */}
         {/* <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 ">
           <nav className="flex items-center w-screen space-x-2 text-sm ">
@@ -99,8 +110,6 @@ const ProductDetail = () => {
             <span className="text-[var(--primary)] font-medium truncate max-w-[200px]">{product.title}</span>
           </nav>
         </div> */}
-
-       
       </div>
 
       {/* Main Content */}
@@ -123,7 +132,9 @@ const ProductDetail = () => {
                 ) : (
                   <div className="flex flex-col items-center justify-center text-[var(--primary)]/40">
                     <ImageIcon className="w-12 h-12 sm:w-16 sm:h-16 mb-2" />
-                    <span className="text-xs sm:text-sm">No Image Available</span>
+                    <span className="text-xs sm:text-sm">
+                      No Image Available
+                    </span>
                   </div>
                 )}
               </div>
@@ -134,20 +145,21 @@ const ProductDetail = () => {
                   {loadedImages.map((img) => (
                     <div
                       key={img.id}
-                      className={`w-12 h-12 sm:w-20 sm:h-20 border-2 rounded-lg sm:rounded-xl cursor-pointer p-1 sm:p-2 flex items-center justify-center flex-shrink-0 transition-all duration-200 ${
+                      className={`w-12 h-12 sm:w-20 sm:h-20 border-2 rounded-lg cursor-pointer p-1 flex items-center justify-center transition-all duration-200 ${
                         selectedImage?.id === img.id
                           ? "border-[var(--primary)] shadow-lg bg-white/80"
                           : "border-white/40 bg-white/60"
                       }`}
-                      onClick={() => handleImageSelect(img)}
+                      onClick={() => {
+                        setSelectedImage(img);
+                      }}
                     >
                       <img
                         src={img.src}
                         alt={img.alt}
-                        loading="lazy"
-                        width={400}
-                        height={400}
-                        className="w-full h-full max-w-full max-h-full object-contain"
+                        width={100}
+                        height={100}
+                        className="w-full h-full object-contain"
                       />
                     </div>
                   ))}
@@ -239,9 +251,7 @@ const ProductDetail = () => {
                             className="w-full h-full max-w-full max-h-full object-contain"
                           />
                         ) : (
-                          <div className="text-2xl sm:text-4xl opacity-50">
-                            
-                          </div>
+                          <div className="text-2xl sm:text-4xl opacity-50"></div>
                         )}
                       </div>
 
