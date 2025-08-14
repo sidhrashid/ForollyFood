@@ -233,6 +233,9 @@ const ProductDetail = () => {
                           <img
                             src={`/images/${item.images[0].url}`}
                             alt={item.title}
+                            loading="lazy"
+                            width={500}
+                            height={500}
                             className="w-full h-full max-w-full max-h-full object-contain"
                           />
                         ) : (
