@@ -399,11 +399,11 @@ bg: "from-[#0078b6] via-[#00b8e6] to-[#38d0ff]",
           <section
             key={slide.id}
             className={`pt-16 w-screen relative overflow-hidden bg-gradient-to-br ${slide.style.bg}`}
-            style={{
-              height: "calc(100vh - 4rem)",
-              minHeight: "600px",
-              maxHeight: "900px",
-            }}
+            // style={{
+            //   height: "calc(100vh - 4rem)",
+            //   minHeight: "600px",
+            //   maxHeight: "900px",
+            // }}
           >
             {/* Advanced SVG Pattern Overlay */}
             
@@ -416,7 +416,7 @@ bg: "from-[#0078b6] via-[#00b8e6] to-[#38d0ff]",
                   {/* Left Content Section */}
                   <div className="lg:col-span-7 order-2 lg:order-1 space-y-4 sm:space-y-8 text-center lg:text-left">
                     {/* Enhanced Badge with SVG Border */}
-                    <div className="relative inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3">
+                    <div className="relative inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 ">
                       <svg
                         className="absolute inset-0 w-full h-full"
                         xmlns="http://www.w3.org/2000/svg"
@@ -567,11 +567,7 @@ bg: "from-[#0078b6] via-[#00b8e6] to-[#38d0ff]",
                       <NavLink to={slide.url}>
                         <button
                           className="relative px-8 py-3 sm:px-10 sm:py-4 font-black text-base sm:text-lg rounded-2xl group overflow-hidden bg-gray-200 text-gray-800 transition-all duration-300 z-10"
-                          // style={{
-                          //   boxShadow: "4px 8px 19px -3px rgba(0,0,0,0.27)",
-                          //   WebkitBoxShadow:
-                          //     "4px 8px 19px -3px rgba(0,0,0,0.27)",
-                          // }}
+                        
                         >
                              <svg
                         className="absolute inset-0 w-full h-full"

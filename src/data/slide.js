@@ -1,3 +1,8 @@
+// category 1 = chew toffe
+// category 2 = candy toffe
+// category 3 = surprise box
+
+
 export const slide = [
   // ======================1=====================
   {
@@ -6,6 +11,7 @@ export const slide = [
     title: "FRUITYZA BLACK CURRANT ",
     des: 'Ingredients: Sugar, Liquid Glucose, Hydrogenated Vegetable Oil (Refined Palm Oil, Sesame Oil), Acidity Regulator (INS 270, INS 296, INS 330), Emulsifier (INS 322, INS 471), Stabilizer (INS 414), Humectant (INS 420), Edible Common Salt (Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours (Ins 122,Ins 132,Ins 133) And Added Flavour (Nature-Identical) Flavouring Substances - Black Current.\u003Cbr /\u003E\r\nAllergen Information:Contains Soya.\u003Cbr /\u003E\r\nNet Weight:-0.200 Grm\u003Cbr /\u003E\r\nPieces:-50 Pieces\u003Cbr /\u003E\r\nM.R.P.:-50 Rs\r\n\u003Ch2 style="font-style:italic;"\u003E&nbsp;\u003C/h2\u003E\r\n',
     long_desc: "",
+    category: 1,
     images: [
       {
         id: 1,
@@ -55,6 +61,7 @@ export const slide = [
     title: "FRUITYZA FUN",
     des: 'Ingredients: Sugar, Liquid Glucose, Hydrogenated Vegetable Oil (Refined Palm Oil, Sesame Oil), Acidity Regulator (INS 270, INS 296, INS 330), Emulsifier (INS 322, INS 471), Stabilizer (INS 414), Humectant (INS 420), Edible Common Salt (Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours (Ins 122,Ins 132,Ins 133) And Added Flavour (Nature-Identical) Flavouring Substances - Black Current.\u003Cbr /\u003E\r\nAllergen Information:Contains Soya.\u003Cbr /\u003E\r\nNet Weight:-0.200 Grm\u003Cbr /\u003E\r\nPieces:-50 Pieces\u003Cbr /\u003E\r\nM.R.P.:-50 Rs\r\n\u003Ch2 style="font-style:italic;"\u003E&nbsp;\u003C/h2\u003E\r\n',
     long_desc: "",
+    category: 1,
     images: [
       {
         id: 1,
@@ -105,6 +112,7 @@ export const slide = [
     title: "MELON MASTY",
     des: "Ingredients: Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.485 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:75 Pieces\u003Cbr /\u003E\r\nM.R.P.:150 Rs.",
     long_desc: "",
+    category: 1,
     images: [
       {
         id: 1,
@@ -153,6 +161,7 @@ export const slide = [
     title: "YOGURT 20 STRAWBERRY",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.485 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:75 Pieces\u003Cbr /\u003E\r\nM.R.P.:150 Rs.",
     long_desc: "",
+    category: 1,
     images: [
       {
         id: 1,
@@ -201,6 +210,7 @@ export const slide = [
     title: "YOGURT 20 MANGO",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.485 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:75 Pieces\u003Cbr /\u003E\r\nM.R.P.:150 Rs.",
     long_desc: "",
+    category: 1,
     images: [
       {
         id: 1,
@@ -249,6 +259,7 @@ export const slide = [
     title: "INDIAN COCONUT",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.485 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:75 Pieces\u003Cbr /\u003E\r\nM.R.P.:150 Rs.",
     long_desc: "",
+    category: 1,
     images: [
       {
         id: 1,
@@ -297,6 +308,7 @@ export const slide = [
     title: "FOREVER FRUTA",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.485 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:75 Pieces\u003Cbr /\u003E\r\nM.R.P.:150 Rs.",
     long_desc: "",
+    category: 2,
     images: [
       {
         id: 1,
@@ -345,6 +357,7 @@ export const slide = [
     title: "PAAN WALA",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.485 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:75 Pieces\u003Cbr /\u003E\r\nM.R.P.:150 Rs.",
     long_desc: "",
+    category: 2,
     images: [
       {
         id: 1,
@@ -394,6 +407,7 @@ export const slide = [
     title: "BADAM SHAKE HANDLE BOX",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.485 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:75 Pieces\u003Cbr /\u003E\r\nM.R.P.:150 Rs.",
     long_desc: "",
+    category: 3,
     images: [
       {
         id: 1,
@@ -443,6 +457,7 @@ export const slide = [
     title: "BIRTHDAY TREAT SURPRISE BOX",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.130 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:20 Pieces\u003Cbr /\u003E\r\nM.R.P.:50 Rs.",
     long_desc: "",
+    category: 3,
     images: [
       {
         id: 1,
@@ -492,6 +507,7 @@ export const slide = [
     title: "BROWNIE VANILLA  BOX",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.485 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:75 Pieces\u003Cbr /\u003E\r\nM.R.P.:150 Rs.",
     long_desc: "",
+    category: 3,
     images: [
       {
         id: 1,
@@ -541,6 +557,7 @@ export const slide = [
     title: "CHERRY MERRY SURPRISE BOX",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.130 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:20 Pieces\u003Cbr /\u003E\r\nM.R.P.:50 Rs.",
     long_desc: "",
+    category: 3,
     images: [
       {
         id: 1,
@@ -590,6 +607,7 @@ export const slide = [
     title: "CHOCO COCONUT  BOX",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.485 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:75 Pieces\u003Cbr /\u003E\r\nM.R.P.:150 Rs.",
     long_desc: "",
+    category: 3,
     images: [
       {
         id: 1,
@@ -639,6 +657,7 @@ export const slide = [
     title: "CHOCO PAAN HANDLE BOX",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.485 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:75 Pieces\u003Cbr /\u003E\r\nM.R.P.:150 Rs.",
     long_desc: "",
+    category: 3,
     images: [
       {
         id: 1,
@@ -687,6 +706,7 @@ export const slide = [
     title: "LOVE ANGLE HANDLE BOX",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.485 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:75 Pieces\u003Cbr /\u003E\r\nM.R.P.:150 Rs.",
     long_desc: "",
+    category: 3,
     images: [
       {
         id: 1,
@@ -736,6 +756,7 @@ export const slide = [
     title: "MILK MASKA MALAI  BOX",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.485 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:75 Pieces\u003Cbr /\u003E\r\nM.R.P.:150 Rs.",
     long_desc: "",
+    category: 3,
     images: [
       {
         id: 1,
@@ -784,6 +805,7 @@ export const slide = [
     title: "MILKY CHOCO SURPRISE BOX",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.130 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:20 Pieces\u003Cbr /\u003E\r\nM.R.P.:50 Rs.",
     long_desc: "",
+    category: 3,
     images: [
       {
         id: 1,
@@ -833,6 +855,7 @@ export const slide = [
     title: "MILKY ROSE SURPRISE BOX",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.130 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:20 Pieces\u003Cbr /\u003E\r\nM.R.P.:50 Rs.",
     long_desc: "",
+    category: 3,
     images: [
       {
         id: 1,
@@ -882,6 +905,7 @@ export const slide = [
     title: "SHAHI THANDAI SURPRISE BOX",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.130 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:20 Pieces\u003Cbr /\u003E\r\nM.R.P.:50 Rs.",
     long_desc: "",
+    category: 3,
     images: [
       {
         id: 1,

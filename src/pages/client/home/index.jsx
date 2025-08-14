@@ -6,6 +6,7 @@ import PopularProducts from "./PopularProducts";
 import ContactUs from "./ContactSection";
 import WhyChooseUs from "./WhyChooseUs";
 import Testimonials from "../about/Testimonial";
+// import Showcase from "./Showcase";
 
 const index = () => {
   return (
@@ -14,6 +15,7 @@ const index = () => {
         <AboutUs />
         <PopularProducts />
         <Products />
+        {/* <Showcase /> */}
         <WhyChooseUs />
         <Testimonials />
         <ContactUs />
