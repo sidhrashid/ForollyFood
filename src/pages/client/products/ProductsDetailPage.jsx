@@ -24,7 +24,6 @@ const ProductDetail = () => {
       .replace(/[^a-z0-9-]/g, "");
     return slug === id;
   });
-  console.log(product);
 
   useEffect(() => {
     if (product && product.images) {
@@ -33,13 +32,19 @@ const ProductDetail = () => {
         src: `/images/${imageObj.url}`,
       }));
 
-      // Preload all images
-      imageList.forEach((img) => {
-        const preload = new Image();
-        preload.src = img.src;
+      // Simple preload without caching complexity
+      Promise.all(
+        imageList.map((img) => {
+          return new Promise((resolve) => {
+            const preload = new Image();
+            preload.onload = () => resolve(img);
+            preload.onerror = () => resolve(img); // Continue even if one fails
+            preload.src = img.src;
+          });
+        })
+      ).then((loadedImgs) => {
+        setLoadedImages(loadedImgs);
       });
-
-      setLoadedImages(imageList);
 
       const mainImage = imageList.find((img) => img.type === "main");
       setSelectedImage(mainImage || imageList[0]);
@@ -89,27 +94,6 @@ const ProductDetail = () => {
 
       {/* Header Section - Same Structure as About */}
       <div className="relative z-10 pt-14 pb-16 bg-gradient-to-b from-[#ff99b3]/70 to-white/70">
-        {/* Breadcrumb Navigation */}
-        {/* <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 ">
-          <nav className="flex items-center w-screen space-x-2 text-sm ">
-            <a 
-              href="/" 
-              className="flex items-center gap-1 text-gray-600 hover:text-[var(--primary)] transition-colors duration-300 group"
-            >
-              <Home className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
-              Home
-            </a>
-            <ChevronRight className="w-4 h-4 text-gray-400" />
-            <Link 
-              to="/products"
-              className="text-gray-600 hover:text-[var(--primary)] transition-colors duration-300"
-            >
-              Products
-            </Link>
-            <ChevronRight className="w-4 h-4 text-gray-400" />
-            <span className="text-[var(--primary)] font-medium truncate max-w-[200px]">{product.title}</span>
-          </nav>
-        </div> */}
       </div>
 
       {/* Main Content */}
@@ -119,7 +103,7 @@ const ProductDetail = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-12 lg:mb-16">
             {/* LEFT SIDE */}
             <div className="space-y-6 sm:space-y-6">
-              <div className="shadow bg-white/60 backdrop-blur-sm p-4 sm:p-3 w-full max-w-sm sm:max-w-sm  rounded-2xl border-2 border-white/30 flex justify-center items-center aspect-square">
+              <div className="shadow bg-white/60 backdrop-blur-sm p-4 sm:p-3 w-full max-w-sm sm:max-w-sm rounded-2xl border-2 border-white/30 flex justify-center items-center aspect-square">
                 {selectedImage?.src ? (
                   <img
                     src={selectedImage.src}
@@ -141,7 +125,7 @@ const ProductDetail = () => {
 
               {/* Thumbnails */}
               {loadedImages.length > 1 && (
-                <div className="flex gap-2 sm:gap-3 overflow-x-hidden pb-2 ">
+                <div className="flex gap-2 sm:gap-3 overflow-x-hidden pb-2">
                   {loadedImages.map((img) => (
                     <div
                       key={img.id}
@@ -219,7 +203,7 @@ const ProductDetail = () => {
             </div>
           </div>
 
-          {/* Related Products */}
+          {/* Related Products - FIXED IMAGE ISSUE */}
           <div className="border-t border-[var(--primary)]/20 pt-8 sm:pt-12">
             <div className="text-center mb-6 sm:mb-8">
               <h2 className="text-xl sm:text-2xl font-bold text-[var(--primary)] mb-2 sm:mb-3">
@@ -234,6 +218,10 @@ const ProductDetail = () => {
                     .toLowerCase()
                     .replace(/\s+/g, "-")
                     .replace(/[^a-z0-9-]/g, "");
+                  
+                  // Find main image for related products
+                  const relatedMainImage = item.images?.find(img => img.type === "main") || item.images?.[0];
+                  
                   return (
                     <Link
                       to={`/products/${slug}`}
@@ -241,17 +229,20 @@ const ProductDetail = () => {
                       className="group bg-white/50 backdrop-blur-sm p-3 sm:p-4 rounded-lg sm:rounded-xl border border-white/30 hover:scale-105 transition-all duration-300 flex-shrink-0 w-48 sm:w-56"
                     >
                       <div className="aspect-square bg-white/60 rounded-lg mb-2 sm:mb-3 flex items-center justify-center p-2 sm:p-3 overflow-hidden">
-                        {item.images && item.images[0] ? (
+                        {relatedMainImage ? (
                           <img
-                            src={`/images/${item.images[0].url}`}
+                            src={`/images/${relatedMainImage.url}`}
                             alt={item.title}
                             loading="lazy"
                             width={500}
                             height={500}
                             className="w-full h-full max-w-full max-h-full object-contain"
+                            onError={(e) => {
+                              e.target.style.display = 'none';
+                            }}
                           />
                         ) : (
-                          <div className="text-2xl sm:text-4xl opacity-50"></div>
+                          <div className="text-2xl sm:text-4xl opacity-50">🍬</div>
                         )}
                       </div>
 
