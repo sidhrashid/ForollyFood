@@ -59,9 +59,9 @@ const SimpleInstagramGrid = () => {
   ];
 
   return (
-    <section className="bg-white py-10">
+    <section className="bg-white ">
       <Container>
-        <h2 className="text-3xl font-bold text-center mb-6">Instagram Posts</h2>
+        <h2 className="text-3xl font-bold text-center mb-6 text-[var(--primary)]">Sweet Moments</h2>
 
         <div className="grid grid-cols-3   gap-1">
           {posts.map((post, index) => (
