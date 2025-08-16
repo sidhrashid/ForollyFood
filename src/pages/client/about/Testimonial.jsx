@@ -204,7 +204,7 @@ const Testimonials = () => {
                     </div>
                   </div>
                 </div>
-                <span className="text-gray-600 text-sm">26 Google Reviews</span>
+                <span className="text-gray-600 text-sm">27 Google Reviews</span>
               </div>
               <ExternalLink className=" hidden sm:block w-4 h-4 text-gray-400 group-hover:text-[var(--primary)] transition-colors duration-300" />
             </div>

@@ -22,12 +22,8 @@ const Products = () => {
 
   return (
     <section className="relative py-10 bg-white text-gray-900 overflow-hidden">
-      {/* Background Decorations */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-16 left-16 w-32 h-32 bg-blue-400/10 rounded-full blur-2xl"></div>
-        <div className="absolute bottom-24 right-24 w-40 h-40 bg-indigo-400/10 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-slate-400/5 rounded-full blur-3xl"></div>
-      </div>
+    
+  
 
       <Container>
         {/* Section Title */}
@@ -39,7 +35,7 @@ const Products = () => {
 
         {/* Product Grid */}
         <div className="relative z-10">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 px-4 -mx-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 px-4 sm:-mx-4">
             {products.map((product, idx) => {
               const slug = product.title
                 .toLowerCase()
