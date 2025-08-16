@@ -67,8 +67,7 @@ const Footer = () => {
                 </div>
               </NavLink>
               <p className="text-white/70 text-sm leading-relaxed">
-                India's premium confectionery brand, crafting handmade
-                chocolates and toffees with love since 2020.
+               India’s premium confectionery brand, spreading joy through chocolates and toffees since 2020.
                 <span className="text-[var(--primary)]/80 font-medium">
                   {" "}
                   Bringing sweetness to every moment.
