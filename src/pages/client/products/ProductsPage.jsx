@@ -1,110 +1,189 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import Container from "../../../components/Container";
 import { slide } from "../../../data/slide";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 const ProductsPage = () => {
-  const [products, setProducts] = useState([]);
+  const [expandedCategories, setExpandedCategories] = useState({});
+  const categoryRefs = useRef({});
 
-  useEffect(() => {
-    const filtered = slide
-      .filter((item) => item.status === 1)
-      .map((item) => {
-        // Find the main image
-        const mainImage = item.images?.find((img) => img.type === "main");
+  const categoryConfig = {
+    1: {
+      name: "Chewy Toffee",
+      description: "Delicious chewy toffees with amazing flavors",
+      color: "bg-[var(--primary)]",
+    },
+    2: {
+      name: "Candy Toffee",
+      description: "Sweet and crunchy candy toffees",
+      color: "bg-[var(--primary)]",
+    },
+    3: {
+      name: "Surprise Box",
+      description: "Mystery boxes filled with sweet surprises",
+      color: "bg-[var(--primary)]",
+    },
+    4: {
+      name: "Handle Box",
+      description: "Mystery boxes filled with sweet surprises",
+      color: "bg-[var(--primary)]",
+    },
+  };
 
-        return {
-          id: item.prod_id,
-          title: item.title,
-          image: mainImage ? `/images/${mainImage.url}` : "",
-        };
+  // Group products by category directly without useEffect
+  const categorizedProducts = slide
+    .filter((item) => item.status === 1)
+    .reduce((acc, item) => {
+      const category = item.category;
+      if (!acc[category]) acc[category] = [];
+      const mainImage = item.images?.find((img) => img.type === "main");
+      acc[category].push({
+        id: item.prod_id,
+        title: item.title,
+        image: mainImage ? `/images/${mainImage.url}` : "",
+        category: category,
       });
+      return acc;
+    }, {});
 
-    setProducts(filtered);
-  }, []);
+  // Initialize expanded state (once)
+  React.useMemo(() => {
+    const initialExpanded = {};
+    Object.keys(categorizedProducts).forEach((cat) => {
+      initialExpanded[cat] = false;
+    });
+    setExpandedCategories(initialExpanded);
+  }, []); // this will run only once
 
-  // Convert title to URL-friendly format
-  const createUrlTitle = (title) => {
-    return title
+  const createUrlTitle = (title) =>
+    title
       .toLowerCase()
       .replace(/\s+/g, "-")
       .replace(/[^a-z0-9-]/g, "");
+
+  const toggleCategory = (categoryId) => {
+    const currentScrollY = window.scrollY;
+    setExpandedCategories((prev) => ({
+      ...prev,
+      [categoryId]: !prev[categoryId],
+    }));
+    setTimeout(() => window.scrollTo(0, currentScrollY), 0);
   };
 
+  const getAdditionalProducts = (products) => products.slice(4);
+
   return (
-    <section className="py-24 bg-gradient-to-br from-orange-50 via-amber-50 to-red-50 text-gray-800">
-      <Container>
-        {/* Heading */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-[var(--primary)] mb-4">
+    <div
+      className="relative bg-[var(--secondary)] overflow-hidden"
+      style={{ scrollBehavior: "auto" }}
+    >
+      {/* Header */}
+      <div className="relative z-10 pt-24 pb-4 bg-gradient-to-b from-[#ff99b3]/70 to-white/70">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h1 className="text-2xl sm:text-5xl font-bold text-[var(--primary)]">
             All Our Products
           </h1>
-          <p className="text-gray-600 sm:text-md max-w-xl mx-auto">
-            Explore our full collection of handmade chocolates crafted with
-            love.
-          </p>
+          <div className="w-24 h-1 bg-[var(--primary)] rounded-full mx-auto"></div>
         </div>
+      </div>
 
-        {/* Product Flex Container - Centered */}
-        <div className="flex flex-wrap justify-center gap-8">
-          {products.map((product) => {
-            const urlTitle = createUrlTitle(product.title);
+      {/* Categories */}
+      <section className="py-8 text-gray-800">
+        <Container>
+          {Object.entries(categorizedProducts).map(([categoryId, products]) => {
+            const config = categoryConfig[categoryId];
+            const initialProducts = products.slice(0, 4);
+            const additionalProducts = getAdditionalProducts(products);
+            const hasMore = products.length > 4;
+            const isExpanded = expandedCategories[categoryId];
 
             return (
-              <NavLink
-                key={product.id}
-                to={`/products/${urlTitle}`}
-                className="block"
+              <div
+                key={categoryId}
+                className="mb-16 last:mb-8"
+                ref={(el) => (categoryRefs.current[categoryId] = el)}
               >
-                <div className="group w-[160px] sm:w-[190px] h-[230px] bg-white rounded-2xl border border-gray-100 shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer relative overflow-hidden hover:-translate-y-1">
-                  {/* Full Box Background - Bottom to Top Effect */}
-                  <div className="absolute inset-0 bg-[var(--primary)] opacity-0 group-hover:opacity-100 z-[1] transform translate-y-full group-hover:translate-y-0 transition-transform duration-600 ease-out rounded-2xl"></div>
-
-                  {/* Image Container */}
-                  <div className="h-[180px] flex items-center justify-center p-4 relative z-10 overflow-visible">
-                    {/* Product Image */}
-                    <img
-                      src={product.image}
-                      alt={product.title}
-                      className="max-h-full max-w-full object-contain relative z-10 transition-all duration-400 group-hover:scale-110 group-hover:rotate-6"
-                    />
-                  </div>
-
-                  {/* Title Section */}
-                  <div className="flex items-center justify-center p-4 border-t border-gray-100 group-hover:border-white/30 transition-colors duration-500 relative z-10">
-                    <h3
-                      className="text-sm font-semibold text-gray-800 group-hover:text-white text-center leading-tight overflow-hidden text-ellipsis line-clamp-2 transition-colors duration-500 truncate"
-                      title={product.title}
-                    >
-                      {product.title}
-                    </h3>
-                  </div>
-
-                  {/* Navigation Indicator */}
-                  <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-                    <div className="bg-white/20 backdrop-blur-sm rounded-full p-1">
-                      <svg
-                        className="w-4 h-4 text-white"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                        />
-                      </svg>
-                    </div>
+                {/* Category Title */}
+                <div className="flex items-center justify-between mb-8 px-4 min-h-[60px]">
+                  <div className="flex items-center gap-4">
+                    <h2 className="text-2xl font-bold text-black">
+                      {config.name}
+                    </h2>
                   </div>
                 </div>
-              </NavLink>
+
+                {/* Product Grid */}
+                <div className="flex flex-wrap justify-center gap-8 mb-8">
+                  {[
+                    ...initialProducts,
+                    ...(isExpanded ? additionalProducts : []),
+                  ].map((product, index) => {
+                    const urlTitle = createUrlTitle(product.title);
+                    return (
+                      <NavLink
+                        key={product.id}
+                        to={`/products/${urlTitle}`}
+                        className="block"
+                      >
+                        <div className="group w-[160px] sm:w-[250px] h-[250px] bg-white rounded-2xl border border-gray-100 shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden hover:-translate-y-0 ">
+                          <div
+                            className={`absolute bottom-0 left-0 w-full h-[60%] ${config.color} opacity-0 group-hover:opacity-100 transform translate-y-full group-hover:translate-y-0 transition-all duration-500 ease-out`}
+                            style={{
+                              borderRadius: "50% 50% 0 0 / 30px 30px 0 0",
+                            }}
+                          ></div>
+                          <div className="h-[200px] flex items-center justify-center p-4 relative z-10">
+                            <img
+                              src={product.image}
+                              alt={product.title}
+                              className="max-h-full max-w-full object-contain transition-all duration-300 group-hover:scale-110"
+                            />
+                          </div>
+                          <div className="flex items-center justify-center p-4 border-t border-gray-100 group-hover:border-white/30 relative z-10">
+                            <h3
+                              className="text-sm font-semibold text-gray-800 group-hover:text-white text-center truncate"
+                              title={product.title}
+                            >
+                              {product.title}
+                            </h3>
+                          </div>
+                        </div>
+                      </NavLink>
+                    );
+                  })}
+                </div>
+
+                {/* Show More Button */}
+                {hasMore && (
+                  <div className="text-center">
+                    <button
+                      onClick={() => toggleCategory(categoryId)}
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-gray-200 rounded-full hover:border-[var(--primary)] hover:text-[var(--primary)] transition-all"
+                    >
+                      {isExpanded ? (
+                        <>
+                          <span>Show Less</span>
+                          <ChevronUp className="w-4 h-4" />
+                        </>
+                      ) : (
+                        <>
+                          <span>Show More</span>
+                          <span className="text-sm text-gray-500">
+                            ({additionalProducts.length})
+                          </span>
+                          <ChevronDown className="w-4 h-4" />
+                        </>
+                      )}
+                    </button>
+                  </div>
+                )}
+              </div>
             );
           })}
-        </div>
-      </Container>
-    </section>
+        </Container>
+      </section>
+    </div>
   );
 };
 

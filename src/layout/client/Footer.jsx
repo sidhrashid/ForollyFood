@@ -1,125 +1,172 @@
 import React from "react";
 import {
   Instagram,
-  Twitter,
   Facebook,
   Mail,
-  Heart,
-  ArrowRight,
+  Phone,
   MapPin,
-  Send,
+  ArrowRight,
+  ExternalLink,
+  Star,
+  Sparkles,
 } from "lucide-react";
+import logo from "../../assets/images/logo.webp";
+import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-[var(--primary)] text-[var(--footertext)] pt-20 pb-8 relative overflow-hidden">
-      {/* Enhanced Background Texture */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-32 -left-32 w-96 h-96 bg-[var(--primary)]/8 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-32 -right-32 w-[500px] h-[500px] bg-[var(--primary)]/12 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[var(--primary)]/5 rounded-full blur-3xl"></div>
-
-        <div className="absolute top-16 right-1/4 w-32 h-32 bg-[var(--primary)]/10 rounded-full blur-2xl"></div>
-        <div className="absolute bottom-32 left-1/4 w-24 h-24 bg-[var(--primary)]/8 rounded-full blur-xl"></div>
-        <div className="absolute top-1/3 left-16 w-20 h-20 bg-[var(--primary)]/6 rounded-full blur-xl"></div>
-        <div className="absolute bottom-1/2 right-16 w-28 h-28 bg-[var(--primary)]/9 rounded-full blur-2xl"></div>
-
-        <div className="absolute top-20 left-1/3 w-4 h-4 bg-[var(--primary)]/15 rotate-45 rounded-sm"></div>
-        <div className="absolute bottom-40 right-1/3 w-3 h-8 bg-[var(--primary)]/10 rounded-full"></div>
-        <div className="absolute top-2/3 left-20 w-6 h-6 bg-[var(--primary)]/12 rounded-full"></div>
+    <footer className="relative overflow-hidden bg-gradient-to-br from-[#d72121] via-[#d72121]/70 to-[#d72121]/60">
+      {/* Background Effects */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-r from-[var(--primary)]/20 via-transparent to-[var(--primary)]/20"></div>
+        <div className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-r from-[var(--primary)]/10 to-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div
+          className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-l from-blue-500/8 to-[var(--primary)]/8 rounded-full blur-3xl animate-pulse"
+          style={{ animationDelay: "2s" }}
+        ></div>
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-tr from-purple-500/5 to-pink-500/5 rounded-full blur-3xl animate-pulse"
+          style={{ animationDelay: "1s" }}
+        ></div>
+        <div
+          className="absolute inset-0 opacity-[0.02]"
+          style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
+            backgroundSize: "40px 40px",
+          }}
+        ></div>
       </div>
 
-      {/* Decorative Top Border */}
-      <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[var(--primary)] via-[var(--primary)]/80 to-[var(--primary)]"></div>
+      <div className="relative z-10">
+        <div className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Main Footer Content - 4 Columns with Proper Alignment */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 items-start">
-          {/* 1. Forolly Brand Section - Proper Top Alignment */}
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-3xl font-bold text-[var(--secondary)] mb-4 flex items-center gap-2">
-                Forolly
-              </h3>
-              <p className="text-[var(--footertext)] leading-relaxed text-sm">
-                "Forolly's mission is to bring joyful candy memories to youth
-                while celebrating God and His purpose for our lives. We aim to
-                delight every customer so they share their experience with
-                others."
+        {/* Main Content */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
+            {/* Brand */}
+            <div className="space-y-">
+              <NavLink to="/" className="inline-flex items-center gap-4 group">
+                <div className="relative">
+                  <div className="absolute -inset-2 rounded-xl blur group-hover:blur-md transition-all duration-300"></div>
+                  <img
+                    src={logo}
+                    alt="Forolly Logo"
+                    width={48}
+                    height={48}
+                    className="relative w-16 h-16 object-contain group-hover:scale-110 transition-transform duration-300 cursor-pointer"
+                    onClick={() =>
+                      window.scrollTo({ top: 0, behavior: "smooth" })
+                    }
+                  />
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold text-white ">Forolly</h2>
+                  <p className="text-xs text-white/60 ">
+                    Premium Confectionery
+                  </p>
+                </div>
+              </NavLink>
+              <p className="text-white/70 text-sm leading-relaxed">
+               India’s premium confectionery brand, spreading joy through chocolates and toffees since 2020.
+                <span className="text-[var(--primary)]/80 font-medium">
+                  {" "}
+                  Bringing sweetness to every moment.
+                </span>
               </p>
             </div>
-          </div>
 
-          {/* 2. Office Address - Proper Top Alignment */}
-          <div className="space-y-6">
-            <h4 className="text-xl font-bold text-[var(--footertext)] mb-6 relative">
-              Office Address
-              <div className="absolute -bottom-2 left-0 w-35 h-1 bg-[var(--secondary)] rounded-full"></div>
-            </h4>
-
-            {/* Address Content - Properly Aligned */}
-            <div className="text-[var(--footertext)] leading-relaxed text-sm space-y-1">
-              <p>Survey No. 646, Plot No. 3, 4, 5,</p>
-              <p>Ahmedabad palanpur Highway,</p>
-              <p>Village-Majadar, Ta-vadgam,</p>
-              <p>Dist-Banaskantha, Gujarat-385210, India.</p>
-            </div>
-          </div>
-
-          {/* 3. Quick Links - Proper Top Alignment */}
-          <div className="space-y-4">
-            <h4 className="text-xl font-bold text-[var(--footertext)] mb-6 relative">
-              Quick Links
-              <div className="absolute -bottom-2 left-0 w-27 h-1 bg-[var(--secondary)] rounded-full"></div>
-            </h4>
-            <ul className="space-y-1">
-              {[
-                { name: "Home", href: "/" },
-                { name: "About Us", href: "/about" },
-                { name: "Products", href: "/products" },
-                { name: "Contact Us", href: "/contact" },
-              ].map((link, idx) => (
-                <li key={idx}>
-                  <a
-                    href={link.href}
-                    className="group flex items-center gap-2 text-[var(--footertext)] hover:text-[var(--secondary)] transition-all duration-300 pt-0 py-2 rounded-lg text-sm"
-                  >
-                    <span className="group-hover:translate-x-3 transition-transform duration-500">
-                      {link.name}
-                    </span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* 4. Contact Us - Proper Top Alignment */}
-          <div className="space-y-6">
-            <h4 className="text-xl font-bold text-[var(--footertext)] mb-6 relative">
-              Contact Us
-              <div className="absolute -bottom-2 left-0 w-27 h-1 bg-[var(--secondary)] rounded-full"></div>
-            </h4>
-
-            {/* Email Subscription - Properly Aligned */}
+            {/* Location */}
             <div className="space-y-4">
-              {/* Social Media Icons - Properly Spaced */}
-              <div className="pt-4">
-                <p className="text-sm text-[var(--footertext)] mb-3">Follow us on:</p>
-                <div className="flex gap-3">
+              <h3 className="text-xl font-bold text-white">Our Location</h3>
+              <address className="not-italic text-white/70 text-sm leading-relaxed space-y-1">
+                <p className="font-semibold text-white text-base pt-3 ">
+                  Forolly Food Products
+                </p>
+                <p>Survey No. 646, Plot No. 3, 4, 5</p>
+                <p>Ahmedabad Palanpur Highway</p>
+                <p>Village-Majadar, Ta-vadgam</p>
+                <p>Dist-Banaskantha, Gujarat-385210</p>
+              </address>
+            </div>
+
+            {/* Quick Links */}
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold text-white">Quick Links</h3>
+              <ul className="space-y-2">
+                {[
+                  { name: "Home", href: "/" },
+                  { name: "About Us", href: "/about" },
+                  { name: "Products", href: "/products" },
+                  { name: "Contact Us", href: "/contact" },
+                ].map((link, idx) => (
+                  <li key={idx}>
+                    <a
+                      href={link.href}
+                      className="flex items-center gap-3 p-3 rounded-lg text-white/70 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 transition-all duration-300 group"
+                    >
+                      <span className="flex-1 group-hover:translate-x-2 transition-transform duration-300">
+                        {link.name}
+                      </span>
+                      <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact & Social */}
+            <div className="space-y-6">
+              <h3 className="text-xl font-bold text-white">Get in Touch</h3>
+              <div className="space-y-4">
+                <a
+                  href="tel:+919510270600"
+                  className="flex items-center gap-4 text-white transition-all duration-300 group"
+                >
+                  <Phone className="w-5 h-5" />
+                  <div>
+                    <p className="text-xs text-white/60">Call us</p>
+                    <p className="font-medium">+91 95102 70600</p>
+                  </div>
+                </a>
+                <a
+                  href="mailto:support@forollyfood.com"
+                  className="flex items-center gap-4 text-white transition-all duration-300 group"
+                >
+                  <Mail className="w-5 h-5" />
+                  <div>
+                    <p className="text-xs text-white/60">Email us</p>
+                    <p className="font-medium">support@forollyfood.com</p>
+                  </div>
+                </a>
+              </div>
+              <div>
+                <p className="text-sm text-white/70 font-medium mb-2">
+                  Follow our journey:
+                </p>
+                <div className="flex gap-4">
                   {[
                     {
                       icon: Instagram,
-                      href: "#",
-                      color: "hover:text-pink-500",
+                      href: "https://www.instagram.com/forollyfoodproducts?igsh=aW42bGZpd3lqZ2Ez",
+                      color: "from-pink-500 to-purple-500",
                     },
-                    { icon: Facebook, href: "#", color: "hover:text-blue-600" },
+                    {
+                      icon: Facebook,
+                      href: "https://www.facebook.com/profile.php?id=61562556606227&mibextid=ZbWKwL",
+                      color: "from-blue-700 to-blue-600",
+                    },
                   ].map((social, idx) => (
                     <a
-                      key={idx}
+                      key={idx}l
                       href={social.href}
-                      className={`group p-2 bg-white/60 backdrop-blur-sm rounded-lg border border-white/50 text-[var(--primary)] ${social.color} hover:shadow-lg transition-all duration-300 hover:scale-110`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`relative p-3 bg-white/20   rounded-xl text-white hover:scale-110 hover:${social.color}/50 hover:border-white/40 transition-all duration-300 group overflow-hidden`}
                     >
-                      <social.icon className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-r ${social.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
+                      ></div>
+                      <social.icon className="relative z-10 w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
                     </a>
                   ))}
                 </div>
@@ -128,14 +175,19 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Footer Bottom - Centered */}
-        <div className="border-t border-white/30 pt-8">
-          <div className="flex justify-center items-center">
-            <div className="text-center">
-              <p className="text-[var(--footertext)] text-sm">
-                © {new Date().getFullYear()} Forolly Food | All
-                rights reserved.
-              </p>
+        {/* Bottom Bar */}
+        <div className="border-t border-white/10 bg-black/20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row justify-center items-center gap-4">
+            <p className="text-white/60 text-sm text-center md:text-left">
+              © {new Date().getFullYear()} Forolly Food Products. All rights
+              reserved.
+            </p>
+            <div className="flex items-center gap-6 text-sm">
+              {/* <div className="flex items-center gap-1 text-white/40">
+            <span>Made with</span>
+            <span className="text-red-400 animate-pulse">❤️</span>
+            <span>in India</span>
+          </div> */}
             </div>
           </div>
         </div>

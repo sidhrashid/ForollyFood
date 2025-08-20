@@ -1,11 +1,413 @@
+// category 1 = chew toffe
+// category 2 = candy toffe
+// category 3 = surprise box
+// category 4 = handle box
+
 export const slide = [
-  // ======================== 1=================================
+  // ======================1=====================
   {
     prod_id: 1,
 
-    title: "BADAM SHAKE HANDLE BOX",
+    title: "FRUITYZA BLACK CURRANT ",
+    des: 'Ingredients: Sugar, Liquid Glucose, Hydrogenated Vegetable Oil (Refined Palm Oil, Sesame Oil), Acidity Regulator (INS 270, INS 296, INS 330), Emulsifier (INS 322, INS 471), Stabilizer (INS 414), Humectant (INS 420), Edible Common Salt (Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours (Ins 122,Ins 132,Ins 133) And Added Flavour (Nature-Identical) Flavouring Substances - Black Current.\u003Cbr /\u003E\r\nAllergen Information:Contains Soya.\u003Cbr /\u003E\r\nNet Weight:-0.200 Grm\u003Cbr /\u003E\r\nPieces:-50 Pieces\u003Cbr /\u003E\r\nM.R.P.:-50 Rs\r\n\u003Ch2 style="font-style:italic;"\u003E&nbsp;\u003C/h2\u003E\r\n',
+    long_desc: "",
+    category: 1,
+    images: [
+      {
+        id: 1,
+        url: "FRUITYZA-CHEWY-TOFFEE t.png",
+        alt: "FRIUTYZA BLACK CURRENT TOFFEE",
+        type: "main",
+        order: 1,
+      },
+      {
+        id: 2,
+        url: "FRUITYZA CHEWY TOFFEE 2.jpg",
+        alt: "FRUITYZA CHEWY TOFFEE 2.jpg",
+        type: "gallery",
+        order: 2,
+      },
+      {
+        id: 3,
+        url: "FRUITYZA CHEWY TOFFEE 3.jpg",
+        alt: "FRUITYZA CHEWY TOFFEE 3.jpg",
+        type: "info",
+        order: 3,
+      },
+      {
+        id: 4,
+        url: "FRUITYZA CHEWY TOFFEE 4.jpg",
+        alt: "FRUITYZA CHEWY TOFFEE 4.jpg",
+        type: "info",
+        order: 4,
+      },
+      {
+        id: 5,
+        url: "FRUITYZA CHEWY TOFFEE 5.jpg",
+        alt: "Ingredients List",
+        type: "info",
+        order: 5,
+      },
+    ],
+    status: 1,
+    slider: 1,
+    popular: 0,
+  },
+
+  // ===================================2==========================
+  {
+    prod_id: 2,
+
+    title: "FRUITYZA FUN",
+    des: 'Ingredients: Sugar, Liquid Glucose, Hydrogenated Vegetable Oil (Refined Palm Oil, Sesame Oil), Acidity Regulator (INS 270, INS 296, INS 330), Emulsifier (INS 322, INS 471), Stabilizer (INS 414), Humectant (INS 420), Edible Common Salt (Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours (Ins 122,Ins 132,Ins 133) And Added Flavour (Nature-Identical) Flavouring Substances - Black Current.\u003Cbr /\u003E\r\nAllergen Information:Contains Soya.\u003Cbr /\u003E\r\nNet Weight:-0.200 Grm\u003Cbr /\u003E\r\nPieces:-50 Pieces\u003Cbr /\u003E\r\nM.R.P.:-50 Rs\r\n\u003Ch2 style="font-style:italic;"\u003E&nbsp;\u003C/h2\u003E\r\n',
+    long_desc: "",
+    category: 1,
+    images: [
+      {
+        id: 1,
+        url: "FRUITYZA-FUN-t.png",
+        alt: "FRUITYZA-FUN",
+        type: "main",
+        order: 1,
+      },
+      {
+        id: 2,
+        url: "FRUITYZA FUN 2.png",
+        alt: "FRUITYZA FUN 2.png",
+        type: "gallery",
+        order: 2,
+      },
+      {
+        id: 3,
+        url: "FRUITYZA FUN 3.png",
+        alt: "FRUITYZA FUN 3.png",
+        type: "info",
+        order: 3,
+      },
+      {
+        id: 4,
+        url: "FRUITYZA FUN 4.png",
+        alt: "FRUITYZA FUN 4.png",
+        type: "info",
+        order: 4,
+      },
+      {
+        id: 5,
+        url: "FRUITYZA FUN 5.png",
+        alt: "Ingredients List",
+        type: "info",
+        order: 5,
+      },
+    ],
+    status: 1,
+    slider: 1,
+    popular: 0,
+  },
+
+  // ======================== 3=================================
+
+  {
+    prod_id: 3,
+
+    title: "MELON MASTY",
+    des: "Ingredients: Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.485 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:75 Pieces\u003Cbr /\u003E\r\nM.R.P.:150 Rs.",
+    long_desc: "",
+    category: 1,
+    images: [
+      {
+        id: 1,
+        url: "MELON-MASTI-t.png",
+        alt: "Front View",
+        type: "main",
+        order: 1,
+      },
+      {
+        id: 2,
+        url: "MELON MASTI 2.jpg",
+        alt: "Side View",
+        type: "gallery",
+        order: 2,
+      },
+      {
+        id: 3,
+        url: "MELON MASTI 3.jpg",
+        alt: "Back View",
+        type: "gallery",
+        order: 3,
+      },
+      {
+        id: 4,
+        url: "MELON MASTI 4.jpg",
+        alt: "Ingredients View",
+        type: "info",
+        order: 4,
+      },
+      {
+        id: 5,
+        url: "MELON MASTI 5.jpg",
+        alt: "Ingredients View",
+        type: "info",
+        order: 5,
+      },
+    ],
+    status: 1,
+    slider: 1,
+    popular: 0,
+  },
+
+  // ======================== 4=================================
+  {
+    prod_id: 4,
+    title: "YOGURT 20 STRAWBERRY",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.485 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:75 Pieces\u003Cbr /\u003E\r\nM.R.P.:150 Rs.",
     long_desc: "",
+    category: 1,
+    images: [
+      {
+        id: 1,
+        url: "YOGURT-20-t.png",
+        alt: "Front View",
+        type: "main",
+        order: 1,
+      },
+      {
+        id: 2,
+        url: "YOGURT 20 2.jpg",
+        alt: "Side View",
+        type: "gallery",
+        order: 2,
+      },
+      {
+        id: 3,
+        url: "YOGURT 20 3.jpg",
+        alt: "Back View",
+        type: "gallery",
+        order: 3,
+      },
+      {
+        id: 4,
+        url: "YOGURT 20 4.jpg",
+        alt: "Ingredients View",
+        type: "info",
+        order: 4,
+      },
+      {
+        id: 5,
+        url: "YOGURT 20 5.jpg",
+        alt: "Ingredients View",
+        type: "info",
+        order: 5,
+      },
+    ],
+    status: 1,
+    slider: 1,
+    popular: 0,
+  },
+  // ======================== 5=================================
+  {
+    prod_id: 5,
+
+    title: "YOGURT 20 MANGO",
+    des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.485 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:75 Pieces\u003Cbr /\u003E\r\nM.R.P.:150 Rs.",
+    long_desc: "",
+    category: 1,
+    images: [
+      {
+        id: 1,
+        url: "YOGURT-20-Mango-1.png",
+        alt: "Front View",
+        type: "main",
+        order: 1,
+      },
+      {
+        id: 2,
+        url: "YOGURT 20 Mango 2.jpg",
+        alt: "Side View",
+        type: "gallery",
+        order: 2,
+      },
+      {
+        id: 3,
+        url: "YOGURT 20 Mango 3.jpg",
+        alt: "Back View",
+        type: "gallery",
+        order: 3,
+      },
+      {
+        id: 4,
+        url: "YOGURT 20 Mango 4.jpg",
+        alt: "Ingredients View",
+        type: "info",
+        order: 4,
+      },
+      {
+        id: 5,
+        url: "YOGURT 20 Mango 5.jpg",
+        alt: "Ingredients View",
+        type: "info",
+        order: 5,
+      },
+    ],
+    status: 1,
+    slider: 1,
+    popular: 0,
+  },
+  // ======================== 6=================================
+  {
+    prod_id: 6,
+
+    title: "INDIAN COCONUT",
+    des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.485 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:75 Pieces\u003Cbr /\u003E\r\nM.R.P.:150 Rs.",
+    long_desc: "",
+    category: 1,
+    images: [
+      {
+        id: 1,
+        url: "COCONUT-t.png",
+        alt: "Front View",
+        type: "main",
+        order: 1,
+      },
+      {
+        id: 2,
+        url: "COCONUT 2.png",
+        alt: "Side View",
+        type: "gallery",
+        order: 2,
+      },
+      {
+        id: 3,
+        url: "COCONUT 3.png",
+        alt: "Back View",
+        type: "gallery",
+        order: 3,
+      },
+      {
+        id: 4,
+        url: "COCONUT 4.png",
+        alt: "Ingredients View",
+        type: "info",
+        order: 4,
+      },
+      {
+        id: 5,
+        url: "COCONUT 5.png",
+        alt: "Ingredients View",
+        type: "info",
+        order: 5,
+      },
+    ],
+    status: 1,
+    slider: 1,
+    popular: 0,
+  },
+  // ======================== 7=================================
+  {
+    prod_id: 7,
+
+    title: "FOREVER FRUTA",
+    des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.485 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:75 Pieces\u003Cbr /\u003E\r\nM.R.P.:150 Rs.",
+    long_desc: "",
+    category: 2,
+    images: [
+      {
+        id: 1,
+        url: "FOREVER-FRUTA-t.png",
+        alt: "Front View",
+        type: "main",
+        order: 1,
+      },
+      {
+        id: 2,
+        url: "FOREVER FRUTA 2.png",
+        alt: "Side View",
+        type: "gallery",
+        order: 2,
+      },
+      {
+        id: 3,
+        url: "FOREVER FRUTA 3.png",
+        alt: "Back View",
+        type: "gallery",
+        order: 3,
+      },
+      {
+        id: 4,
+        url: "FOREVER FRUTA 4.png",
+        alt: "Ingredients View",
+        type: "info",
+        order: 4,
+      },
+      {
+        id: 5,
+        url: "FOREVER FRUTA 5.png",
+        alt: "Ingredients View",
+        type: "info",
+        order: 5,
+      },
+    ],
+    status: 1,
+    slider: 1,
+    popular: 0,
+  },
+  // ======================== 8=================================
+  {
+    prod_id: 8,
+
+    title: "PAAN WALA",
+    des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.485 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:75 Pieces\u003Cbr /\u003E\r\nM.R.P.:150 Rs.",
+    long_desc: "",
+    category: 2,
+    images: [
+      {
+        id: 1,
+        url: "PAAN WALA t.png",
+        alt: "Front View",
+        type: "main",
+        order: 1,
+      },
+      {
+        id: 2,
+        url: "PAAN WALA 2.png",
+        alt: "Side View",
+        type: "gallery",
+        order: 2,
+      },
+      {
+        id: 3,
+        url: "PAAN WALA 3.png",
+        alt: "Back View",
+        type: "gallery",
+        order: 3,
+      },
+      {
+        id: 4,
+        url: "PAAN WALA 4.png",
+        alt: "Ingredients View",
+        type: "info",
+        order: 4,
+      },
+      {
+        id: 5,
+        url: "PAAN WALA 5.png",
+        alt: "Ingredients View",
+        type: "info",
+        order: 5,
+      },
+    ],
+    status: 1,
+    slider: 1,
+    popular: 0,
+  },
+
+  // ======================== 9=================================
+  {
+    prod_id: 9,
+
+    title: "BADAM SHAKE SURPRISE BOX",
+    des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.485 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:75 Pieces\u003Cbr /\u003E\r\nM.R.P.:150 Rs.",
+    long_desc: "",
+    category: 3,
     images: [
       {
         id: 1,
@@ -48,13 +450,14 @@ export const slide = [
     popular: 0,
   },
 
-  // ===========================2==================================
+  // ===========================10==================================
   {
-    prod_id: 2,
+    prod_id: 10,
 
     title: "BIRTHDAY TREAT SURPRISE BOX",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.130 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:20 Pieces\u003Cbr /\u003E\r\nM.R.P.:50 Rs.",
     long_desc: "",
+    category: 3,
     images: [
       {
         id: 1,
@@ -97,13 +500,14 @@ export const slide = [
     popular: 0,
   },
 
-  // ==============================3===================================
+  // ==============================11===================================
   {
-    prod_id: 3,
+    prod_id: 11,
 
     title: "BROWNIE VANILLA  BOX",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.485 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:75 Pieces\u003Cbr /\u003E\r\nM.R.P.:150 Rs.",
     long_desc: "",
+    category: 3,
     images: [
       {
         id: 1,
@@ -146,13 +550,14 @@ export const slide = [
     popular: 0,
   },
 
-  // ===================================4================================
+  // ===================================12================================
   {
-    prod_id: 4,
+    prod_id: 12,
 
     title: "CHERRY MERRY SURPRISE BOX",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.130 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:20 Pieces\u003Cbr /\u003E\r\nM.R.P.:50 Rs.",
     long_desc: "",
+    category: 3,
     images: [
       {
         id: 1,
@@ -195,13 +600,14 @@ export const slide = [
     popular: 0,
   },
 
-  // ===================================5=================================
+  // ===================================13=================================
   {
-    prod_id: 5,
+    prod_id: 13,
 
     title: "CHOCO COCONUT  BOX",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.485 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:75 Pieces\u003Cbr /\u003E\r\nM.R.P.:150 Rs.",
     long_desc: "",
+    category: 3,
     images: [
       {
         id: 1,
@@ -244,13 +650,14 @@ export const slide = [
     popular: 0,
   },
 
-  // =====================================6===================================
+  // =====================================14===================================
   {
-    prod_id: 6,
+    prod_id: 14,
 
-    title: "CHOCO PAAN HANDLE BOX",
+    title: "CHOCO PAAN SURPRISE BOX",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.485 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:75 Pieces\u003Cbr /\u003E\r\nM.R.P.:150 Rs.",
     long_desc: "",
+    category: 3,
     images: [
       {
         id: 1,
@@ -292,13 +699,14 @@ export const slide = [
     slider: 1,
     popular: 0,
   },
-  // =====================================7===================================
+  // =====================================15===================================
   {
-    prod_id: 7,
+    prod_id: 15,
 
-    title: "LOVE ANGLE HANDLE BOX",
+    title: "LOVE ANGLE SURPRISE BOX",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.485 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:75 Pieces\u003Cbr /\u003E\r\nM.R.P.:150 Rs.",
     long_desc: "",
+    category: 3,
     images: [
       {
         id: 1,
@@ -341,13 +749,14 @@ export const slide = [
     popular: 0,
   },
 
-  // ====================================8===================================
+  // ====================================16===================================
   {
-    prod_id: 8,
+    prod_id: 16,
 
     title: "MILK MASKA MALAI  BOX",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.485 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:75 Pieces\u003Cbr /\u003E\r\nM.R.P.:150 Rs.",
     long_desc: "",
+    category: 3,
     images: [
       {
         id: 1,
@@ -389,13 +798,14 @@ export const slide = [
     slider: 1,
     popular: 0,
   },
-  // =====================================9===================================
+  // =====================================17===================================
   {
-    prod_id: 9,
+    prod_id: 17,
 
     title: "MILKY CHOCO SURPRISE BOX",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.130 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:20 Pieces\u003Cbr /\u003E\r\nM.R.P.:50 Rs.",
     long_desc: "",
+    category: 3,
     images: [
       {
         id: 1,
@@ -438,13 +848,14 @@ export const slide = [
     popular: 0,
   },
 
-  // =====================================10===================================
+  // =====================================18===================================
   {
-    prod_id: 10,
+    prod_id: 18,
 
     title: "MILKY ROSE SURPRISE BOX",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.130 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:20 Pieces\u003Cbr /\u003E\r\nM.R.P.:50 Rs.",
     long_desc: "",
+    category: 3,
     images: [
       {
         id: 1,
@@ -455,28 +866,28 @@ export const slide = [
       },
       {
         id: 2,
-        url: "MilkyRose-t.png",
+        url: "Milky Rose 2.png",
         alt: "Side View",
         type: "gallery",
         order: 2,
       },
       {
         id: 3,
-        url: "MilkyRose-t.png",
+        url: "Milky Rose 3.png",
         alt: "Back View",
         type: "gallery",
         order: 3,
       },
       {
         id: 4,
-        url: "MilkyRose-t.png",
+        url: "Milky Rose 4.png",
         alt: "Ingredients View",
         type: "info",
         order: 4,
       },
       {
         id: 5,
-        url: "MilkyRose-t.png",
+        url: "Milky Rose 5.png",
         alt: "Ingredients View",
         type: "info",
         order: 5,
@@ -487,13 +898,14 @@ export const slide = [
     popular: 0,
   },
 
-  // =====================================11===================================
+  // =====================================19===================================
   {
-    prod_id: 11,
+    prod_id: 19,
 
     title: "SHAHI THANDAI SURPRISE BOX",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.130 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:20 Pieces\u003Cbr /\u003E\r\nM.R.P.:50 Rs.",
     long_desc: "",
+    category: 3,
     images: [
       {
         id: 1,
@@ -526,6 +938,253 @@ export const slide = [
       {
         id: 5,
         url: "Shahi-Thandai-5.png",
+        alt: "Ingredients View",
+        type: "info",
+        order: 5,
+      },
+    ],
+    status: 1,
+    slider: 1,
+    popular: 0,
+  },
+
+  // ======================================20=========================================
+  {
+    prod_id: 20,
+
+    title: "LOVE ANGLE HANDLE BOX",
+    des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.130 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:20 Pieces\u003Cbr /\u003E\r\nM.R.P.:50 Rs.",
+    long_desc: "",
+    category: 4,
+    images: [
+      {
+        id: 1,
+        url: "Love-Angle-t.png",
+        alt: "Front View",
+        type: "main",
+        order: 1,
+      },
+      {
+        id: 2,
+        url: "Love-Angle-2.png",
+        alt: "Side View",
+        type: "gallery",
+        order: 2,
+      },
+      {
+        id: 3,
+        url: "Love-Angle-3.png",
+        alt: "Back View",
+        type: "gallery",
+        order: 3,
+      },
+      {
+        id: 4,
+        url: "Love-Angle-4.png",
+        alt: "Ingredients View",
+        type: "info",
+        order: 4,
+      },
+      {
+        id: 5,
+        url: "Love-Angle-5.png",
+        alt: "Ingredients View",
+        type: "info",
+        order: 5,
+      },
+    ],
+    status: 1,
+    slider: 1,
+    popular: 0,
+  },
+
+  // ======================================21=========================================
+  {
+    prod_id: 21,
+
+    title: "BIRTHDAY TREAT HANDLE BOX",
+    des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.130 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:20 Pieces\u003Cbr /\u003E\r\nM.R.P.:50 Rs.",
+    long_desc: "",
+    category: 4,
+    images: [
+      {
+        id: 1,
+        url: "Birthday-Treat-t.surprise.png",
+        alt: "Front View",
+        type: "main",
+        order: 1,
+      },
+      {
+        id: 2,
+        url: "Birthday-Treat-2.png",
+        alt: "Side View",
+        type: "gallery",
+        order: 2,
+      },
+      {
+        id: 3,
+        url: "Birthday-Treat-3.png",
+        alt: "Back View",
+        type: "gallery",
+        order: 3,
+      },
+      {
+        id: 4,
+        url: "Birthday-Treat-4.png",
+        alt: "Ingredients View",
+        type: "info",
+        order: 4,
+      },
+      {
+        id: 5,
+        url: "Birthday-Treat-5.png",
+        alt: "Ingredients View",
+        type: "info",
+        order: 5,
+      },
+    ],
+    status: 1,
+    slider: 1,
+    popular: 0,
+  },
+  // ======================================22=========================================
+  {
+    prod_id: 22,
+
+    title: "PULPY ORANGE ",
+    des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.130 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:20 Pieces\u003Cbr /\u003E\r\nM.R.P.:50 Rs.",
+    long_desc: "",
+    category: 2,
+    images: [
+      {
+        id: 1,
+        url: "PULPY ORANGE t.png",
+        alt: "Front View",
+        type: "main",
+        order: 1,
+      },
+      {
+        id: 2,
+        url: "PULPY ORANGE 2.png",
+        alt: "Side View",
+        type: "gallery",
+        order: 2,
+      },
+      {
+        id: 3,
+        url: "PULPY ORANGE 3.png",
+        alt: "Back View",
+        type: "gallery",
+        order: 3,
+      },
+      {
+        id: 4,
+        url: "PULPY ORANGE 4.png",
+        alt: "Ingredients View",
+        type: "info",
+        order: 4,
+      },
+      {
+        id: 5,
+        url: "PULPY ORANGE 5.png",
+        alt: "Ingredients View",
+        type: "info",
+        order: 5,
+      },
+    ],
+    status: 1,
+    slider: 1,
+    popular: 0,
+  },
+  // ======================================23=========================================
+  {
+    prod_id: 23,
+
+    title: "MOZILI MANGO ",
+    des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.130 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:20 Pieces\u003Cbr /\u003E\r\nM.R.P.:50 Rs.",
+    long_desc: "",
+    category: 2,
+    images: [
+      {
+        id: 1,
+        url: "MOZILI MANGO t.png",
+        alt: "Front View",
+        type: "main",
+        order: 1,
+      },
+      {
+        id: 2,
+        url: "MOZILI MANGO 2.jpg",
+        alt: "Side View",
+        type: "gallery",
+        order: 2,
+      },
+      {
+        id: 3,
+        url: "MOZILI MANGO 3.jpg",
+        alt: "Back View",
+        type: "gallery",
+        order: 3,
+      },
+      {
+        id: 4,
+        url: "MOZILI MANGO 4.jpg",
+        alt: "Ingredients View",
+        type: "info",
+        order: 4,
+      },
+      {
+        id: 5,
+        url: "MOZILI MANGO 5.jpg",
+        alt: "Ingredients View",
+        type: "info",
+        order: 5,
+      },
+    ],
+    status: 1,
+    slider: 1,
+    popular: 0,
+  },
+  // ======================================24=========================================
+  {
+    prod_id: 23,
+
+    title: "MILKY COCONUT ",
+    des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.130 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:20 Pieces\u003Cbr /\u003E\r\nM.R.P.:50 Rs.",
+    long_desc: "",
+    category: 2,
+    images: [
+      {
+        id: 1,
+        url: "MILKY COCONUT t.png",
+        alt: "Front View",
+        type: "main",
+        order: 1,
+      },
+      {
+        id: 2,
+        url: "MILKY COCONUT 2.jpg",
+        alt: "Side View",
+        type: "gallery",
+        order: 2,
+      },
+      {
+        id: 3,
+        url: "MILKY COCONUT 3.jpg",
+        alt: "Back View",
+        type: "gallery",
+        order: 3,
+      },
+      {
+        id: 4,
+        url: "MILKY COCONUT 4.jpg",
+        alt: "Ingredients View",
+        type: "info",
+        order: 4,
+      },
+      {
+        id: 5,
+        url: "MILKY COCONUT 5.jpg",
         alt: "Ingredients View",
         type: "info",
         order: 5,

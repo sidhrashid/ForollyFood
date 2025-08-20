@@ -2,32 +2,31 @@
 
 /* src/index.css */
 :root {
-  --primary: #b01b24;
-  --secondary: #feffc4;
+  --primary: #fc92d2;
+  --brand: #fc92d2;
+  --secondary: white;
   --dark: #1e1e1e;
   --footertext: white;
   --font-heading: Merienda, cursive;
 }
 
-h1,
+/* h1,
 h2 {
   font-family: var(--font-heading);
-}
+} */
 
 body {
   font-family: "Manrope", sans-serif;
+  background: white;
 }
 
 button {
   cursor: pointer;
-
 }
 
-
-
-
-
-
+.custom-shadow {
+  box-shadow: 10px 10px 20px #babecc, -10px -10px 20px #ffffff;
+}
 
 /* Hide scrollbar for all browsers */
 .scrollbar-hide {
@@ -39,36 +38,33 @@ button {
   display: none; /* Chrome, Safari, Opera */
 }
 
+/* ::selection {
+  background: #e01d26;
+  color: white;
+} */
 
-::selection{
-  background:#e01d26;
-  color: white ;
-}
-
-/* Scrollbar Track */
+/* Scrollbar Track 
 ::-webkit-scrollbar {
-  width: 8px; /* vertical */
-  height: 8px; /* horizontal */
- 
+  width: 8px; 
+  height: 8px; 
 }
 
-/* Background of the track */
+/* Background of the track 
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
 
-/* Handle (thumb) */
+/* Handle (thumb) 
 ::-webkit-scrollbar-thumb {
   background: #e01d26;
   border-radius: 4px;
 }
 
-/* On hover */
+/* On hover 
 ::-webkit-scrollbar-thumb:hover {
   background: #b01b24;
   cursor: pointer;
-}
-
+}*/
 
 /* Enhanced Smooth Animations */
 @keyframes float-slow {

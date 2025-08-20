@@ -7,10 +7,7 @@ import {
   AlertCircle,
   Send,
   Loader2,
-  Sparkles,
-  Gift,
-  Heart,
-  Coffee,
+ 
 } from "lucide-react";
 import Container from "../../../components/Container";
 
@@ -49,7 +46,7 @@ const ContactForm = () => {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: "YOUR_WEB3FORMS_ACCESS_KEY",
+          access_key: "f8375ad6-815b-4263-8e0c-621a66b84bde",
           name: formData.name,
           email: formData.email,
           phone: formData.mobile,
@@ -78,7 +75,7 @@ ${formData.message}
           message: "",
         });
 
-        setTimeout(() => setIsSubmitted(false), 5000);
+        setTimeout(() => setIsSubmitted(false), 3000);
       } else {
         throw new Error(result.message || "Something went wrong");
       }
@@ -92,9 +89,9 @@ ${formData.message}
 
   return (
     <div className="bg-[var(--secondary)] relative overflow-hidden py-4 px-4">
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden ">
         <div
-          className="absolute inset-0 opacity-20"
+          className="absolute inset-0 opacity-20 "
           style={{
             backgroundImage: `
             radial-gradient(circle at 20% 20%, var(--primary) 1px, transparent 1px),
@@ -118,26 +115,19 @@ ${formData.message}
       </div>
 
       <Container>
-        <div className="text-center mb-4">
+        <div className="text-center mb-8">
           <h1
             className="text-2xl sm:text-3xl font-bold text-[var(--primary)] mb-1 flex items-center justify-center gap-2"
             style={{ fontFamily: "var(--font-heading)" }}
           >
-            <Sparkles className="w-6 h-6 animate-pulse" />
             Contact Forolly
-            <Sparkles className="w-6 h-6 animate-pulse" />
           </h1>
-          <div className="flex justify-center items-center gap-2">
-            <div className="w-8 h-0.5 bg-[var(--primary)] rounded-full"></div>
-            <Gift className="w-3 h-3 text-[var(--primary)] animate-bounce" />
-            <div className="w-8 h-0.5 bg-[var(--primary)] rounded-full"></div>
-          </div>
         </div>
 
         {/* ✅ Modified grid layout below */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start lg:items-stretch">
           {/* LEFT - Contact Form */}
-          <div className="bg-white/20 backdrop-blur-lg rounded-xl p-5 shadow-xl border border-white/30 hover:shadow-2xl transition-all duration-500 relative overflow-hidden group">
+          <div className="bg-white/20 backdrop-blur-lg rounded-xl p-5 shadow-sm border border-white/30 hover:shadow-2xl transition-all duration-500 relative overflow-hidden group">
             <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/8 via-transparent to-[var(--primary)]/3 rounded-xl"></div>
             <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-[var(--primary)] to-transparent"></div>
             <div
@@ -149,9 +139,7 @@ ${formData.message}
             <div className="relative z-10">
               <div className="text-center mb-4">
                 <div className="flex justify-center mb-2">
-                  <div className="p-2 bg-gradient-to-br from-[var(--primary)]/15 to-[var(--primary)]/8 rounded-full border border-[var(--primary)]/20 group-hover:scale-110 transition-transform duration-300">
-                    <Heart className="w-5 h-5 text-[var(--primary)] animate-pulse" />
-                  </div>
+                  <div className="p-2 bg-gradient-to-br from-[var(--primary)]/15 to-[var(--primary)]/8 rounded-full border border-[var(--primary)]/20 group-hover:scale-110 transition-transform duration-300"></div>
                 </div>
                 <h2
                   className="text-xl font-bold text-[var(--primary)] mb-1 flex items-center justify-center gap-1"
@@ -165,7 +153,7 @@ ${formData.message}
               </div>
 
               {isSubmitted && (
-                <div className="mb-3 p-2.5 bg-gradient-to-r from-green-100/90 to-green-50/90 border border-green-300 rounded-lg backdrop-blur-sm animate-bounce">
+                <div className="mb-3 p-2.5 bg-gradient-to-r from-green-100/90 to-green-50/90 border border-green-300 rounded-lg backdrop-blur-sm ">
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-green-600 animate-pulse" />
                     <div>
@@ -285,7 +273,6 @@ ${formData.message}
                     <>
                       <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                       Send Sweet Message
-                      <Heart className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
                     </>
                   )}
                 </button>
@@ -300,7 +287,6 @@ ${formData.message}
                 className="text-2xl font-bold text-[var(--primary)] mb-5 flex items-center gap-2"
                 style={{ fontFamily: "var(--font-heading)" }}
               >
-                <Heart className="w-6 h-6 animate-pulse" />
                 Get in Touch
               </h2>
               <p className="text-[var(--dark)] leading-relaxed mb-3 text-sm sm:max-w-[30rem]">
@@ -327,10 +313,10 @@ ${formData.message}
                   <MailCheck className="w-5 h-5 text-[var(--primary)]" />
                   <span className="font-medium">Email us:</span>
                   <a
-                    href="mailto:info@forolly.com"
+                    href="mailto:support@forollyfood.com"
                     className="text-[var(--primary)] hover:underline font-semibold"
                   >
-                    info@forolly.com
+                    support@forollyfood.com
                   </a>
                 </p>
               </div>
