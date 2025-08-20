@@ -1,10 +1,10 @@
 {
-    "name": "Himsun Solar Energy",
-    "short_name": "Himsun",
+    "name": "Forolly food",
+    "short_name": "Forolly",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
-    "theme_color": "#f8b400",
+    "theme_color": "#fc92d2",
     "icons": [
         {
             "src": "/icon.png",

@@ -1147,7 +1147,7 @@ export const slide = [
   },
   // ======================================24=========================================
   {
-    prod_id: 23,
+    prod_id: 24,
 
     title: "MILKY COCONUT ",
     des: "Ingredients:Sugar,Liquid Glucose,Edible Vegetable Fat,Milk Solids,Cocoa Powder,Emulsifier(Ins 322,Ins 471),Acidity Regulators(Ins 296),Edible Common Salt(Lodized).\u003Cbr /\u003E\r\nContains Permitted Synthetic Food Colours(Ins 124)And Added Flavours (Nature-Identical)Flavouring Substances-Chocolate,Vanilla &amp; Strawberry.\u003Cbr /\u003E\r\nAllergen Information:Contain Milk And Soya.\u003Cbr /\u003E\r\n\u003Cbr /\u003E\r\nNet Weight:0.130 Grm\u003Cbr /\u003E\r\nNo.Of Pieces:20 Pieces\u003Cbr /\u003E\r\nM.R.P.:50 Rs.",

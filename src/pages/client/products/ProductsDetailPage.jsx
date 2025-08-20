@@ -7,6 +7,8 @@ import {
   ArrowRight,
   ImageIcon,
   Star,
+  Home,
+  ChevronRight,
 } from "lucide-react";
 import Container from "../../../components/Container";
 
@@ -80,7 +82,6 @@ const ProductDetail = () => {
     .filter((p) => p !== product)
     .sort(() => Math.random() - 0.5)
     .slice(0, 8);
-
   const productDescription =
     "A delightful confectionery masterpiece crafted with premium ingredients and traditional techniques. Each bite delivers an explosion of rich, authentic flavors that will transport you to sweet paradise.";
 

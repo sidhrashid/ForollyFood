@@ -40,11 +40,19 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Original Desktop Navbar */}
+      {/* Updated Navbar with Mobile-First White Background */}
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-          isScrolled ? "bg-white shadow-lg" : "bg-transparent"
+          // Mobile: Always white background
+          // Desktop: White on scroll, transparent otherwise
+          isScrolled || window.innerWidth < 768 
+            ? "bg-white shadow-lg" 
+            : "bg-transparent md:bg-transparent bg-white "
         }`}
+        style={{
+          // Force white background on mobile regardless of scroll
+          backgroundColor: window.innerWidth < 768 ? 'white' : undefined
+        }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           {/* Logo */}
@@ -63,19 +71,19 @@ const Navbar = () => {
           </NavLink>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8 text-md font-bold ">
+          <nav className="hidden md:flex space-x-8 text-md font-bold">
             {navItems.map((item) => (
               <NavLink
                 key={item.name}
                 to={item.href}
                 className={({ isActive }) => {
                   if (isActive) {
-                    return "text-[var(--brand)] transition-colors ";
+                    return "text-[var(--brand)] transition-colors";
                   }
                   if (isScrolled) {
                     return "text-gray-800 hover:text-[var(--brand)] transition-colors";
                   }
-                  return "text-white hover:text-[var(--brand)] transition-colors ";
+                  return "text-white hover:text-[var(--brand)] transition-colors";
                 }}
               >
                 {item.name}
@@ -83,7 +91,7 @@ const Navbar = () => {
             ))}
           </nav>
 
-          {/* Right Side */}
+          {/* Right Side - Desktop Only */}
           <div className="hidden h-full md:flex items-center gap-4">
             {/* Contact Button */}
             <NavLink
@@ -109,21 +117,21 @@ const Navbar = () => {
             </NavLink>
           </div>
 
-          {/* Enhanced Mobile Menu Button */}
+          {/* Mobile Menu Button - Always Dark for White Background */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden relative p-2 text-[var(--secondary)] hover:bg-[var(--primary)]/10 rounded-lg transition-all duration-300 group z-[60]"
+            className="md:hidden relative p-2 text-[var(--primary)] hover:bg-[var(--primary)]/10 rounded-lg transition-all duration-300 group z-[60]"
           >
             <div className="relative w-6 h-6">
               <Menu
                 className={`absolute inset-0 w-6 h-6 transition-all duration-300 ${
                   isMenuOpen ? "rotate-180 opacity-0" : "rotate-0 opacity-100"
-                } ${isScrolled ? "text-[var(--primary)]" : "text-white"}`}
+                } text-[var(--primary)]`}
               />
               <X
                 className={`absolute inset-0 w-6 h-6 transition-all duration-300 ${
                   isMenuOpen ? "rotate-0 opacity-100" : "rotate-180 opacity-0"
-                }`}
+                } text-[var(--primary)]`}
               />
             </div>
           </button>
@@ -222,7 +230,7 @@ const Navbar = () => {
                 </a>
                 <a
                   href="mailto:support@forollyfood.com"
-                  className="flex items-center space-x-3 p-3  font-semibold"
+                  className="flex items-center space-x-3 p-3 font-semibold"
                 >
                   <Mail className="w-5 h-5 text-[var(--primary)]" />
                   <span className="text-lg text-[var(--primary)]">

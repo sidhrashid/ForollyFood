@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Container from "../../../components/Container";
 
+// Apni poster images yahan daal lo
 const POSTER_IMAGES = [
   { url: "/images/website banners.png", title: "Poster 1" },
-  { url: "/images/website banners.png", title: "Poster 2" },
+  { url: "/images/website banners2.png", title: "Poster 2" },
   { url: "/images/website banners.png", title: "Poster 3" },
   // Apni sari images yahan add karo
 ];
@@ -13,7 +14,7 @@ const Slider = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrent(prev => (prev === POSTER_IMAGES.length - 1 ? 0 : prev + 1));
+      setCurrent((prev) => (prev === POSTER_IMAGES.length - 1 ? 0 : prev + 1));
     }, 4500);
     return () => clearInterval(interval);
   }, []);
@@ -27,30 +28,15 @@ const Slider = () => {
         {POSTER_IMAGES.map((poster, idx) => (
           <section
             key={idx}
-            className="pt-0 w-screen h-[calc(100vh-4rem)] min-h-[500px] max-h-[900px] relative overflow-hidden bg-gradient-to-br from-gray-200 via-white to-gray-200 flex items-center justify-center"
-            style={{
-              height: "calc(100vh - 4rem)",
-              minHeight: "500px",
-              maxHeight: "900px",
-              paddingTop: 0,
-            }}
+            className="pt-23 sm:pt-0 w-screen  relative overflow-hidden bg-gradient-to-br from-gray-200 via-white to-gray-200 flex items-center justify-center"
           >
-            {/* Poster Image - FULL SIZE */}
+            {/* Sidha Poster Image */}
             <img
               src={poster.url}
               alt={poster.title}
-              className="absolute inset-0 w-full h-full object-cover"
+              className=" w-full h-full object-contain"
               loading="lazy"
             />
-            {/* Optional: Dark overlay on top of image, remove if not needed */}
-            <div className="absolute inset-0 bg-black/10 pointer-events-none"></div>
-            <Container>
-              {/* <div className="relative z-10 flex flex-col items-center justify-center h-full">
-                <h2 className="mt-6 text-3xl md:text-5xl font-bold text-white drop-shadow-lg bg-black/60 px-6 py-2 rounded-lg">
-                  {poster.title}
-                </h2>
-              </div> */}
-            </Container>
           </section>
         ))}
       </div>
