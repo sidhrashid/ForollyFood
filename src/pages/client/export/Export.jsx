@@ -109,33 +109,21 @@ const Export = () => {
             >
               <WorldMap className="w-full h-full" />
 
-              {/* Country Styling */}
+              {/* Original Country Styling - Same as Before */}
               <style>{`
                 .worldmap-scope path[id] {
-                  fill: #e5e7eb;
+                  fill: #00A3E0;
                   transition: fill 0.3s ease;
-                  cursor: default;
                 }
                 ${exportCountries
                   .map(
                     (c) =>
-                      `.worldmap-scope path[id][data-country="${c.country.toUpperCase()}"] { 
-                        fill: var(--primary); 
-                        cursor: pointer;
-                      }`
+                      `.worldmap-scope path[id][data-country="${c.country.toUpperCase()}"] { fill: var(--primary); }`
                   )
                   .join("\n")}
                 .worldmap-scope path[id]:hover {
                   fill: rgb(20, 120, 156);
                 }
-                ${exportCountries
-                  .map(
-                    (c) =>
-                      `.worldmap-scope path[id][data-country="${c.country.toUpperCase()}"]:hover { 
-                        fill: #ff1744 !important; 
-                      }`
-                  )
-                  .join("\n")}
               `}</style>
 
               {/* Markers Overlay */}
@@ -149,34 +137,20 @@ const Export = () => {
                 {markers.map((marker, index) => (
                   <g key={index}>
                     <g transform={`translate(${marker.x}, ${marker.y})`}>
-                      {/* Marker Pin */}
+                      {/* Original Red Marker */}
                       <path
                         d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
-                        fill="#ff1744"
+                        fill="red"
                         stroke="white"
-                        strokeWidth="2"
-                        transform="translate(-12, -26) scale(1.2)" 
+                        strokeWidth="1"
+                        transform="translate(-7, -19) scale(0.9)" 
                         style={{ 
                           pointerEvents: 'auto',
-                          cursor: 'pointer',
-                          filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))'
+                          cursor: 'pointer'
                         }}
                         onMouseEnter={(e) => handleCountryHover(marker, e)}
                         onMouseMove={handleMouseMove}
                         onMouseLeave={() => setHoveredCountry(null)}
-                      />
-                      
-                      {/* Pulsing Animation */}
-                      <circle
-                        cx="0"
-                        cy="-8"
-                        r="4"
-                        fill="#ff1744"
-                        opacity="0.6"
-                        style={{
-                          animation: 'pulse 2s infinite',
-                          transformOrigin: 'center'
-                        }}
                       />
                     </g>
                   </g>
@@ -193,28 +167,10 @@ const Export = () => {
                     transform: 'translateX(-50%)',
                   }}
                 >
-                  <div className="text-sm font-bold">📍 {hoveredCountry.name}</div>
-                  <div className="text-xs text-[var(--primary)]/70">Export Destination</div>
+                  <div className="text-sm font-bold"> {hoveredCountry.name}</div>
+                  <div className="text-xs text-[var(--dark)]">Export Destination</div>
                 </div>
               )}
-
-              {/* CSS Animation for Pulse Effect */}
-              <style>{`
-                @keyframes pulse {
-                  0% {
-                    transform: scale(1);
-                    opacity: 0.6;
-                  }
-                  50% {
-                    transform: scale(1.5);
-                    opacity: 0.3;
-                  }
-                  100% {
-                    transform: scale(2);
-                    opacity: 0;
-                  }
-                }
-              `}</style>
             </div>
           </div>
         </Container>
