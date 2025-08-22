@@ -6,7 +6,7 @@ const Direction = () => {
     <section className="py-16 px-4 bg-white">
       <Container>
         <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--primary)]">
             Our Location
           </h2>
           <p className="text-gray-500 mt-2">

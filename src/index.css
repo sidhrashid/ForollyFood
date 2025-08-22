@@ -15,6 +15,10 @@ h2 {
   font-family: var(--font-heading);
 } */
 
+input,textarea ,select{
+  border-radius: 10px 0px 10px 0px;
+}
+
 body {
   font-family: "Manrope", sans-serif;
   background: white;

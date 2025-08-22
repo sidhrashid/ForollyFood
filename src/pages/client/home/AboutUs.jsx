@@ -2,7 +2,7 @@ import React from "react";
 import Container from "../../../components/Container";
 import { CalendarDays, History, Star } from "lucide-react";
 import { NavLink } from "react-router-dom";
-import about_us from "../../../assets/images/forolly-about.png";
+import about_us from "../../../assets/images/About Us.png";
 
 const AboutUsSection = () => {
   return (
@@ -15,7 +15,7 @@ const AboutUsSection = () => {
             <div className="absolute -inset-4 blur-2xl rounded-3xl"></div>
 
             {/* Clean Glass Container */}
-            <div className="relative rounded-3xl p-6 border border-orange-200/50 shadow-xl hover:shadow-orange-300/40 transition-all duration-300">
+            <div className="relative rounded-3xl shadow-lg hover:shadow-orange-300/40 transition-all duration-300">
               <img
                 src={about_us}
                 loading="lazy"
@@ -43,7 +43,7 @@ const AboutUsSection = () => {
           </div>
 
           {/* Simple Content Section */}
-          <div className="space-y-8 text-center lg:text-left">
+          <div className="space-y-4 text-center lg:text-left">
             {/* Simple Title */}
             <div className="relative">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 leading-tight">

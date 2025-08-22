@@ -168,7 +168,7 @@ const Export = () => {
                   }}
                 >
                   <div className="text-sm font-bold"> {hoveredCountry.name}</div>
-                  <div className="text-xs text-[var(--dark)]">Export Destination</div>
+                  {/* <div className="text-xs text-[var(--dark)]">Export Destination</div> */}
                 </div>
               )}
             </div>
