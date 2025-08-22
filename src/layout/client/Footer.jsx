@@ -9,11 +9,24 @@ import {
   ExternalLink,
   Star,
   Sparkles,
+  Download, // Add this icon import
 } from "lucide-react";
 import logo from "../../assets/images/logo.webp";
 import { NavLink } from "react-router-dom";
 
 const Footer = () => {
+  // Fixed PDF download function
+  const downloadBrochure = () => {
+    const link = document.createElement("a");
+    // Encode spaces as %20 in URL
+    link.href = "/files/Forolly%20new%20catalogue.pdf";
+    // Clean filename without spaces for download
+    link.download = "Forolly_new_catalogue.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <footer className="relative overflow-hidden bg-gradient-to-br from-[#d72121] via-[#d72121]/70 to-[#d72121]/60">
       {/* Background Effects */}
@@ -67,7 +80,8 @@ const Footer = () => {
                 </div>
               </NavLink>
               <p className="text-white/70 text-sm leading-relaxed">
-               India’s premium confectionery brand, spreading joy through chocolates and toffees since 2020.
+                India's premium confectionery brand, spreading joy through
+                chocolates and toffees since 2020.
                 <span className="text-[var(--primary)]/80 font-medium">
                   {" "}
                   Bringing sweetness to every moment.
@@ -92,7 +106,7 @@ const Footer = () => {
             {/* Quick Links */}
             <div className="space-y-4">
               <h3 className="text-xl font-bold text-white">Quick Links</h3>
-              <ul className="space-y-2">
+              <ul className="space-y-">
                 {[
                   { name: "Home", href: "/" },
                   { name: "About ", href: "/about" },
@@ -103,15 +117,27 @@ const Footer = () => {
                   <li key={idx}>
                     <a
                       href={link.href}
-                      className="flex items-center gap-3 p-3 rounded-lg text-white/70 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 transition-all duration-300 group"
+                      className="flex items-center gap-3 p-1 rounded-lg text-white/70 hover:text-white border border-transparent transition-all duration-300 group"
                     >
                       <span className="flex-1 group-hover:translate-x-2 transition-transform duration-300">
                         {link.name}
                       </span>
-                      <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
                     </a>
                   </li>
                 ))}
+
+                {/* Fixed Brochure Download Link */}
+                <li>
+                  <button
+                    onClick={downloadBrochure}
+                    className="flex items-center gap-3 p-1 rounded-lg text-white/70 hover:text-white border border-transparent transition-all duration-300 group w-full text-left"
+                  >
+                    <span className="flex items-center group-hover:translate-x-2 transition-transform duration-300">
+                      Brochure
+                      <Download className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
+                    </span>
+                  </button>
+                </li>
               </ul>
             </div>
 
@@ -158,7 +184,7 @@ const Footer = () => {
                     },
                   ].map((social, idx) => (
                     <a
-                      key={idx}l
+                      key={idx}
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
