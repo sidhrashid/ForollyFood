@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X, Phone, ArrowRight, Mail } from "lucide-react";
 import { NavLink } from "react-router-dom";
-import logo from "../../assets/images/FOROLLY LOGO.png";
+import logo from "../../assets/images/forolly.png";
 
 const navItems = [
   { name: "Home", href: "/" },

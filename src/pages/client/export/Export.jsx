@@ -75,7 +75,7 @@ const Export = () => {
   return (
     <div className="relative bg-[var(--secondary)]">
       {/* Header Section */}
-      <div className="relative z-10 pt-20 pb-8 bg-gradient-to-b from-[#ff99b3]/70 to-white/70">
+      <div className="relative z-10 pt-23 pb-8 bg-gradient-to-b from-[#ff99b3]/70 to-white/70">
         <Container>
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--primary)] mb-4">
@@ -103,24 +103,32 @@ const Export = () => {
 
             <div 
               ref={mapRef} 
-              className="w-full h-[600px] relative worldmap-scope"
+              className="w-full sm:h-[900px] relative worldmap-scope"
               onMouseMove={handleMouseMove}
               onMouseLeave={() => setHoveredCountry(null)}
             >
               <WorldMap className="w-full h-full" />
 
               {/* Original Country Styling - Same as Before */}
-              <style>{`
+             <style>{`
                 .worldmap-scope path[id] {
                   fill: #00A3E0;
                   transition: fill 0.3s ease;
                 }
+                
+                /* India primary color (no pin needed) */
+                .worldmap-scope path[id][data-country="IN"] {
+                  fill: var(--primary);
+                }
+                
+                /* Export countries primary color */
                 ${exportCountries
                   .map(
                     (c) =>
                       `.worldmap-scope path[id][data-country="${c.country.toUpperCase()}"] { fill: var(--primary); }`
                   )
                   .join("\n")}
+                  
                 .worldmap-scope path[id]:hover {
                   fill: rgb(20, 120, 156);
                 }
