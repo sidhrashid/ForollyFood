@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Menu, X, Phone, ArrowRight, Mail } from "lucide-react";
+import React, { useState, useEffect, useRef } from "react";
+import { Menu, X, Phone, ArrowRight, Mail, ChevronDown } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/images/forolly.png";
 
@@ -8,12 +8,15 @@ const navItems = [
   { name: "About", href: "/about" },
   { name: "Products", href: "/products" },
   { name: "Contact", href: "/contact" },
-  { name: "Export", href: "/export" },
+  { name: "Market view", href: "/export", dropdown: ["Export", "Domestic"] }
 ];
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+  const hoverTimeoutRef = useRef(null);
 
   // Handle scroll effect
   useEffect(() => {
@@ -37,6 +40,42 @@ const Navbar = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  // Toggle dropdown function (for click)
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  // Handle mouse enter (for hover)
+  const handleMouseEnter = () => {
+    // Clear any existing timeout
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+    setIsDropdownOpen(true);
+  };
+
+  // Handle mouse leave (for hover)
+  const handleMouseLeave = () => {
+    // Add small delay to prevent accidental close
+    hoverTimeoutRef.current = setTimeout(() => {
+      setIsDropdownOpen(false);
+    }, 150);
+  };
 
   return (
     <>
@@ -72,23 +111,75 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8 text-md font-bold">
-            {navItems.map((item) => (
-              <NavLink
-                key={item.name}
-                to={item.href}
-                className={({ isActive }) => {
-                  if (isActive) {
-                    return "text-[var(--brand)] transition-colors";
-                  }
-                  if (isScrolled) {
-                    return "text-gray-800 hover:text-[var(--brand)] transition-colors";
-                  }
-                  return "text-white hover:text-[var(--brand)] transition-colors";
-                }}
-              >
-                {item.name}
-              </NavLink>
-            ))}
+            {navItems.map((item) => {
+              // Handle dropdown items
+              if (item.dropdown) {
+                return (
+                  <div
+                    key={item.name}
+                    className="relative"
+                    ref={dropdownRef}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <button
+                      onClick={toggleDropdown}
+                      className={`flex items-center gap-1 transition-colors cursor-pointer ${
+                        isScrolled 
+                          ? "text-gray-800 hover:text-[var(--brand)]" 
+                          : "text-white hover:text-[var(--brand)]"
+                      }`}
+                    >
+                      {item.name}
+                      <ChevronDown 
+                        className={`w-4 h-4 transition-transform duration-200 ${
+                          isDropdownOpen ? 'rotate-180' : 'rotate-0'
+                        }`}
+                      />
+                    </button>
+                    
+                    {/* Dropdown Menu */}
+                    {isDropdownOpen && (
+                      <div 
+                        className="absolute left-0 mt-2 w-48 bg-white shadow-xl rounded-lg border border-gray-100 py-2 z-[60] animate-fadeInDown"
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                      >
+                        {item.dropdown.map((dropItem) => (
+                          <NavLink
+                            key={dropItem}
+                            to={`/${dropItem.toLowerCase()}`}
+                            className="flex items-center px-4 py-3 text-gray-700 hover:bg-[var(--primary)]/10 hover:text-[var(--primary)] transition-colors duration-200 font-medium"
+                            onClick={() => setIsDropdownOpen(false)}
+                          >
+                            {dropItem}
+                          </NavLink>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
+              // Handle regular nav items
+              return (
+                <NavLink
+                  key={item.name}
+                  to={item.href}
+                  className={({ isActive }) => {
+                    if (isActive) {
+                      return "text-[var(--brand)] transition-colors";
+                    }
+                    if (isScrolled) {
+                      return "text-gray-800 hover:text-[var(--brand)] transition-colors";
+                    }
+                    return "text-white hover:text-[var(--brand)] transition-colors";
+                  }}
+                >
+                  {item.name}
+                </NavLink>
+              );
+            })}
           </nav>
 
           {/* Right Side - Desktop Only */}
@@ -187,33 +278,74 @@ const Navbar = () => {
 
           {/* Mobile Navigation Links */}
           <div className="p-6 space-y-2 overflow-y-auto max-h-[calc(100vh-200px)]">
-            {navItems.map((item, index) => (
-              <NavLink
-                key={item.name}
-                to={item.href}
-                onClick={() => setIsMenuOpen(false)}
-                className={({ isActive }) =>
-                  `group flex items-center justify-between w-full p-4 rounded-xl transition-all duration-300 ${
-                    isActive
-                      ? "bg-[var(--primary)] text-white shadow-lg"
-                      : "text-gray-700 hover:bg-[var(--primary)]/10 hover:text-[var(--primary)]"
-                  }`
-                }
-              >
-                {({ isActive }) => (
-                  <>
-                    <span className="text-lg font-medium">{item.name}</span>
-                    <ArrowRight
-                      className={`w-5 h-5 transition-all duration-300 ${
-                        isActive
-                          ? "text-white translate-x-1"
-                          : "text-gray-400 group-hover:text-[var(--primary)] group-hover:translate-x-1"
-                      }`}
-                    />
-                  </>
-                )}
-              </NavLink>
-            ))}
+            {navItems.map((item, index) => {
+              // Handle dropdown items in mobile
+              if (item.dropdown) {
+                return (
+                  <div key={item.name} className="space-y-1">
+                    <div className="text-lg font-medium text-gray-700 p-4 border-b border-gray-200">
+                      {item.name}
+                    </div>
+                    {item.dropdown.map((dropItem) => (
+                      <NavLink
+                        key={dropItem}
+                        to={`/${dropItem.toLowerCase()}`}
+                        onClick={() => setIsMenuOpen(false)}
+                        className={({ isActive }) =>
+                          `group flex items-center justify-between w-full p-4 pl-8 rounded-xl transition-all duration-300 ${
+                            isActive
+                              ? "bg-[var(--primary)] text-white shadow-lg"
+                              : "text-gray-600 hover:bg-[var(--primary)]/10 hover:text-[var(--primary)]"
+                          }`
+                        }
+                      >
+                        {({ isActive }) => (
+                          <>
+                            <span className="text-base font-medium">{dropItem}</span>
+                            <ArrowRight
+                              className={`w-4 h-4 transition-all duration-300 ${
+                                isActive
+                                  ? "text-white translate-x-1"
+                                  : "text-gray-400 group-hover:text-[var(--primary)] group-hover:translate-x-1"
+                              }`}
+                            />
+                          </>
+                        )}
+                      </NavLink>
+                    ))}
+                  </div>
+                );
+              }
+
+              // Handle regular nav items in mobile
+              return (
+                <NavLink
+                  key={item.name}
+                  to={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={({ isActive }) =>
+                    `group flex items-center justify-between w-full p-4 rounded-xl transition-all duration-300 ${
+                      isActive
+                        ? "bg-[var(--primary)] text-white shadow-lg"
+                        : "text-gray-700 hover:bg-[var(--primary)]/10 hover:text-[var(--primary)]"
+                    }`
+                  }
+                >
+                  {({ isActive }) => (
+                    <>
+                      <span className="text-lg font-medium">{item.name}</span>
+                      <ArrowRight
+                        className={`w-5 h-5 transition-all duration-300 ${
+                          isActive
+                            ? "text-white translate-x-1"
+                            : "text-gray-400 group-hover:text-[var(--primary)] group-hover:translate-x-1"
+                        }`}
+                      />
+                    </>
+                  )}
+                </NavLink>
+              );
+            })}
           </div>
 
           {/* Mobile Contact Section */}
@@ -265,6 +397,24 @@ const Navbar = () => {
           </div>
         </>
       )}
+
+      {/* Add CSS for fade animation */}
+      <style jsx>{`
+        .animate-fadeInDown {
+          animation: fadeInDown 0.3s ease-out;
+        }
+        
+        @keyframes fadeInDown {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </>
   );
 };
