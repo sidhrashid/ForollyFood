@@ -15,6 +15,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false); // ✅ Mobile dropdown state
   const dropdownRef = useRef(null);
   const hoverTimeoutRef = useRef(null);
 
@@ -34,6 +35,7 @@ const Navbar = () => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
         setIsMenuOpen(false);
+        setMobileDropdownOpen(false); // ✅ Reset mobile dropdown
       }
     };
 
@@ -60,9 +62,13 @@ const Navbar = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+  // ✅ Toggle mobile dropdown
+  const toggleMobileDropdown = () => {
+    setMobileDropdownOpen(!mobileDropdownOpen);
+  };
+
   // Handle mouse enter (for hover)
   const handleMouseEnter = () => {
-    // Clear any existing timeout
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current);
     }
@@ -71,7 +77,6 @@ const Navbar = () => {
 
   // Handle mouse leave (for hover)
   const handleMouseLeave = () => {
-    // Add small delay to prevent accidental close
     hoverTimeoutRef.current = setTimeout(() => {
       setIsDropdownOpen(false);
     }, 150);
@@ -82,14 +87,11 @@ const Navbar = () => {
       {/* Updated Navbar with Mobile-First White Background */}
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-          // Mobile: Always white background
-          // Desktop: White on scroll, transparent otherwise
           isScrolled || window.innerWidth < 768 
             ? "bg-white shadow-lg" 
             : "bg-transparent md:bg-transparent bg-white "
         }`}
         style={{
-          // Force white background on mobile regardless of scroll
           backgroundColor: window.innerWidth < 768 ? 'white' : undefined
         }}
       >
@@ -184,7 +186,6 @@ const Navbar = () => {
 
           {/* Right Side - Desktop Only */}
           <div className="hidden h-full md:flex items-center gap-4">
-            {/* Contact Button */}
             <NavLink
               to="/contact"
               className={({ isActive }) => {
@@ -200,15 +201,12 @@ const Navbar = () => {
                 return `${baseClass} text-white border-white hover:text-white hover:border-[var(--brand)]`;
               }}
             >
-              {/* Text */}
               <span className="relative z-10">Contact Us</span>
-
-              {/* Background fill layer */}
               <span className="absolute left-0 top-0 h-full w-0 bg-[var(--brand)] transition-all duration-300 group-hover:w-full z-0"></span>
             </NavLink>
           </div>
 
-          {/* Mobile Menu Button - Always Dark for White Background */}
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="md:hidden relative p-2 text-[var(--primary)] hover:bg-[var(--primary)]/10 rounded-lg transition-all duration-300 group z-[60]"
@@ -276,43 +274,67 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Mobile Navigation Links */}
+          {/* ✅ MOBILE NAVIGATION WITH DROPDOWN */}
           <div className="p-6 space-y-2 overflow-y-auto max-h-[calc(100vh-200px)]">
             {navItems.map((item, index) => {
-              // Handle dropdown items in mobile
+              // ✅ Handle dropdown items in mobile - EXACTLY like desktop
               if (item.dropdown) {
                 return (
                   <div key={item.name} className="space-y-1">
-                    <div className="text-lg font-medium text-gray-700 p-4 border-b border-gray-200">
-                      {item.name}
-                    </div>
-                    {item.dropdown.map((dropItem) => (
-                      <NavLink
-                        key={dropItem}
-                        to={`/${dropItem.toLowerCase()}`}
-                        onClick={() => setIsMenuOpen(false)}
-                        className={({ isActive }) =>
-                          `group flex items-center justify-between w-full p-4 pl-8 rounded-xl transition-all duration-300 ${
-                            isActive
-                              ? "bg-[var(--primary)] text-white shadow-lg"
-                              : "text-gray-600 hover:bg-[var(--primary)]/10 hover:text-[var(--primary)]"
-                          }`
-                        }
-                      >
-                        {({ isActive }) => (
-                          <>
-                            <span className="text-base font-medium">{dropItem}</span>
-                            <ArrowRight
-                              className={`w-4 h-4 transition-all duration-300 ${
+                    {/* ✅ Dropdown trigger with ChevronDown icon */}
+                    <button
+                      onClick={toggleMobileDropdown}
+                      className="group flex items-center justify-between w-full p-4 rounded-xl transition-all duration-300 text-gray-700 hover:bg-[var(--primary)]/10 hover:text-[var(--primary)]"
+                    >
+                      <span className="text-lg font-medium">{item.name}</span>
+                      <ChevronDown 
+                        className={`w-5 h-5 transition-all duration-300 ${
+                          mobileDropdownOpen 
+                            ? "rotate-180 text-[var(--primary)]" 
+                            : "rotate-0 text-gray-400 group-hover:text-[var(--primary)]"
+                        }`}
+                      />
+                    </button>
+
+                    {/* ✅ Dropdown menu items with smooth animation */}
+                    <div 
+                      className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                        mobileDropdownOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                      }`}
+                    >
+                      <div className="pl-4 space-y-1">
+                        {item.dropdown.map((dropItem) => (
+                          <NavLink
+                            key={dropItem}
+                            to={`/${dropItem.toLowerCase()}`}
+                            onClick={() => {
+                              setIsMenuOpen(false);
+                              setMobileDropdownOpen(false);
+                            }}
+                            className={({ isActive }) =>
+                              `group flex items-center justify-between w-full p-3 pl-6 rounded-xl transition-all duration-300 ${
                                 isActive
-                                  ? "text-white translate-x-1"
-                                  : "text-gray-400 group-hover:text-[var(--primary)] group-hover:translate-x-1"
-                              }`}
-                            />
-                          </>
-                        )}
-                      </NavLink>
-                    ))}
+                                  ? "bg-[var(--primary)] text-white shadow-lg"
+                                  : "text-gray-600 hover:bg-[var(--primary)]/10 hover:text-[var(--primary)]"
+                              }`
+                            }
+                          >
+                            {({ isActive }) => (
+                              <>
+                                <span className="text-base font-medium">{dropItem}</span>
+                                <ArrowRight
+                                  className={`w-4 h-4 transition-all duration-300 ${
+                                    isActive
+                                      ? "text-white translate-x-1"
+                                      : "text-gray-400 group-hover:text-[var(--primary)] group-hover:translate-x-1"
+                                  }`}
+                                />
+                              </>
+                            )}
+                          </NavLink>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 );
               }

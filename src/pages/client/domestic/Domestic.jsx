@@ -40,25 +40,6 @@ const Domestic = () => {
   };
 
   useEffect(() => {
-    // ✅ COMMENTED: Marker calculation logic
-    // const calculateMarkerPositions = () => {
-    //   const computedMarkers = [];
-    //   targetStates.forEach(({ id, displayName }) => {
-    //     const coords = stateCoordinates[id];
-    //     if (coords) {
-    //       computedMarkers.push({
-    //         id,
-    //         displayName,
-    //         x: coords.x,
-    //         y: coords.y
-    //       });
-    //     }
-    //   });
-    //   setMarkers(computedMarkers);
-    // };
-    // calculateMarkerPositions();
-
-    // ✅ ACTIVE: Only hover listeners for all states
     const addStateHoverListeners = () => {
       if (!mapRef.current) return;
       const svg = mapRef.current.querySelector('svg');
@@ -71,7 +52,6 @@ const Domestic = () => {
             const stateName = allIndianStates[stateId];
             const isTarget = targetStates.some(ts => ts.id === stateId);
             
-            // ✅ Show name only for highlighted states
             if (isTarget) {
               setHoveredState({ 
                 id: stateId, 
@@ -124,56 +104,56 @@ const Domestic = () => {
 
   return (
     <div className="relative bg-[var(--secondary)]">
-      <div className="relative z-10 pt-23 pb-8 bg-gradient-to-b from-[#ff99b3]/70 to-white/70">
+      {/* Header */}
+      <div className="relative z-10 pt-16 sm:pt-20 md:pt-23 pb-6 md:pb-8 bg-gradient-to-b from-[#ff99b3]/70 to-white/70">
         <Container>
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--primary)] mb-4">
+          <div className="text-center px-4 py-10">
+            <h1 className="text-2xl sm:text-3xl  font-bold text-[var(--primary)] mb-3 md:mb-4 leading-tight">
               India Distribution Network
             </h1>
-            <p className="text-lg md:text-xl text-[var(--dark)]/70 max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-[var(--dark)]/70 max-w-2xl mx-auto">
               Spreading sweetness across 13 key states of India
             </p>
           </div>
         </Container>
       </div>
 
-      <div className="relative z-10 py-8">
+      {/* Map Section - Perfect Center Alignment */}
+      <div className="relative z-10 py-6 md:py-8">
         <Container>
-          <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-4 md:p-8 border border-white/30 mb-8">
-            <div className="text-center mb-6">
-              <h2 className="text-2xl md:text-3xl font-bold text-[var(--primary)] mb-4">
+          <div className="bg-white/50 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 sm:p-6 md:p-8 border border-white/30 mb-6 md:mb-8">
+            <div className="text-center mb-6 md:mb-8">
+              <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[var(--primary)] mb-3 md:mb-4">
                 Our Distribution States
               </h2>
-              <p className="text-[var(--dark)]/70 text-base md:text-lg">
+              <p className="text-[var(--dark)]/70 text-sm sm:text-base md:text-lg px-4">
                 Interactive India map showing our presence across key regions
               </p>
             </div>
 
-            <div className="w-full flex justify-center">
+            {/* ✅ PERFECT CENTER ALIGNMENT */}
+            <div className="w-full sm:pl-80 pl-15">
               <div 
                 ref={mapRef} 
-                className="relative indiamap-scope"
+                className="relative indiamap-scope "
                 style={{ 
-                  width: 'min(90vw, 600px)',
+                  width: '100%',
+                  maxWidth: '800px', // Maximum width constraint
                   height: 'auto',
-                  maxWidth: '600px'
                 }}
-                // onMouseLeave={() => setHoveredState(null)}
               >
                 <IndiaMap 
-                  className="w-full h-auto display-block"
-                  style={{ 
-                    width: '100%',
-                    height: 'auto',
-                    display: 'block'
-                  }}
+                  className="w-full h-full"
+                 
                 />
 
-                {/* ✅ ACTIVE: Hover colors for all states */}
+                {/* CSS Styles */}
                 <style>{`
+                  /* Perfect centering and responsiveness */
                   .indiamap-scope {
                     margin: 0 auto !important;
                     display: block !important;
+                    text-align: center !important;
                   }
                   
                   .indiamap-scope svg {
@@ -181,14 +161,23 @@ const Domestic = () => {
                     height: auto !important;
                     max-width: 100% !important;
                     display: block !important;
+                    margin: 0 auto !important;
                   }
                   
+                  /* Base state styles */
                   .indiamap-scope path[id] {
                     fill: #00A3E0;
                     stroke: #ffffff;
                     stroke-width: 1.5px;
                     transition: all 0.3s ease;
                     cursor: pointer;
+                  }
+                  
+                  /* Mobile optimizations */
+                  @media (max-width: 640px) {
+                    .indiamap-scope path[id] {
+                      stroke-width: 1px;
+                    }
                   }
                   
                   /* Highlighted states primary color */
@@ -201,10 +190,9 @@ const Domestic = () => {
                     )
                     .join("\n")}
                     
-                  /* ALL states hover color change */
+                  /* All states hover color change */
                   .indiamap-scope path[id]:hover {
                     fill: rgb(20, 120, 156) !important;
-                    // transform: scale(1.02);
                     filter: drop-shadow(0 0 5px rgba(0, 163, 224, 0.5));
                   }
                     
@@ -217,81 +205,59 @@ const Domestic = () => {
                           filter: drop-shadow(0 0 10px rgba(244, 51, 77, 0.7));
                           stroke: #ffffff;
                           stroke-width: 2px;
-                        //   transform: scale(1.02);
                         }`
                     )
                     .join("\n")}
+                  
+                  /* Mobile hover effects */
+                  @media (max-width: 640px) {
+                    .indiamap-scope path[id]:hover {
+                      filter: drop-shadow(0 0 3px rgba(0, 163, 224, 0.4));
+                    }
+                    
+                    ${targetStates
+                      .map(
+                        (state) =>
+                          `.indiamap-scope path[id="${state.id}"]:hover { 
+                            filter: drop-shadow(0 0 5px rgba(244, 51, 77, 0.6));
+                            stroke-width: 1.5px;
+                          }`
+                      )
+                      .join("\n")}
+                  }
                 `}</style>
 
-                {/* ✅ COMMENTED: All marker rendering logic */}
-                {/*
-                <div className="absolute inset-0 w-full h-full">
-                  <svg
-                    className="w-full h-full"
-                    viewBox="0 0 611.85999 695.70178"
-                    preserveAspectRatio="xMidYMid meet"
-                    style={{ 
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      width: '100%',
-                      height: '100%',
-                      pointerEvents: 'none'
-                    }}
-                  >
-                    {markers.map((marker, index) => (
-                      <circle
-                        key={index}
-                        cx={marker.x}
-                        cy={marker.y}
-                        r="12"
-                        fill="red"
-                        stroke="white"
-                        strokeWidth="3"
-                        style={{ 
-                          cursor: "pointer",
-                          pointerEvents: 'auto'
-                        }}
-                        onMouseEnter={(e) => handleStateHover(marker, e)}
-                        onMouseMove={handleMouseMove}
-                        onMouseLeave={() => setHoveredState(null)}
-                      />
-                    ))}
-                  </svg>
-                </div>
-                */}
-
-                {/* ✅ ACTIVE: Tooltip only for highlighted states */}
+                {/* Responsive Tooltip */}
                 {hoveredState && (
                   <div
-                    className="absolute bg-white/95 backdrop-blur-sm text-[var(--primary)] px-4 py-2 rounded-lg shadow-lg border border-[var(--primary)]/30 pointer-events-none z-50 transition-all duration-200"
+                    className="absolute bg-white/95 backdrop-blur-sm text-[var(--primary)] px-3 md:px-4 py-2 rounded-lg shadow-lg border border-[var(--primary)]/30 pointer-events-none z-50 transition-all duration-200"
                     style={{
-                      left: tooltipPosition.x,
+                      left: Math.min(tooltipPosition.x, (mapRef.current?.offsetWidth || 0) - 150),
                       top: tooltipPosition.y,
                       transform: 'translateX(-50%)',
                     }}
                   >
-                    <div className="text-sm font-bold">{hoveredState.displayName}</div>
+                    <div className="text-sm font-bold whitespace-nowrap">{hoveredState.displayName}</div>
                   </div>
                 )}
               </div>
             </div>
 
-            <div className="mt-8">
-              <h3 className="text-xl font-bold text-[var(--primary)] mb-4 text-center">
+            {/* States Grid */}
+            <div className="mt-8 md:mt-10">
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[var(--primary)] mb-4 md:mb-6 text-center">
                 Our Distribution Network
               </h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
                 {targetStates.map((state) => (
                   <div
                     key={state.id}
                     className="bg-white/60 backdrop-blur-sm rounded-lg p-3 border border-[var(--primary)]/20 hover:bg-[var(--primary)]/10 transition-all duration-300 cursor-pointer"
-                    // onMouseEnter={(e) => handleStateHover(state, e)}
                     onMouseLeave={() => setHoveredState(null)}
                   >
                     <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 bg-[var(--primary)] rounded-full"></div>
-                      <span className="text-sm font-medium text-[var(--dark)]">
+                      <div className="w-3 h-3 bg-[var(--primary)] rounded-full flex-shrink-0"></div>
+                      <span className="text-sm font-medium text-[var(--dark)] leading-tight">
                         {state.displayName}
                       </span>
                     </div>
