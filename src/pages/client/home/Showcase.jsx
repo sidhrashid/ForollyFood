@@ -61,7 +61,7 @@ const SimpleInstagramGrid = () => {
   return (
     <section className="bg-white ">
       <Container>
-        <h2 className="text-5xl font-bold text-center mb-6 text-[var(--primary)] py-5">Sweet Moments</h2>
+        <h2 className="sm:text-5xl text-3xl font-bold text-center mb-6 text-[var(--primary)] py-5">Sweet Moments</h2>
 
         <div className="grid grid-cols-3   gap-1">
           {posts.map((post, index) => (
