@@ -114,7 +114,7 @@ const ProductsPage = () => {
                 </div>
 
                 {/* Product Grid */}
-                <div className="flex flex-wrap justify-center gap-8 mb-8">
+                <div className="flex flex-wrap justify-evenly gap-2 mb-8">
                   {[
                     ...initialProducts,
                     ...(isExpanded ? additionalProducts : []),

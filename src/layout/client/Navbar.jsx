@@ -16,7 +16,7 @@ const navItems = [
   { name: "About", href: "/about" },
   { name: "Products", href: "/products" },
   { name: "Contact", href: "/contact" },
-  { name: "Brochure", href: "#", isDownload: true }, // ✅ Mark as download item
+  { name: "Brochure", href: "#", isDownload: true },
   {
     name: "Market Overview",
     href: "/export",
@@ -29,8 +29,23 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
+  const [screenHeight, setScreenHeight] = useState(window.innerHeight);
   const dropdownRef = useRef(null);
   const hoverTimeoutRef = useRef(null);
+
+  // Track screen height changes for better responsiveness
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenHeight(window.innerHeight);
+      if (window.innerWidth >= 768) {
+        setIsMenuOpen(false);
+        setMobileDropdownOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Handle scroll effect
   useEffect(() => {
@@ -41,19 +56,6 @@ const Navbar = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Close mobile menu on resize
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setIsMenuOpen(false);
-        setMobileDropdownOpen(false);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   // Close dropdown on outside click
@@ -70,17 +72,14 @@ const Navbar = () => {
     };
   }, []);
 
-  // Toggle dropdown function (for click)
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  // Toggle mobile dropdown
   const toggleMobileDropdown = () => {
     setMobileDropdownOpen(!mobileDropdownOpen);
   };
 
-  // Handle mouse enter (for hover)
   const handleMouseEnter = () => {
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current);
@@ -88,16 +87,13 @@ const Navbar = () => {
     setIsDropdownOpen(true);
   };
 
-  // Handle mouse leave (for hover)
   const handleMouseLeave = () => {
     hoverTimeoutRef.current = setTimeout(() => {
       setIsDropdownOpen(false);
     }, 150);
   };
 
-  // ✅ Enhanced download function for multiple brochures
   const downloadBrochure = () => {
-    // Primary brochure download
     const link = document.createElement("a");
     link.href = "/files/Forolly%20new%20catalogue.pdf";
     link.download = "Forolly_new_catalogue.pdf";
@@ -105,7 +101,6 @@ const Navbar = () => {
     link.click();
     document.body.removeChild(link);
 
-    // Optional: Show success message
     setTimeout(() => {
       console.log("Brochure download started!");
     }, 100);
@@ -113,7 +108,7 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Updated Navbar with Mobile-First White Background */}
+      {/* Updated Navbar with Desktop Contact Button */}
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           isScrolled || window.innerWidth < 768
@@ -143,7 +138,6 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8 text-md font-bold">
             {navItems.map((item) => {
-              // ✅ Handle download items
               if (item.isDownload) {
                 return (
                   <button
@@ -155,13 +149,11 @@ const Navbar = () => {
                         : "text-white hover:text-[var(--brand)]"
                     }`}
                   >
-                    {/* <Download className="w-4 h-4" /> */}
                     {item.name}
                   </button>
                 );
               }
 
-              // Handle dropdown items
               if (item.dropdown) {
                 return (
                   <div
@@ -187,7 +179,6 @@ const Navbar = () => {
                       />
                     </button>
 
-                    {/* Dropdown Menu */}
                     {isDropdownOpen && (
                       <div
                         className="absolute left-0 mt-2 w-48 bg-white shadow-xl rounded-lg border border-gray-100 py-2 z-[60] animate-fadeInDown"
@@ -210,7 +201,6 @@ const Navbar = () => {
                 );
               }
 
-              // Handle regular nav items
               return (
                 <NavLink
                   key={item.name}
@@ -231,7 +221,7 @@ const Navbar = () => {
             })}
           </nav>
 
-          {/* Right Side - Desktop Only */}
+          {/* ✅ RESTORED Desktop Contact Button */}
           <div className="hidden h-full md:flex items-center gap-4">
             <NavLink
               to="/contact"
@@ -274,7 +264,7 @@ const Navbar = () => {
         </div>
       </header>
 
-      {/* Enhanced Mobile Menu Overlay with Background Blur */}
+      {/* FULLY RESPONSIVE Mobile Menu Overlay */}
       <div
         className={`md:hidden fixed inset-0 z-[55] transition-all duration-500 ${
           isMenuOpen
@@ -282,7 +272,7 @@ const Navbar = () => {
             : "opacity-0 pointer-events-none"
         }`}
       >
-        {/* Enhanced Backdrop with Blur Effect */}
+        {/* Enhanced Backdrop */}
         <div
           className={`absolute inset-0 bg-black/60 backdrop-blur-md transition-all duration-500 ${
             isMenuOpen ? "backdrop-blur-md" : "backdrop-blur-none"
@@ -290,26 +280,52 @@ const Navbar = () => {
           onClick={() => setIsMenuOpen(false)}
         ></div>
 
-        {/* Menu Panel with Higher Z-Index */}
+        {/* RESPONSIVE Menu Panel */}
         <div
-          className={`absolute top-0 right-0 w-80 max-w-[90vw] h-full bg-white shadow-2xl transform transition-all duration-500 ease-out z-[60] ${
+          className={`absolute top-0 right-0 bg-white shadow-2xl transform transition-all duration-500 ease-out z-[60] ${
             isMenuOpen ? "translate-x-0 scale-100" : "translate-x-full scale-95"
           }`}
+          style={{
+            width: `min(85vw, 350px)`,
+            height: '100vh',
+            maxHeight: '100vh'
+          }}
         >
-          {/* Mobile Menu Header */}
-          <div className="p-6 border-b border-gray-100 bg-[var(--primary)]/5">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
+          {/* RESPONSIVE Mobile Menu Header */}
+          <div 
+            className="border-b border-gray-100 bg-[var(--primary)]/5 mb-2 "
+            style={{
+              padding: `${Math.max(16, screenHeight * 0.02)}px ${Math.max(16, screenHeight * 0.025)}px`
+            }}
+          >
+            <div className="flex items-center justify-between ">
+              <div className="flex items-center space-x-2">
                 <img
                   src={logo}
                   alt="Forolly Logo"
-                  className="h-8 w-auto object-contain"
+                  className="object-contain"
+                  style={{
+                    height: `${Math.max(24, Math.min(32, screenHeight * 0.04))}px`,
+                    width: 'auto'
+                  }}
                 />
                 <div>
-                  <span className="text-lg font-bold text-[var(--primary)]">
+                  <span 
+                    className="font-bold text-[var(--primary)]"
+                    style={{
+                      fontSize: `${Math.max(14, Math.min(18, screenHeight * 0.022))}px`
+                    }}
+                  >
                     Forolly
                   </span>
-                  <div className="text-xs text-gray-500">Confectionery</div>
+                  <div 
+                    className="text-gray-500"
+                    style={{
+                      fontSize: `${Math.max(10, Math.min(12, screenHeight * 0.015))}px`
+                    }}
+                  >
+                    Confectionery
+                  </div>
                 </div>
               </div>
               <button
@@ -321,10 +337,16 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Mobile Navigation Links */}
-          <div className="px-6 space-y-0 overflow-y-auto max-h-[calc(100vh-200px)]">
+          {/* RESPONSIVE Navigation Links */}
+          <div 
+            className="px-4  space-y-2 overflow-y-auto"
+            style={{
+              maxHeight: `${screenHeight * 0.65}px`,
+              padding: `0 ${Math.max(16, screenHeight * 0.02)}px`
+            }}
+          >
             {navItems.map((item, index) => {
-              // ✅ Handle download items in mobile
+              // Handle download items in mobile
               if (item.isDownload) {
                 return (
                   <button
@@ -333,13 +355,22 @@ const Navbar = () => {
                       downloadBrochure();
                       setIsMenuOpen(false);
                     }}
-                    className="group flex items-center justify-between w-full p-4 rounded-xl transition-all duration-300 text-gray-700 hover:bg-[var(--primary)]/10 hover:text-[var(--primary)]"
+                    className="group flex items-center justify-between w-full rounded-xl transition-all duration-300 text-gray-700 hover:bg-[var(--primary)]/10 hover:text-[var(--primary)]"
+                    style={{
+                      padding: `${Math.max(12, screenHeight * 0.015)}px ${Math.max(8, screenHeight * 0.01)}px`
+                    }}
                   >
                     <div className="flex items-center gap-3">
-                      <span className="text-lg font-medium">{item.name}</span>
-                      {/* <Download className="w-5 h-5 text-[var(--primary)]" /> */}
+                      <span 
+                        className="font-medium"
+                        style={{
+                          fontSize: `${Math.max(14, Math.min(16, screenHeight * 0.02))}px`
+                        }}
+                      >
+                        {item.name}
+                      </span>
                     </div>
-                    <Download className="w-5 h-5 text-[var(--primary)]" />
+                    <Download className="w-4 h-4 text-[var(--primary)]" />
                   </button>
                 );
               }
@@ -348,14 +379,23 @@ const Navbar = () => {
               if (item.dropdown) {
                 return (
                   <div key={item.name} className="space-y-1">
-                    {/* Dropdown trigger with ChevronDown icon */}
                     <button
                       onClick={toggleMobileDropdown}
-                      className="group flex items-center justify-between w-full p-4 rounded-xl transition-all duration-300 text-gray-700 hover:bg-[var(--primary)]/10 hover:text-[var(--primary)]"
+                      className="group flex items-center justify-between w-full rounded-xl transition-all duration-300 text-gray-700 hover:bg-[var(--primary)]/10 hover:text-[var(--primary)]"
+                      style={{
+                        padding: `${Math.max(12, screenHeight * 0.015)}px ${Math.max(8, screenHeight * 0.01)}px`
+                      }}
                     >
-                      <span className="text-lg font-medium">{item.name}</span>
+                      <span 
+                        className="font-medium"
+                        style={{
+                          fontSize: `${Math.max(14, Math.min(16, screenHeight * 0.02))}px`
+                        }}
+                      >
+                        {item.name}
+                      </span>
                       <ChevronDown
-                        className={`w-5 h-5 transition-all duration-300 ${
+                        className={`w-4 h-4 transition-all duration-300 ${
                           mobileDropdownOpen
                             ? "rotate-180 text-[var(--primary)]"
                             : "rotate-0 text-gray-400 group-hover:text-[var(--primary)]"
@@ -363,7 +403,6 @@ const Navbar = () => {
                       />
                     </button>
 
-                    {/* Dropdown menu items with smooth animation */}
                     <div
                       className={`overflow-hidden transition-all duration-300 ease-in-out ${
                         mobileDropdownOpen
@@ -381,20 +420,29 @@ const Navbar = () => {
                               setMobileDropdownOpen(false);
                             }}
                             className={({ isActive }) =>
-                              `group flex items-center justify-between w-full p-3 pl-6 rounded-xl transition-all duration-300 ${
+                              `group flex items-center justify-between w-full rounded-xl transition-all duration-300 ${
                                 isActive
                                   ? "bg-[var(--primary)] text-white shadow-lg"
                                   : "text-gray-600 hover:bg-[var(--primary)]/10 hover:text-[var(--primary)]"
                               }`
                             }
+                            style={{
+                              padding: `${Math.max(10, screenHeight * 0.012)}px ${Math.max(16, screenHeight * 0.02)}px`,
+                              marginLeft: `${Math.max(8, screenHeight * 0.01)}px`
+                            }}
                           >
                             {({ isActive }) => (
                               <>
-                                <span className="text-base font-medium">
+                                <span 
+                                  className="font-medium"
+                                  style={{
+                                    fontSize: `${Math.max(13, Math.min(15, screenHeight * 0.018))}px`
+                                  }}
+                                >
                                   {dropItem}
                                 </span>
                                 <ArrowRight
-                                  className={`w-4 h-4 transition-all duration-300 ${
+                                  className={`w-3 h-3 transition-all duration-300 ${
                                     isActive
                                       ? "text-white translate-x-1"
                                       : "text-gray-400 group-hover:text-[var(--primary)] group-hover:translate-x-1"
@@ -410,25 +458,34 @@ const Navbar = () => {
                 );
               }
 
-              // Handle regular nav items in mobile
               return (
                 <NavLink
                   key={item.name}
                   to={item.href}
                   onClick={() => setIsMenuOpen(false)}
                   className={({ isActive }) =>
-                    `group flex items-center justify-between w-full p-4 rounded-xl transition-all duration-300 ${
+                    `group flex items-center justify-between w-full rounded-xl transition-all duration-300 ${
                       isActive
                         ? "bg-[var(--primary)] text-white shadow-lg"
                         : "text-gray-700 hover:bg-[var(--primary)]/10 hover:text-[var(--primary)]"
                     }`
                   }
+                  style={{
+                    padding: `${Math.max(12, screenHeight * 0.015)}px ${Math.max(8, screenHeight * 0.01)}px`
+                  }}
                 >
                   {({ isActive }) => (
                     <>
-                      <span className="text-lg font-medium">{item.name}</span>
+                      <span 
+                        className="font-medium"
+                        style={{
+                          fontSize: `${Math.max(14, Math.min(16, screenHeight * 0.02))}px`
+                        }}
+                      >
+                        {item.name}
+                      </span>
                       <ArrowRight
-                        className={`w-5 h-5 transition-all duration-300 ${
+                        className={`w-4 h-4 transition-all duration-300 ${
                           isActive
                             ? "text-white translate-x-1"
                             : "text-gray-400 group-hover:text-[var(--primary)] group-hover:translate-x-1"
@@ -441,8 +498,8 @@ const Navbar = () => {
             })}
           </div>
 
-          {/* Mobile Contact Section with Download */}
-          <div className="absolute bottom-0 left-0 right-0 px-6 pb-2 pt-0 border-t border-gray-100 bg-gray-50/50">
+          {/* RESPONSIVE Mobile Contact Section */}
+           <div className="absolute bottom-0 left-0 right-0 px-6 pb-18 pt-0 border-t border-gray-100 bg-gray-50/50">
             <div className="space-y-3">
               <div>
                 <div className="text-sm text-gray-500 mb-2">Need Help?</div>
@@ -451,14 +508,14 @@ const Navbar = () => {
                   className="flex items-center space-x-3 p-3 bg-[var(--primary)]/10 rounded-xl text-[var(--primary)] font-semibold hover:bg-[var(--primary)]/20 transition-all duration-300"
                 >
                   <Phone className="w-5 h-5" />
-                  <span className="text-lg">+91 95102 70600</span>
+                  <span className="text-sm">+91 95102 70600</span>
                 </a>
                 <a
                   href="mailto:support@forollyfood.com"
                   className="flex items-center space-x-3 p-3 font-semibold"
                 >
                   <Mail className="w-5 h-5 text-[var(--primary)]" />
-                  <span className="text-lg text-[var(--primary)]">
+                  <span className="text-sm text-[var(--primary)]">
                     support@forollyfood.com
                   </span>
                 </a>
@@ -477,7 +534,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Body Scroll Lock and Background Blur for Main Content */}
+      {/* Body Scroll Lock */}
       {isMenuOpen && (
         <>
           <style jsx>{`
@@ -491,7 +548,7 @@ const Navbar = () => {
         </>
       )}
 
-      {/* Add CSS for fade animation */}
+      {/* CSS animations */}
       <style jsx>{`
         .animate-fadeInDown {
           animation: fadeInDown 0.3s ease-out;
