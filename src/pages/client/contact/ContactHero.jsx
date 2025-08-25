@@ -187,6 +187,7 @@ ${formData.message}
                 <option value="customer-support">Customer Support</option>
                 <option value="partnership">Partnership</option>
                 <option value="feedback">Feedback</option>
+                <option value="other">White Label</option>
                 <option value="other">Other</option>
               </select>
               <select

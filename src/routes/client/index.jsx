@@ -1,3 +1,4 @@
+import ComingSoonPopup from "../../components/ComingSoonPopup";
 import AboutRoute from "./AboutRoute";
 import ContactRoute from "./ContactRoute";
 import DomesticRoute from "./DomesticRoute";
@@ -8,6 +9,7 @@ import ProductsRoute from "./ProductsRoute";
 const index = () => {
   return (
     <div>
+      <ComingSoonPopup />
       <HomeRoute />
       <AboutRoute />
       <ContactRoute />

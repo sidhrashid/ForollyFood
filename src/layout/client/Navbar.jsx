@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Menu, X, Phone, ArrowRight, Mail, ChevronDown } from "lucide-react";
+import { Menu, X, Phone, ArrowRight, Mail, ChevronDown, Download } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/images/forolly.png";
 
@@ -8,14 +8,15 @@ const navItems = [
   { name: "About", href: "/about" },
   { name: "Products", href: "/products" },
   { name: "Contact", href: "/contact" },
-  { name: "Market view", href: "/export", dropdown: ["Export", "Domestic"] }
+  { name: "Brochure", href: "#", isDownload: true }, // ✅ Mark as download item
+  { name: "Market Overview", href: "/export", dropdown: ["Export", "Domestic"] }
 ];
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false); // ✅ Mobile dropdown state
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const hoverTimeoutRef = useRef(null);
 
@@ -35,7 +36,7 @@ const Navbar = () => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
         setIsMenuOpen(false);
-        setMobileDropdownOpen(false); // ✅ Reset mobile dropdown
+        setMobileDropdownOpen(false);
       }
     };
 
@@ -62,7 +63,7 @@ const Navbar = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  // ✅ Toggle mobile dropdown
+  // Toggle mobile dropdown
   const toggleMobileDropdown = () => {
     setMobileDropdownOpen(!mobileDropdownOpen);
   };
@@ -80,6 +81,22 @@ const Navbar = () => {
     hoverTimeoutRef.current = setTimeout(() => {
       setIsDropdownOpen(false);
     }, 150);
+  };
+
+  // ✅ Enhanced download function for multiple brochures
+  const downloadBrochure = () => {
+    // Primary brochure download
+    const link = document.createElement("a");
+    link.href = "/files/Forolly%20new%20catalogue.pdf";
+    link.download = "Forolly_new_catalogue.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    // Optional: Show success message
+    setTimeout(() => {
+      console.log("Brochure download started!");
+    }, 100);
   };
 
   return (
@@ -114,6 +131,24 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8 text-md font-bold">
             {navItems.map((item) => {
+              // ✅ Handle download items
+              if (item.isDownload) {
+                return (
+                  <button
+                    key={item.name}
+                    onClick={downloadBrochure}
+                    className={`flex items-center gap-1 transition-colors cursor-pointer ${
+                      isScrolled 
+                        ? "text-gray-800 hover:text-[var(--brand)]" 
+                        : "text-white hover:text-[var(--brand)]"
+                    }`}
+                  >
+                    {/* <Download className="w-4 h-4" /> */}
+                    {item.name}
+                  </button>
+                );
+              }
+
               // Handle dropdown items
               if (item.dropdown) {
                 return (
@@ -274,14 +309,34 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* ✅ MOBILE NAVIGATION WITH DROPDOWN */}
+          {/* Mobile Navigation Links */}
           <div className="p-6 space-y-2 overflow-y-auto max-h-[calc(100vh-200px)]">
             {navItems.map((item, index) => {
-              // ✅ Handle dropdown items in mobile - EXACTLY like desktop
+              // ✅ Handle download items in mobile
+              if (item.isDownload) {
+                return (
+                  <button
+                    key={item.name}
+                    onClick={() => {
+                      downloadBrochure();
+                      setIsMenuOpen(false);
+                    }}
+                    className="group flex items-center justify-between w-full p-4 rounded-xl transition-all duration-300 text-gray-700 hover:bg-[var(--primary)]/10 hover:text-[var(--primary)]"
+                  >
+                    <div className="flex items-center gap-3">
+                      <Download className="w-5 h-5 text-[var(--primary)]" />
+                      <span className="text-lg font-medium">{item.name}</span>
+                    </div>
+                    <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-[var(--primary)] group-hover:translate-x-1 transition-all duration-300" />
+                  </button>
+                );
+              }
+
+              // Handle dropdown items in mobile
               if (item.dropdown) {
                 return (
                   <div key={item.name} className="space-y-1">
-                    {/* ✅ Dropdown trigger with ChevronDown icon */}
+                    {/* Dropdown trigger with ChevronDown icon */}
                     <button
                       onClick={toggleMobileDropdown}
                       className="group flex items-center justify-between w-full p-4 rounded-xl transition-all duration-300 text-gray-700 hover:bg-[var(--primary)]/10 hover:text-[var(--primary)]"
@@ -296,7 +351,7 @@ const Navbar = () => {
                       />
                     </button>
 
-                    {/* ✅ Dropdown menu items with smooth animation */}
+                    {/* Dropdown menu items with smooth animation */}
                     <div 
                       className={`overflow-hidden transition-all duration-300 ease-in-out ${
                         mobileDropdownOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
@@ -370,7 +425,7 @@ const Navbar = () => {
             })}
           </div>
 
-          {/* Mobile Contact Section */}
+          {/* Mobile Contact Section with Download */}
           <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-100 bg-gray-50/50">
             <div className="space-y-4">
               <div>
