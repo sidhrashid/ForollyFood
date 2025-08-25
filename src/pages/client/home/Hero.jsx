@@ -7,12 +7,12 @@ import poster4 from '../../../assets/images/BANNER4.png';
 import poster5 from '../../../assets/images/BANNER5.png';
 import poster6 from '../../../assets/images/BANNER3.png';
 
-// import poster1 from '../../../assets/images/websiteBanners.png';
-// import poster1 from '../../../assets/images/websiteBanners.png';
-// import poster1 from '../../../assets/images/websiteBanners.png';
-// import poster1 from '../../../assets/images/websiteBanners.png';
-// import poster1 from '../../../assets/images/websiteBanners.png';
-// import poster1 from '../../../assets/images/websiteBanners.png';
+import posterM1 from '../../../assets/images/BANNER1M.png';
+import posterM6 from '../../../assets/images/BANNER6M.png';
+import posterM2 from '../../../assets/images/BANNER2M.png';
+import posterM4 from '../../../assets/images/BANNER4M.png';
+import posterM5 from '../../../assets/images/BANNER5M.png';
+import posterM3 from '../../../assets/images/BANNER3M.png';
 // Desktop poster images
 const POSTER_IMAGES = [
   { src: poster1, title: "Poster 1" },
@@ -24,14 +24,14 @@ const POSTER_IMAGES = [
 ];
 
 // Mobile-specific poster images  
-// const MOBILE_POSTER_IMAGES = [
-//   { src: "../../../assets/images/BANNER1M.png", title: "Mobile Poster 1" },
-//   { src: "../../../assets/images/BANNER6M.png", title: "Mobile Poster 6" },
-//   { src: "../../../assets/images/BANNER2M.png", title: "Mobile Poster 2" },
-//   { src: "../../../assets/images/BANNER4M.png", title: "Mobile Poster 4" },
-//   { src: "../../../assets/images/BANNER5M.png", title: "Mobile Poster 5" },
-//   { src: "../../../assets/images/BANNER3M.png", title: "Mobile Poster 3" },
-// ];
+const MOBILE_POSTER_IMAGES = [
+  { src: posterM1, title: "Mobile Poster 1" },
+  { src: posterM6, title: "Mobile Poster 6" },
+  { src: posterM2, title: "Mobile Poster 2" },
+  { src: posterM4, title: "Mobile Poster 4" },
+  { src: posterM5, title: "Mobile Poster 5" },
+  { src: posterM3, title: "Mobile Poster 3" },
+];
 
 const Slider = () => {
   const [current, setCurrent] = useState(0);
