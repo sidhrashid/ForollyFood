@@ -5,25 +5,18 @@ const ComingSoonPopup = () => {
   const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
-    // Check if popup was already shown today
-    const today = new Date().toDateString();
-    const lastShown = localStorage.getItem("comingSoonPopupDate");
+    // ✅ REMOVED: localStorage check - popup shows every time
+    // Show popup after 1.5 seconds on every page load
+    const timer = setTimeout(() => {
+      setShowPopup(true);
+    }, 1500);
 
-    if (lastShown !== today) {
-      // Show popup after 1 second
-      const timer = setTimeout(() => {
-        setShowPopup(true);
-      }, 1000);
-
-      return () => clearTimeout(timer);
-    }
+    return () => clearTimeout(timer);
   }, []);
 
   const closePopup = () => {
     setShowPopup(false);
-    // Store today's date so popup doesn't show again today
-    const today = new Date().toDateString();
-    localStorage.setItem("comingSoonPopupDate", today);
+    // ✅ REMOVED: localStorage saving - no memory of closing
   };
 
   const handleBackdropClick = (e) => {
@@ -67,7 +60,7 @@ const ComingSoonPopup = () => {
           {/* Content */}
           <div className="p-8 text-center">
             <h3 className="text-xl font-semibold text-gray-800 mb-3">
-              🍬 New Sweet Delights
+               New Sweet Delights
             </h3>
             <p className="text-gray-600 mb-6 leading-relaxed">
               We're working on exciting new confectionery products and features. 
@@ -75,20 +68,20 @@ const ComingSoonPopup = () => {
             </p>
 
             {/* Features List */}
-            <div className="text-left mb-6 space-y-2">
+            {/* <div className="text-left mb-6 space-y-2">
               <div className="flex items-center gap-3 text-sm text-gray-600">
                 <div className="w-2 h-2 bg-[var(--primary)] rounded-full"></div>
-                <span>New product catalog</span>
+                <span>New product releases</span>
               </div>
               <div className="flex items-center gap-3 text-sm text-gray-600">
                 <div className="w-2 h-2 bg-[var(--primary)] rounded-full"></div>
-                <span>Enhanced online ordering</span>
+                <span>Enhanced  ordering</span>
               </div>
               <div className="flex items-center gap-3 text-sm text-gray-600">
                 <div className="w-2 h-2 bg-[var(--primary)] rounded-full"></div>
                 <span>Exclusive member benefits</span>
               </div>
-            </div>
+            </div> */}
 
             {/* Action Buttons */}
             <div className="space-y-3">
@@ -99,10 +92,10 @@ const ComingSoonPopup = () => {
                 Got it, Thanks!
               </button>
               
-              <div className="flex items-center justify-center gap-2 text-xs text-gray-500">
+              {/* <div className="flex items-center justify-center gap-2 text-xs text-gray-500">
                 <Bell className="w-3 h-3" />
                 <span>We'll notify you when it's ready</span>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

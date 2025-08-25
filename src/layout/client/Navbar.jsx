@@ -1,5 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Menu, X, Phone, ArrowRight, Mail, ChevronDown, Download } from "lucide-react";
+import {
+  Menu,
+  X,
+  Phone,
+  ArrowRight,
+  Mail,
+  ChevronDown,
+  Download,
+} from "lucide-react";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/images/forolly.png";
 
@@ -9,7 +17,11 @@ const navItems = [
   { name: "Products", href: "/products" },
   { name: "Contact", href: "/contact" },
   { name: "Brochure", href: "#", isDownload: true }, // ✅ Mark as download item
-  { name: "Market Overview", href: "/export", dropdown: ["Export", "Domestic"] }
+  {
+    name: "Market Overview",
+    href: "/export",
+    dropdown: ["Export", "Domestic"],
+  },
 ];
 
 const Navbar = () => {
@@ -92,7 +104,7 @@ const Navbar = () => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    
+
     // Optional: Show success message
     setTimeout(() => {
       console.log("Brochure download started!");
@@ -104,12 +116,12 @@ const Navbar = () => {
       {/* Updated Navbar with Mobile-First White Background */}
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-          isScrolled || window.innerWidth < 768 
-            ? "bg-white shadow-lg" 
+          isScrolled || window.innerWidth < 768
+            ? "bg-white shadow-lg"
             : "bg-transparent md:bg-transparent bg-white "
         }`}
         style={{
-          backgroundColor: window.innerWidth < 768 ? 'white' : undefined
+          backgroundColor: window.innerWidth < 768 ? "white" : undefined,
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
@@ -138,8 +150,8 @@ const Navbar = () => {
                     key={item.name}
                     onClick={downloadBrochure}
                     className={`flex items-center gap-1 transition-colors cursor-pointer ${
-                      isScrolled 
-                        ? "text-gray-800 hover:text-[var(--brand)]" 
+                      isScrolled
+                        ? "text-gray-800 hover:text-[var(--brand)]"
                         : "text-white hover:text-[var(--brand)]"
                     }`}
                   >
@@ -162,22 +174,22 @@ const Navbar = () => {
                     <button
                       onClick={toggleDropdown}
                       className={`flex items-center gap-1 transition-colors cursor-pointer ${
-                        isScrolled 
-                          ? "text-gray-800 hover:text-[var(--brand)]" 
+                        isScrolled
+                          ? "text-gray-800 hover:text-[var(--brand)]"
                           : "text-white hover:text-[var(--brand)]"
                       }`}
                     >
                       {item.name}
-                      <ChevronDown 
+                      <ChevronDown
                         className={`w-4 h-4 transition-transform duration-200 ${
-                          isDropdownOpen ? 'rotate-180' : 'rotate-0'
+                          isDropdownOpen ? "rotate-180" : "rotate-0"
                         }`}
                       />
                     </button>
-                    
+
                     {/* Dropdown Menu */}
                     {isDropdownOpen && (
-                      <div 
+                      <div
                         className="absolute left-0 mt-2 w-48 bg-white shadow-xl rounded-lg border border-gray-100 py-2 z-[60] animate-fadeInDown"
                         onMouseEnter={handleMouseEnter}
                         onMouseLeave={handleMouseLeave}
@@ -310,7 +322,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Navigation Links */}
-          <div className="p-6 space-y-2 overflow-y-auto max-h-[calc(100vh-200px)]">
+          <div className="px-6 space-y-0 overflow-y-auto max-h-[calc(100vh-200px)]">
             {navItems.map((item, index) => {
               // ✅ Handle download items in mobile
               if (item.isDownload) {
@@ -324,10 +336,10 @@ const Navbar = () => {
                     className="group flex items-center justify-between w-full p-4 rounded-xl transition-all duration-300 text-gray-700 hover:bg-[var(--primary)]/10 hover:text-[var(--primary)]"
                   >
                     <div className="flex items-center gap-3">
-                      <Download className="w-5 h-5 text-[var(--primary)]" />
                       <span className="text-lg font-medium">{item.name}</span>
+                      {/* <Download className="w-5 h-5 text-[var(--primary)]" /> */}
                     </div>
-                    <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-[var(--primary)] group-hover:translate-x-1 transition-all duration-300" />
+                    <Download className="w-5 h-5 text-[var(--primary)]" />
                   </button>
                 );
               }
@@ -342,22 +354,24 @@ const Navbar = () => {
                       className="group flex items-center justify-between w-full p-4 rounded-xl transition-all duration-300 text-gray-700 hover:bg-[var(--primary)]/10 hover:text-[var(--primary)]"
                     >
                       <span className="text-lg font-medium">{item.name}</span>
-                      <ChevronDown 
+                      <ChevronDown
                         className={`w-5 h-5 transition-all duration-300 ${
-                          mobileDropdownOpen 
-                            ? "rotate-180 text-[var(--primary)]" 
+                          mobileDropdownOpen
+                            ? "rotate-180 text-[var(--primary)]"
                             : "rotate-0 text-gray-400 group-hover:text-[var(--primary)]"
                         }`}
                       />
                     </button>
 
                     {/* Dropdown menu items with smooth animation */}
-                    <div 
+                    <div
                       className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                        mobileDropdownOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                        mobileDropdownOpen
+                          ? "max-h-96 opacity-100"
+                          : "max-h-0 opacity-0"
                       }`}
                     >
-                      <div className="pl-4 space-y-1">
+                      <div className="pl-4 space-y-0">
                         {item.dropdown.map((dropItem) => (
                           <NavLink
                             key={dropItem}
@@ -376,7 +390,9 @@ const Navbar = () => {
                           >
                             {({ isActive }) => (
                               <>
-                                <span className="text-base font-medium">{dropItem}</span>
+                                <span className="text-base font-medium">
+                                  {dropItem}
+                                </span>
                                 <ArrowRight
                                   className={`w-4 h-4 transition-all duration-300 ${
                                     isActive
@@ -426,8 +442,8 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Contact Section with Download */}
-          <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-100 bg-gray-50/50">
-            <div className="space-y-4">
+          <div className="absolute bottom-0 left-0 right-0 px-6 pb-2 pt-0 border-t border-gray-100 bg-gray-50/50">
+            <div className="space-y-3">
               <div>
                 <div className="text-sm text-gray-500 mb-2">Need Help?</div>
                 <a
@@ -480,7 +496,7 @@ const Navbar = () => {
         .animate-fadeInDown {
           animation: fadeInDown 0.3s ease-out;
         }
-        
+
         @keyframes fadeInDown {
           from {
             opacity: 0;
